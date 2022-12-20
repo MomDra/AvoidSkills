@@ -13,6 +13,6 @@ public class ClientHandle : MonoBehaviour
         Debug.Log($"Message from server: {_msg}");
         Client.instance.myId = _myId;
 
-        // 웰컴 메시지 잘 받았다는 패킷 보내기
+        ClientSend.WelcomeReceived();
     }
 }

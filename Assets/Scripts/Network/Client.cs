@@ -88,6 +88,21 @@ public class Client : MonoBehaviour
             stream.BeginRead(receiveBuffer, 0, dataBufferSize, ReceiveCallback, null);
         }
 
+        public void SendData(Packet _packet)
+        {
+            try
+            {
+                if (socket != null)
+                {
+                    stream.BeginWrite(_packet.ToArray(), 0, _packet.Length(), null, null);
+                }
+            }
+            catch (Exception _ex)
+            {
+                Debug.Log($"Error sending data to server via TCP: {_ex}");
+            }
+        }
+
         private void ReceiveCallback(IAsyncResult _result)
         {
             try
@@ -137,8 +152,6 @@ public class Client : MonoBehaviour
                         int _packetId = _packet.ReadInt();
                         packetHandlers[_packetId](_packet);
                     }
-
-                    Debug.Log("Hi");
                 });
 
                 _packetLength = 0;
