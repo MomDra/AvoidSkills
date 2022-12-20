@@ -8,28 +8,30 @@ public class playerControl : Unit
 
     [SerializeField]
     private GameObject arrow;
+    [SerializeField]
+    private MousePointer mouse;
 
     void Start()
     {
-
+        rigid = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Q)){
             Attack();
         }
+    }
+
+    private void FixedUpdate() {
         Move();
     }
 
     void Attack(){
-        isAttack = true;
+        Vector3 arrowPos = transform.position + (mouse.worldPosition - transform.position).normalized;
+        Vector3 velocity = (mouse.worldPosition - arrowPos).normalized * arrowSpeed;
 
-        Vector3 arrowPos;
-        Vector3 velocity = Vector3.zero;
-
-        var clone = Instantiate(arrow, transform.position, Quaternion.identity);
+        GameObject clone = Instantiate(arrow,  arrowPos, Quaternion.identity);
         clone.GetComponent<Rigidbody>().velocity = velocity;
     }
 

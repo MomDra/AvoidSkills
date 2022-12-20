@@ -22,8 +22,4 @@ public class Unit : MonoBehaviour
 
     protected Rigidbody rigid;
 
-    void Start(){
-        rigid = GetComponent<Rigidbody>();
-    }
-
 }
