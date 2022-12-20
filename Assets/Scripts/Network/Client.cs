@@ -77,6 +77,7 @@ public class Client : MonoBehaviour
 
             if (!socket.Connected)
             {
+                Debug.Log("can't connect to server");
                 return;
             }
 
