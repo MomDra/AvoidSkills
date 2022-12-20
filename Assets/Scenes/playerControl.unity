@@ -152,8 +152,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a572f1a2774cb4c449923082e5024ad5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 963194227}
-  worldPosition: {x: 0, y: 0, z: 0}
 --- !u!4 &577086806
 Transform:
   m_ObjectHideFlags: 0
@@ -459,7 +457,7 @@ GameObject:
   - component: {fileID: 2015334978}
   - component: {fileID: 2015334983}
   - component: {fileID: 2015334984}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: player1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -559,11 +557,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3af75be20c88f3c49af7694bd4dafd91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 12
+  moveSpeed: 10
   attackSpeed: 2
   arrowSpeed: 30
-  arrow: {fileID: 1121911298008728907, guid: e66e03e4d4460c84d89db33bcb191d2e, type: 3}
-  mouse: {fileID: 577086805}
+  arrowPrefab: {fileID: 1121911298008728907, guid: e66e03e4d4460c84d89db33bcb191d2e, type: 3}
 --- !u!136 &2015334984
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -591,7 +588,7 @@ GameObject:
   - component: {fileID: 2050203709}
   - component: {fileID: 2050203708}
   - component: {fileID: 2050203707}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: player2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

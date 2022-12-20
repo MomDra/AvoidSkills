@@ -4,30 +4,40 @@ using UnityEngine;
 
 public class MousePointer : MonoBehaviour
 {
-    [SerializeField]
-    private Camera camera;
-    private MeshCollider meshCollider;
-    public Vector3 worldPosition;
-    private GameObject ground;
+    private static MousePointer instance;
+    public static MousePointer Instance { get => instance; }
 
-    void Start()
+    private Camera mainCamera;
+    private MeshCollider meshCollider;
+    public Vector3 MousePositionInWorld { get; private set; }
+
+    private void Awake()
     {
-        ground = GameObject.Find("Ground");
-        meshCollider = ground.GetComponent<MeshCollider>();
+        if (instance == null)
+        {
+            instance = this;
+            mainCamera = Camera.main;
+            meshCollider = GameObject.Find("Ground").GetComponent<MeshCollider>();
+        }
+        else if (instance != this)
+        {
+            Destroy(this);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         ScreenMousePointer();
     }
 
-    void ScreenMousePointer(){
-        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+    private void ScreenMousePointer()
+    {
+        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
 
         RaycastHit hit;
-        if(meshCollider.Raycast(ray, out hit, 10000)){
-            worldPosition = hit.point + new Vector3(0, 1, 0);
+        if (meshCollider.Raycast(ray, out hit, 10000f))
+        {
+            MousePositionInWorld = hit.point + new Vector3(0, 1, 0);
         }
     }
 }

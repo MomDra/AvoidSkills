@@ -7,42 +7,42 @@ public class playerControl : Unit
     private State state = State.STAND;
 
     [SerializeField]
-    private GameObject arrow;
-    [SerializeField]
-    private MousePointer mouse;
+    private GameObject arrowPrefab;
 
-    void Start()
+    private void Start()
     {
         rigid = GetComponent<Rigidbody>();
     }
 
-    void Update()
+    private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Q)){
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
             Attack();
         }
     }
 
-    private void FixedUpdate() {
+    private void FixedUpdate()
+    {
         Move();
     }
 
-    void Attack(){
-        Vector3 arrowPos = transform.position + (mouse.worldPosition - transform.position).normalized;
-        Vector3 velocity = (mouse.worldPosition - arrowPos).normalized * arrowSpeed;
+    private void Attack()
+    {
+        Vector3 arrowPos = transform.position + (MousePointer.Instance.MousePositionInWorld - transform.position).normalized;
+        Vector3 velocity = (MousePointer.Instance.MousePositionInWorld - arrowPos).normalized * arrowSpeed;
 
-        GameObject clone = Instantiate(arrow,  arrowPos, Quaternion.identity);
+        GameObject clone = Instantiate(arrowPrefab, arrowPos, Quaternion.identity);
         clone.GetComponent<Rigidbody>().velocity = velocity;
     }
 
-    void Move(){
-        float moveDirX = Input.GetAxis("Horizontal");
-        float moveDirZ = Input.GetAxis("Vertical");
+    private void Move()
+    {
+        float moveDirX = Input.GetAxisRaw("Horizontal");
+        float moveDirZ = Input.GetAxisRaw("Vertical");
 
-        Vector3 vecX = transform.right * moveDirX;
-        Vector3 vecY = transform.forward * moveDirZ;
-
-        Vector3 velocity = (vecX + vecY).normalized * speed;
+        Vector3 moveVec = new Vector3(moveDirX, 0f, moveDirZ);
+        Vector3 velocity = moveVec.normalized * moveSpeed;
 
         rigid.MovePosition(transform.position + velocity * Time.deltaTime);
     }
