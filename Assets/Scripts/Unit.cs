@@ -11,15 +11,12 @@ public abstract class Unit : MonoBehaviour
         SNARE,
         BLIND
     }
+    [SerializeField]
+    protected float attackSpeed;
 
-    [SerializeField]
-    protected int moveSpeed;
-    [SerializeField]
-    protected int attackSpeed;
-    [SerializeField]
-    protected int arrowSpeed;
+    protected bool canAttack = true;
+    protected float attackDelayTimer = 0f;
 
-    protected bool isAttack;
 
     protected Rigidbody rigid;
 

@@ -558,8 +558,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
-  attackSpeed: 2
+  attackSpeed: 5
   arrowSpeed: 30
+  canAttack: 1
+  attackDelayTimer: 0
+  rigid: {fileID: 0}
+  state: 0
   arrowPrefab: {fileID: 1121911298008728907, guid: e66e03e4d4460c84d89db33bcb191d2e, type: 3}
 --- !u!136 &2015334984
 CapsuleCollider:

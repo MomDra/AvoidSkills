@@ -10,7 +10,7 @@ public class MousePointer : MonoBehaviour
     private Camera mainCamera;
     private MeshCollider meshCollider;
     public Vector3 MousePositionInWorld { get; private set; }
-
+    
     private void Awake()
     {
         if (instance == null)
