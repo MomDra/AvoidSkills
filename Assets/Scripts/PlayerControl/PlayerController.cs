@@ -35,29 +35,46 @@ public class PlayerController : Unit
             }
         }
         
-        if (Input.GetMouseButtonDown(0) && canAttack)
-        {
+        if (Input.GetMouseButtonDown(0) && canAttack){
             canAttack = false;
             skillManager.normalAttack();
         }
+        if(Input.GetMouseButtonDown(1)){
+            if(status.isMoving) StartCoroutine(MovePosUpdateCoroutine());
+            else StartCoroutine(MoveCoroutine());
+        }
+
         if(Input.GetKeyDown(KeyCode.F)){
             skillManager.userCustomSkill();
         }
+        if(Input.GetKeyDown(KeyCode.S)){
+            status.playerStop = true;
+        }else if(Input.GetKeyUp(KeyCode.S)){
+            status.playerStop = false;
+        }
     }
 
-    private void FixedUpdate()
-    {
-        Move();
+    private IEnumerator MoveCoroutine(){ // Move by Mouse
+        status.isMoving = true;
+        Vector3 orgPos = transform.position;
+        Vector3 toPos = MousePointer.Instance.MousePositionInWorld;
+        float limitDistance = Vector3.Distance(orgPos, toPos);
+        while(orgPos != toPos){
+            transform.position = Vector3.MoveTowards(transform.position, toPos, status.moveSpeed * Time.deltaTime);
+            if(status.playerStop) break;
+            if (Vector3.Distance(orgPos, transform.position) >= limitDistance){
+                transform.position = toPos;
+                break;
+            }
+            yield return null;
+        }
+        status.isMoving = false;
     }
 
-    private void Move()
-    {
-        float moveDirX = Input.GetAxisRaw("Horizontal");
-        float moveDirZ = Input.GetAxisRaw("Vertical");
-
-        Vector3 moveVec = new Vector3(moveDirX, 0f, moveDirZ);
-        Vector3 velocity = moveVec.normalized * status.moveSpeed;
-
-        rigid.MovePosition(transform.position + velocity * Time.deltaTime);
+    private IEnumerator MovePosUpdateCoroutine(){
+        status.playerStop = true;
+        yield return new WaitForSeconds(0.01f);
+        status.playerStop = false;
+        StartCoroutine(MoveCoroutine());
     }
 }

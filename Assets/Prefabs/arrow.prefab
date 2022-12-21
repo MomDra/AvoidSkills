@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 1121911298008728900}
   - component: {fileID: 7233494151324301832}
   - component: {fileID: 4515467254503936947}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: arrow
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -127,4 +127,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 070b2fb060ac209439c0527ce8f1a89e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ignoreTags: []

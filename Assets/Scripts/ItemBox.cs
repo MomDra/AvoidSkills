@@ -26,7 +26,7 @@ public class ItemBox : MonoBehaviour
     }
 
     private void OnCollisionEnter(Collision other) {
-        if(other.gameObject.tag == "Player"){
+        if(other.gameObject.tag == "Projectile"){
             Destroy(this.gameObject);
         }
     }

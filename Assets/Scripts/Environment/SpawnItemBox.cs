@@ -37,8 +37,8 @@ public class SpawnItemBox : MonoBehaviour
     private void spawnItemBox(){
         System.Random random = new System.Random();
 
-        int halfWidth = (int)spawnArea.x * 5;
-        int halfHeight = (int)spawnArea.y * 5;
+        int halfWidth = (int)(spawnArea.x * 10) / 2;
+        int halfHeight = (int)(spawnArea.z * 10) / 2;
 
         Vector3 randomPosLeft = new Vector3(random.Next(-halfWidth, 0), 1, random.Next(-halfHeight, halfHeight));
         Vector3 randomPosRight = new Vector3(random.Next(0, halfWidth), 1, random.Next(-halfHeight, halfHeight));
