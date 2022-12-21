@@ -23,6 +23,27 @@ public class ClientHandle : MonoBehaviour
         Vector3 _position = _packet.ReadVector3();
         Quaternion _rotation = _packet.ReadQuaternion();
 
+        if (GameManager.Instance == null)
+        {
+            Debug.Log("1@@");
+        }
+
+        if (_username == null)
+        {
+            Debug.Log("2@@");
+        }
+
+        if (_position == null)
+        {
+            Debug.Log("3@@");
+
+        }
+
+        if (_rotation == null)
+        {
+            Debug.Log("4@@");
+        }
+
         GameManager.Instance.SpawnPlayer(_id, _username, _position, _rotation);
     }
 }
