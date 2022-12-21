@@ -69,6 +69,7 @@ public class PlayerController : Unit
             yield return null;
         }
         status.isMoving = false;
+        status.playerStop = false;
     }
 
     private IEnumerator MovePosUpdateCoroutine(){

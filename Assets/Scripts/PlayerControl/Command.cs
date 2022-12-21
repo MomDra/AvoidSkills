@@ -23,9 +23,8 @@ public class ArcaneShiftCommand : Command{
     private SkillInfo skillInfo = Resources.Load<SkillInfo>("Skills/ArcaneShift");
 
     public void cmd(GameObject player, PlayerStatus status, Vector3 playerPos){
-        Vector3 vec = (MousePointer.Instance.MousePositionInWorld - playerPos).normalized;
-
-        player.transform.position += vec * skillInfo.range;
+        status.playerStop = true;
+        player.transform.position += (MousePointer.Instance.MousePositionInWorld - playerPos).normalized * skillInfo.range;
     }
 }
 
