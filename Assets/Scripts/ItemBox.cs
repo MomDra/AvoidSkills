@@ -10,6 +10,7 @@ public class ItemBox : MonoBehaviour
 
     private void Awake() {
         timer = 0;
+        Destroy(this, 60);
     }
 
     // Update is called once per frame
