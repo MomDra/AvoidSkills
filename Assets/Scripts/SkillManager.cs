@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class SkillManager
 {
-    public PlayerStatus playerStatus;
+    public GameObject player;
+    public PlayerStatus status;
     public Vector3 playerPos;
 
     public Command NormalAttackCommand{ get;  set; }
@@ -14,6 +15,10 @@ public class SkillManager
     private Command[] itemSkills;
 
     public void normalAttack(){
-        this.NormalAttackCommand.cmd(playerStatus, playerPos);
+        this.NormalAttackCommand.cmd(player, status, playerPos);
+    }
+
+    public void userCustomSkill(){
+        this.UserCustomSkillCommand.cmd(player, status, playerPos);
     }
 }

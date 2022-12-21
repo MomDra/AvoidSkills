@@ -8,21 +8,23 @@ public class PlayerController : Unit
 
     private SkillManager skillManager = new SkillManager();
 
-    private PlayerStatus status;
+    [HideInInspector]
+    public PlayerStatus status;
 
     private void Awake()
     {
         rigid = GetComponent<Rigidbody>();
         status = GetComponent<PlayerStatus>();
+        skillManager.player = this.gameObject;
         skillManager.NormalAttackCommand = new NormalArrowCommand();
-        skillManager.UserCustomSkillCommand = new UserCustomSkillCommand();
+        skillManager.UserCustomSkillCommand = new ArcaneShiftCommand();
 
         attackDelayTimer = 1f / attackSpeed;
     }
 
     private void Update() 
     {
-        skillManager.playerStatus = status;
+        skillManager.status = status;
         skillManager.playerPos = transform.position;
         
         if(!canAttack){
@@ -37,6 +39,9 @@ public class PlayerController : Unit
         {
             canAttack = false;
             skillManager.normalAttack();
+        }
+        if(Input.GetKeyDown(KeyCode.F)){
+            skillManager.userCustomSkill();
         }
     }
 

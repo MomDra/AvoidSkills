@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public interface Command{
-    public void cmd(PlayerStatus status, Vector3 playerPos);
+    public void cmd(GameObject player, PlayerStatus status, Vector3 playerPos);
 }
 
 public class NormalArrowCommand : MonoBehaviour, Command
 {
     private SkillInfo skillInfo = Resources.Load<SkillInfo>("Skills/NormalArrow");
 
-    public void cmd(PlayerStatus status, Vector3 playerPos){
+    public void cmd(GameObject player, PlayerStatus status, Vector3 playerPos){
         Vector3 arrowPos =  playerPos + (MousePointer.Instance.MousePositionInWorld - playerPos).normalized;
         Vector3 velocity = (MousePointer.Instance.MousePositionInWorld - arrowPos).normalized * skillInfo.projectileSpeed;
 
@@ -19,9 +19,13 @@ public class NormalArrowCommand : MonoBehaviour, Command
     }
 }
 
-public class UserCustomSkillCommand : Command{
-    public void cmd(PlayerStatus status, Vector3 playerPos){
+public class ArcaneShiftCommand : Command{
+    private SkillInfo skillInfo = Resources.Load<SkillInfo>("Skills/ArcaneShift");
 
+    public void cmd(GameObject player, PlayerStatus status, Vector3 playerPos){
+        Vector3 vec = (MousePointer.Instance.MousePositionInWorld - playerPos).normalized;
+
+        player.transform.position += vec * skillInfo.range;
     }
 }
 
