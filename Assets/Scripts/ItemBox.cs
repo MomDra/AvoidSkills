@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class ItemBox : MonoBehaviour
 {
+    [SerializeField]
+    private float destroyTime;
+
     private int level = 1;
-
     private float timer;
-
+    
     private void Awake() {
         timer = 0;
-        Destroy(this, 60);
+        Destroy(this.gameObject, destroyTime);
     }
 
     // Update is called once per frame
@@ -25,7 +27,7 @@ public class ItemBox : MonoBehaviour
 
     private void OnCollisionEnter(Collision other) {
         if(other.gameObject.tag == "Player"){
-            Destroy(this);
+            Destroy(this.gameObject);
         }
     }
 }

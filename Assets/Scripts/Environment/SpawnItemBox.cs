@@ -13,14 +13,15 @@ public class SpawnItemBox : MonoBehaviour
     private GameObject itemBoxPrefab;
     [SerializeField]
     private int spawnInterval;
-    private Vector3 spawnRange;
+    private Vector3 spawnArea;
 
     private static float WORLDTIME = 0;
     private float spawnTimer = 0;
 
     void Awake()
     {
-        spawnRange = field.transform.localScale;
+        
+        spawnArea = field.transform.localScale;
     }
 
     void Update()
@@ -34,11 +35,15 @@ public class SpawnItemBox : MonoBehaviour
     }
 
     private void spawnItemBox(){
-        GameObject clone = Instantiate(itemBoxPrefab, getRandomPos(), Quaternion.identity);
-    }
-
-    private Vector3 getRandomPos(){
         System.Random random = new System.Random();
-        return new Vector3(random.Next(0, (int)spawnRange.x * 10), 1, random.Next(0, (int)spawnRange.y * 10));
+
+        int halfWidth = (int)spawnArea.x * 5;
+        int halfHeight = (int)spawnArea.y * 5;
+
+        Vector3 randomPosLeft = new Vector3(random.Next(-halfWidth, 0), 1, random.Next(-halfHeight, halfHeight));
+        Vector3 randomPosRight = new Vector3(random.Next(0, halfWidth), 1, random.Next(-halfHeight, halfHeight));
+
+        GameObject ItemBoxInLeftArea = Instantiate(itemBoxPrefab, randomPosLeft, Quaternion.identity);
+        GameObject ItemBoxInRightArea = Instantiate(itemBoxPrefab, randomPosRight, Quaternion.identity);
     }
 }
