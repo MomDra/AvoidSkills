@@ -127,3 +127,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 070b2fb060ac209439c0527ce8f1a89e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ignoreTags: []
