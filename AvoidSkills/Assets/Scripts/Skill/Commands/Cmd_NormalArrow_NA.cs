@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NormalArrowCommand : SkillCommand
+public class Cmd_NormalArrow_NA : SkillCommand
 {
-    private static NormalArrowCommand instance;
+    private static Cmd_NormalArrow_NA instance;
 
     private void Awake()
     {

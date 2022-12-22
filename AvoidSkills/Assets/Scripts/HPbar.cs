@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class HPbar : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Vector3 offset = new Vector3(0,1.5f,0);
+    public Unit unit;
 
-    // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        
+        GetComponent<RectTransform>().position = Camera.main.WorldToScreenPoint(unit.transform.position + new Vector3(0,1.5f,0));
     }
 }

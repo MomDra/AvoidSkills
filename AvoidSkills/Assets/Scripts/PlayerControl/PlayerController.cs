@@ -1,23 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : Unit
 {
-    private State state = State.STAND;
-
     private SkillManager skillManager;
-
-    private PlayerStatus status;
-
     private void Awake()
     {
         rigid = GetComponent<Rigidbody>();
         status = GetComponent<PlayerStatus>();
-
         skillManager = new SkillManager(transform, status);
+        hpBar = Instantiate(hpBarPrefab, Vector2.zero, Quaternion.identity, GameObject.Find("HP_Canvas").transform);
 
-        attackDelayTimer = 1f / attackSpeed;
+        attackDelayTimer = 1f / status.attackSpeed;
     }
 
     private void Update()
@@ -28,7 +24,7 @@ public class PlayerController : Unit
             if (attackDelayTimer <= 0)
             {
                 canAttack = true;
-                attackDelayTimer = 1f / attackSpeed;
+                attackDelayTimer = 1f / status.attackSpeed;
             }
         }
 
@@ -56,6 +52,12 @@ public class PlayerController : Unit
             status.playerStop = false;
         }
     }
+
+    void LateUpdate()
+    {
+        hpBar.GetComponent<RectTransform>().position = Camera.main.WorldToScreenPoint(transform.position + new Vector3(0,1.5f,0));
+    }
+
 
     private IEnumerator MoveCoroutine()
     { // Move by Mouse
@@ -85,4 +87,5 @@ public class PlayerController : Unit
         status.playerStop = false;
         StartCoroutine(MoveCoroutine());
     }
+
 }

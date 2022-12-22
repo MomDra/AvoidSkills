@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DropRockCommand1 : SkillCommand
+public class Cmd_DropRock_Lv2 : SkillCommand
 {
-    private static DropRockCommand1 instance;
+    private static Cmd_DropRock_Lv2 instance;
 
     private void Awake()
     {
@@ -17,8 +17,9 @@ public class DropRockCommand1 : SkillCommand
             Destroy(this);
         }
     }
+
     public override void cmd(Transform player, PlayerStatus status)
     {
-        Debug.Log("DropRock1");
+        Debug.Log("DropRock2");
     }
 }

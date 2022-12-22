@@ -24,9 +24,6 @@ public class SkillDB : MonoBehaviour
     [SerializeField]
     Dictionary<SkillCode, SkillCommand[]> skillsDic;
 
-    [SerializeField]
-    SkillCommand[] skillInfos;
-
     private void Awake()
     {
         if (instance == null)

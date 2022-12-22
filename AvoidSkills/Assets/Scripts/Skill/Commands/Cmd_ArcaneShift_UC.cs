@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DropRockCommand3 : SkillCommand
+public class Cmd_ArcaneShift_UC : SkillCommand
 {
-    private static DropRockCommand3 instance;
+    private static Cmd_ArcaneShift_UC instance;
 
     private void Awake()
     {
@@ -20,6 +20,7 @@ public class DropRockCommand3 : SkillCommand
 
     public override void cmd(Transform player, PlayerStatus status)
     {
-        Debug.Log("DropRock3");
+        status.playerStop = true;
+        player.transform.position += (MousePointer.Instance.MousePositionInWorld - player.position).normalized * skillInfo.range;
     }
 }
