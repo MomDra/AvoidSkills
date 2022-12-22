@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum SkillCode
 {
-    NORMALATTACK = 0,
+    NORMALARROW = 0,
     ARCANESHIFT,
     DROPROCK
 }

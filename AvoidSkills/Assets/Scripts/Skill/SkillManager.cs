@@ -17,7 +17,7 @@ public class SkillManager
     {
         this.playerTransform = player;
         this.playerStatus = status;
-        normalAttackCommand = SkillDB.Instance.GetSkill(SkillCode.NORMALATTACK, SkillLevel.LEVEL1);
+        normalAttackCommand = SkillDB.Instance.GetSkill(SkillCode.NORMALARROW, SkillLevel.LEVEL1);
         userCustomSkillCommand = SkillDB.Instance.GetSkill(SkillCode.ARCANESHIFT, SkillLevel.LEVEL1);
 
         itemSkills = new SkillCommand[3];
