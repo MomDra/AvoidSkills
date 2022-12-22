@@ -24,6 +24,9 @@ public class NetworkManager : MonoBehaviour
 
     private void Start()
     {
+        QualitySettings.vSyncCount = 0; // 수직동기화 끄기
+        Application.targetFrameRate = 30; // 30 프레임 고정, 서버는 고 프레임이 필요 없기 때문임
+
 #if UNITY_EDITOR
         Debug.Log("Build the project to start the server!");
 #else

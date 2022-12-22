@@ -17,8 +17,8 @@ namespace Network
             {
             Input.GetKey(KeyCode.W),
             Input.GetKey(KeyCode.S),
-            Input.GetKey(KeyCode.A),
-            Input.GetKey(KeyCode.D)
+            Input.GetKey(KeyCode.D),
+            Input.GetKey(KeyCode.A)
             };
 
             ClientSend.PlayerMovement(_inputs);
