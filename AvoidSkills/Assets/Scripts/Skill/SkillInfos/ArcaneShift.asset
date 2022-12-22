@@ -10,13 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b06b9e907dd68164bb342564c5feafdc, type: 3}
-  m_Name: DropRock
+  m_Name: ArcaneShift
   m_EditorClassIdentifier: 
-  skillName: Drop_Rock
-  damage: 100
-  range: 40
-  speed: 4
+  skillCode: 1
+  skillName: Arcane_Shift
+  damage: 10
+  range: 5
+  projectileSpeed: 0
   delay: 0
-  level: 1
-  skillType: 0
+  level: 0
+  coolDownTime: 5
+  skillType: 2
   skillPrefab: {fileID: 0}
