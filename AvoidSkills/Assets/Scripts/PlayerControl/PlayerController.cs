@@ -6,13 +6,12 @@ using UnityEngine.UI;
 public class PlayerController : Unit
 {
     private SkillManager skillManager;
+
     private void Awake()
     {
         rigid = GetComponent<Rigidbody>();
         status = GetComponent<PlayerStatus>();
         skillManager = new SkillManager(transform, status);
-        hpBar = Instantiate(hpBarPrefab, Vector2.zero, Quaternion.identity, GameObject.Find("HP_Canvas").transform);
-
     }
 
     private void Update()
@@ -26,6 +25,8 @@ public class PlayerController : Unit
         {
             if (status.isMoving) StartCoroutine(MovePosUpdateCoroutine());
             else StartCoroutine(MoveCoroutine());
+
+            Debug.Log("df");
         }
 
         if (Input.GetKeyDown(KeyCode.F))
@@ -44,7 +45,7 @@ public class PlayerController : Unit
 
     private void LateUpdate()
     {
-        hpBar.GetComponent<RectTransform>().position = Camera.main.WorldToScreenPoint(transform.position + new Vector3(0,1.5f,0));
+        hpBar.GetComponent<RectTransform>().position = Camera.main.WorldToScreenPoint(transform.position + new Vector3(0, 1.5f, 0));
     }
 
 
