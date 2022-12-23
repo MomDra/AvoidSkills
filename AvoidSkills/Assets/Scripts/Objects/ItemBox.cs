@@ -6,6 +6,8 @@ public class ItemBox : MonoBehaviour
 {
     [SerializeField]
     private float destroyTime;
+    [SerializeField]
+    private GameObject itemMarblePrefab;
 
     private int level = 1;
     private float timer;
