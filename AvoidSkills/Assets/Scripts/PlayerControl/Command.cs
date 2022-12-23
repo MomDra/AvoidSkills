@@ -14,10 +14,15 @@ public abstract class SkillCommand : MonoBehaviour, Command
     public SkillInfo SkillInfo { get => skillInfo; }
 
     private bool isAvailable = true;
+    public int currentTime { get; private set; }
 
     private IEnumerator CoolDownTimerCoroutine(){
         isAvailable = false;
-        yield return new WaitForSeconds(skillInfo.coolDownTime);
+        currentTime = 0;
+        while (currentTime != skillInfo.coolDownTime){
+            yield return new WaitForSeconds(1f);
+            ++currentTime;
+        }
         isAvailable = true;
     }
 
