@@ -27,15 +27,17 @@ public class NetworkManager : MonoBehaviour
         QualitySettings.vSyncCount = 0; // 수직동기화 끄기
         Application.targetFrameRate = 30; // 30 프레임 고정, 서버는 고 프레임이 필요 없기 때문임
 
-#if UNITY_EDITOR
-        Debug.Log("Build the project to start the server!");
-#else
+
         Server.Start(10, 26950);
-#endif
+    }
+
+    private void OnApplicationQuit()
+    {
+        Server.Stop();
     }
 
     public Player InstantiatePlayer()
     {
-        return Instantiate(playerPrefab, Vector3.zero, Quaternion.identity).GetComponent<Player>();
+        return Instantiate(playerPrefab, new Vector3(0f, 0.5f, 0f), Quaternion.identity).GetComponent<Player>();
     }
 }

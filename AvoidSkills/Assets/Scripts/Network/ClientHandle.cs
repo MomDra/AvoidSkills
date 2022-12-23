@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Net;
 
-public class ClientHandle
+public class ClientHandle : MonoBehaviour
 {
 
     public static void Welcome(Packet _packet)
@@ -42,5 +42,12 @@ public class ClientHandle
         Quaternion _rotation = _packet.ReadQuaternion();
 
         GameManager.players[_id].transform.rotation = _rotation;
+    }
+
+    public static void PlayerDisconnected(Packet _packet)
+    {
+        int _id = _packet.ReadInt();
+        Destroy(GameManager.players[_id].gameObject);
+        GameManager.players.Remove(_id);
     }
 }

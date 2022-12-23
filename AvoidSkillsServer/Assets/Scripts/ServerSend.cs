@@ -105,5 +105,14 @@ public class ServerSend : MonoBehaviour
         }
     }
 
+    public static void playerDisconnected(int _playerId)
+    {
+        using (Packet _packet = new Packet((int)ServerPackets.playerDisconnected))
+        {
+            _packet.Write(_playerId);
+            SendTCPDataToAll(_packet);
+        }
+    }
+
     #endregion
 }
