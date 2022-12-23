@@ -19,8 +19,6 @@ public class PlayerStatus : MonoBehaviour
     public int armor;
 
     [SerializeField]
-    public float attackSpeed;
-    [SerializeField]
     public float moveSpeed;
     
     [HideInInspector]

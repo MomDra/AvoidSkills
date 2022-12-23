@@ -1962,6 +1962,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2684473924903713889, guid: fa854577a028ee64ea1fc7a6ec03b127, type: 3}
+      propertyPath: hp
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2684473924903713889, guid: fa854577a028ee64ea1fc7a6ec03b127, type: 3}
+      propertyPath: attackSpeed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2684473924903713897, guid: fa854577a028ee64ea1fc7a6ec03b127, type: 3}
       propertyPath: m_Name
       value: player1

@@ -17,6 +17,7 @@ public class Cmd_NormalArrow_NA : SkillCommand
             Destroy(this);
         }
     }
+
     public override void cmd(Transform player, PlayerStatus status)
     {
         Vector3 arrowPos = player.position + (MousePointer.Instance.MousePositionInWorld - player.position).normalized;

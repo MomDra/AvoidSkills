@@ -25,19 +25,19 @@ public class SkillManager
 
     public void NormalAttack()
     {
-        normalAttackCommand.cmd(playerTransform, playerStatus);
+        normalAttackCommand.command(playerTransform, playerStatus);
     }
 
     public void UserCustomSkill()
     {
-        userCustomSkillCommand.cmd(playerTransform, playerStatus);
+        userCustomSkillCommand.command(playerTransform, playerStatus);
     }
 
     public void ItemSkill1()
     {
         if (itemSkills[0] != null)
         {
-            itemSkills[0].cmd(playerTransform, playerStatus);
+            itemSkills[0].command(playerTransform, playerStatus);
         }
     }
 
@@ -45,7 +45,7 @@ public class SkillManager
     {
         if (itemSkills[1] != null)
         {
-            itemSkills[1].cmd(playerTransform, playerStatus);
+            itemSkills[1].command(playerTransform, playerStatus);
         }
     }
 
@@ -53,7 +53,7 @@ public class SkillManager
     {
         if (itemSkills[2] != null)
         {
-            itemSkills[2].cmd(playerTransform, playerStatus);
+            itemSkills[2].command(playerTransform, playerStatus);
         }
     }
 }

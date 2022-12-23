@@ -19,6 +19,6 @@ MonoBehaviour:
   projectileSpeed: 0
   delay: 0
   level: 0
-  coolDownTime: 0
+  coolDownTime: 5
   skillType: 2
   skillPrefab: {fileID: 0}

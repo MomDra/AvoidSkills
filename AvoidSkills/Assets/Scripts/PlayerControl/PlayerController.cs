@@ -13,24 +13,13 @@ public class PlayerController : Unit
         skillManager = new SkillManager(transform, status);
         hpBar = Instantiate(hpBarPrefab, Vector2.zero, Quaternion.identity, GameObject.Find("HP_Canvas").transform);
 
-        attackDelayTimer = 1f / status.attackSpeed;
     }
 
     private void Update()
     {
-        if (!canAttack)
-        {
-            attackDelayTimer -= Time.deltaTime;
-            if (attackDelayTimer <= 0)
-            {
-                canAttack = true;
-                attackDelayTimer = 1f / status.attackSpeed;
-            }
-        }
 
-        if (Input.GetMouseButtonDown(0) && canAttack)
+        if (Input.GetMouseButtonDown(0))
         {
-            canAttack = false;
             skillManager.NormalAttack();
         }
         if (Input.GetMouseButtonDown(1))
@@ -53,7 +42,7 @@ public class PlayerController : Unit
         }
     }
 
-    void LateUpdate()
+    private void LateUpdate()
     {
         hpBar.GetComponent<RectTransform>().position = Camera.main.WorldToScreenPoint(transform.position + new Vector3(0,1.5f,0));
     }
