@@ -27,8 +27,6 @@ public class CameraController : MonoBehaviour
         if (Cursor.lockState == CursorLockMode.Locked)
         {
             Look();
-
-            Debug.Log("km");
         }
 
         Look();
