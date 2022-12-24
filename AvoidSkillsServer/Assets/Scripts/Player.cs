@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
     public float jumpSpeed = 5f;
     public float health;
     public float maxHealth = 100f;
+    public int itemAmount = 0;
+    public int maxItemAmount = 3;
 
     private bool[] inputs;
     private float yVelocity = 0f;
@@ -93,6 +95,11 @@ public class Player : MonoBehaviour
 
     public void Shoot(Vector3 _viewDirection)
     {
+        if (health <= 0f)
+        {
+            return;
+        }
+
         if (Physics.Raycast(shootOrigin.position, _viewDirection, out RaycastHit _hit, 25f))
         {
             if (_hit.collider.CompareTag("Player"))
@@ -129,5 +136,17 @@ public class Player : MonoBehaviour
         health = maxHealth;
         controller.enabled = true;
         ServerSend.PlayerRespawned(this);
+    }
+
+    public bool AttemptPickupItem()
+    {
+        if (itemAmount >= maxItemAmount)
+        {
+            return false;
+        }
+
+        ++itemAmount;
+
+        return true;
     }
 }
