@@ -11,28 +11,39 @@ public class PlayerController : Unit
     {
         rigid = GetComponent<Rigidbody>();
         status = GetComponent<PlayerStatus>();
-        skillManager = new SkillManager(transform, status);
+        skillManager = GetComponent<SkillManager>();
+
+        hpBar.SetActive(true);
     }
 
     private void Update()
     {
-
+        // Action 
         if (Input.GetMouseButtonDown(0))
         {
             skillManager.NormalAttack();
         }
-        if (Input.GetMouseButtonDown(1))
-        {
-            if (status.isMoving) StartCoroutine(MovePosUpdateCoroutine());
-            else StartCoroutine(MoveCoroutine());
-
-            Debug.Log("df");
-        }
-
         if (Input.GetKeyDown(KeyCode.F))
         {
             skillManager.UserCustomSkill();
         }
+        if(Input.GetKeyDown(KeyCode.Alpha1)){
+            skillManager.ItemSkill1();
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha2)){
+            skillManager.ItemSkill2();
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha3)){
+            skillManager.ItemSkill3();
+        }
+
+        // Move
+        if (Input.GetMouseButtonDown(1))
+        {
+            if (status.isMoving) StartCoroutine(MovePosUpdateCoroutine());
+            else StartCoroutine(MoveCoroutine());
+        }
+
         if (Input.GetKeyDown(KeyCode.S))
         {
             status.playerStop = true;
@@ -45,6 +56,7 @@ public class PlayerController : Unit
 
     private void LateUpdate()
     {
+        
         hpBar.GetComponent<RectTransform>().position = Camera.main.WorldToScreenPoint(transform.position + new Vector3(0, 1.5f, 0));
     }
 
@@ -77,5 +89,6 @@ public class PlayerController : Unit
         status.playerStop = false;
         StartCoroutine(MoveCoroutine());
     }
+    
 
 }
