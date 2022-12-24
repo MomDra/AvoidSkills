@@ -14,4 +14,59 @@ public class Projectile : MonoBehaviour
     public float explosionRadius = 1.5f;
     public float explosionDamage = 75f;
 
+
+    private void Start()
+    {
+        id = nextProjectileId;
+        ++nextProjectileId;
+        projectiles.Add(id, this);
+
+        ServerSend.SpawnProjectile(this, thrownByPlayer);
+
+        rigid.AddForce(initialForce);
+        StartCoroutine(ExplodeAfterTime());
+    }
+
+    private void FixedUpdate()
+    {
+        ServerSend.ProjectilePosition(this);
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        Debug.Log(other.collider.name + "haha");
+        Explode();
+    }
+
+    public void Initialize(Vector3 _initialMovementDirection, float _initialForceStrength, int _thrownByPlayer)
+    {
+        initialForce = _initialMovementDirection * _initialForceStrength;
+        thrownByPlayer = _thrownByPlayer;
+    }
+
+    private void Explode()
+    {
+        ServerSend.ProjectileExploded(this);
+
+        Collider[] _colliders = Physics.OverlapSphere(transform.position, explosionRadius);
+        foreach (Collider _collider in _colliders)
+        {
+            if (_collider.CompareTag("Player"))
+            {
+                _collider.GetComponent<Player>().TakeDamage(explosionDamage);
+            }
+        }
+
+        projectiles.Remove(id);
+        Destroy(gameObject);
+    }
+
+    private IEnumerator ExplodeAfterTime()
+    {
+        yield return new WaitForSeconds(10f);
+
+        Explode();
+    }
 }
+
+

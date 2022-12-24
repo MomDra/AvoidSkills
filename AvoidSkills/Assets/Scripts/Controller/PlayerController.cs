@@ -16,7 +16,7 @@ namespace Network
                 ClientSend.PlayerShoot(camTransform.forward);
             }
 
-            if (Input.GetKeyDown(KeyCode.Mouse1))
+            if (Input.GetMouseButtonDown(1))
             {
                 ClientSend.PlayerThrowItem(camTransform.forward);
             }

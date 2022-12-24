@@ -168,5 +168,39 @@ public class ServerSend : MonoBehaviour
         }
     }
 
+    public static void SpawnProjectile(Projectile _projectile, int _thrownByPlaeyr)
+    {
+        using (Packet _packet = new Packet((int)ServerPackets.spawnProjectile))
+        {
+            _packet.Write(_projectile.id);
+            _packet.Write(_projectile.transform.position);
+            _packet.Write(_thrownByPlaeyr);
+
+            SendTCPDataToAll(_packet);
+        }
+    }
+
+    public static void ProjectilePosition(Projectile _projectile)
+    {
+        using (Packet _packet = new Packet((int)ServerPackets.projectilePosition))
+        {
+            _packet.Write(_projectile.id);
+            _packet.Write(_projectile.transform.position);
+
+            SendTCPDataToAll(_packet);
+        }
+    }
+
+    public static void ProjectileExploded(Projectile _projectile)
+    {
+        using (Packet _packet = new Packet((int)ServerPackets.projectileExploded))
+        {
+            _packet.Write(_projectile.id);
+            _packet.Write(_projectile.transform.position);
+
+            SendTCPDataToAll(_packet);
+        }
+    }
+
     #endregion
 }
