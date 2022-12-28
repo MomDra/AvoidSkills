@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     {
         moveSpeed *= Time.fixedDeltaTime;
         jumpSpeed *= Time.fixedDeltaTime;
+        targetPos = Vector3.zero;
     }
 
     public void Initialize(int _id, string _username)
@@ -40,7 +41,10 @@ public class Player : MonoBehaviour
             return;
         }
 
-        Move();
+        if (!IsDestination())
+        {
+            Move();
+        }
     }
 
     private void Move()
@@ -56,6 +60,11 @@ public class Player : MonoBehaviour
     public void SetTargetPos(Vector3 _targetPos)
     {
         targetPos = _targetPos;
+    }
+
+    private bool IsDestination()
+    {
+        return Vector3.Distance(transform.position, targetPos) < 0.1f;
     }
 
     public void Shoot(Vector3 _viewDirection)
