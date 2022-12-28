@@ -8,10 +8,11 @@ public class SkillManager : MonoBehaviour
     private PlayerStatus playerStatus;
     private SkillUIManager skillUIManager;
 
+    private SlotList slotList;
+
     public SkillCommand[] skillComands{ get; private set; } // 1. NormalAttack 2. UserSkill 3~5. itemSkills
     public CoolDownTimer[] currCoolDowns{ get; private set; } // 1. NormalAttack 2. UserSkill 3~5. itemSkills
 
-    public int coolDownSkillCount = 0;
 
     private void Awake()
     {
@@ -19,7 +20,8 @@ public class SkillManager : MonoBehaviour
         this.playerStatus = GetComponent<PlayerStatus>();
         skillUIManager = GetComponent<SkillUIManager>();
 
-        skillComands = new SkillCommand[5];
+        slotList = new SlotList();
+        skillComands = new SkillCommand[5]; 
         currCoolDowns = new CoolDownTimer[5];
 
         for (int i = 0; i < 5;++i){
@@ -30,24 +32,49 @@ public class SkillManager : MonoBehaviour
     }
 
     private IEnumerator CoolDownCoroutine(CoolDownTimer timer){
-        ++coolDownSkillCount;
         while(timer.currTime > 0){
             yield return new WaitForSeconds(0.1f);
             timer.tik();
         }
         timer.reset();
-        --coolDownSkillCount;
     }
 
     private bool CheckCoolDown(int i){
         if(currCoolDowns[i].currTime==0){
             currCoolDowns[i].set(skillComands[i].SkillInfo.coolDownTime);
+
+            if(skillComands[i].SkillInfo.useType == UseType.OnlyOnce){
+                if(skillComands[i].currUsableCount==0){
+                    deleteItem(i);
+                    return true;
+                }
+            }
+
+            if(skillComands[i].SkillInfo.useType == UseType.ManyTimes){
+                if(--skillComands[i].currUsableCount == 0){
+                    deleteItem(i);
+                    return true;
+                }
+            }
             StartCoroutine(CoolDownCoroutine(currCoolDowns[i]));
             StartCoroutine(skillUIManager.CoolDownGaugeUpdateCoroutine(i));
             return true;
         }
         Debug.Log(skillComands[i].SkillInfo.skillName + " 이(가) 아직 준비되지 않았습니다!");
         return false;
+    }
+
+    public void addItem(SkillCommand newItem){
+        int index = slotList.add();
+        skillComands[index] = newItem;
+        currCoolDowns[index] = new CoolDownTimer();
+        skillUIManager.addItem(newItem, index);
+    }
+
+    public void deleteItem(int index){
+        slotList.delete(index);
+        skillComands[index] = null;
+        skillUIManager.deleteItem(index);
     }
 
     public void NormalAttack()
@@ -58,7 +85,7 @@ public class SkillManager : MonoBehaviour
 
     public void UserCustomSkill()
     {
-        if(CheckCoolDown(1)) 
+        if(CheckCoolDown(1))
             skillComands[1].cmd(playerTransform, playerStatus);
     }
 

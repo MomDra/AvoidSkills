@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum UseType
+{
+    Permanent,
+    OnlyOnce,
+    ManyTimes
+}
+
 public enum SkillType
 {
     ATTACK,
@@ -24,5 +31,6 @@ public class SkillInfo : ScriptableObject
     public SkillType skillType;
     public Sprite skillImage;
     public GameObject skillPrefab;
-
+    public UseType useType;
+    public int usableCount;
 }

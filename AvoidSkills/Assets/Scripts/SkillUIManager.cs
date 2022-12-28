@@ -30,6 +30,16 @@ public class SkillUIManager : MonoBehaviour
         }
     }
 
+    public void addItem(SkillCommand command, int index){
+        slots[index].itemImage.sprite = command.SkillInfo.skillImage;
+        slots[index].skillGauge.fillAmount = 0f;
+    }
+
+    public void deleteItem(int index){
+        slots[index].itemImage.sprite = null;
+        slots[index].skillGauge.fillAmount = 0f;
+    }
+
     public IEnumerator CoolDownGaugeUpdateCoroutine(int i){
         float currCoolDownTime = skillManager.currCoolDowns[i].currTime;
         Color gaugeColor = slots[i].skillGauge.color;
