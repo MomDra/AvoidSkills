@@ -55,9 +55,9 @@ public class Player : MonoBehaviour
         return Vector3.Distance(transform.position, targetPos) < 0.1f;
     }
 
-    public void Shoot(SkillCode _skillCode, SkillLevel _skillLevel, Vector3 _mousePos)
+    public void ShootSkill(SkillCode _skillCode, SkillLevel _skillLevel, Vector3 _mousePos)
     {
-        SkillDB.Instance.GetSkill(_skillCode, _skillLevel).cmd(transform, status, _mousePos).Initialize(id);
+        SkillDB.Instance.GetSkill(_skillCode, _skillLevel).cmd(this, status, _mousePos);
     }
 
     public void TakeDamage(int _damage)

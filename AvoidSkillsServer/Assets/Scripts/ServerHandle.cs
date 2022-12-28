@@ -32,6 +32,6 @@ public class ServerHandle
         SkillLevel _skillLevel = (SkillLevel)_packet.ReadInt();
         Vector3 _mousePos = _packet.ReadVector3();
 
-        Server.clients[_fromClient].player.Shoot(_skillCode, _skillLevel, _mousePos);
+        Server.clients[_fromClient].player.ShootSkill(_skillCode, _skillLevel, _mousePos);
     }
 }

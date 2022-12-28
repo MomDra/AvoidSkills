@@ -35,6 +35,8 @@ public class NetworkManager : MonoBehaviour
     private void OnApplicationQuit()
     {
         Server.Stop();
+
+        Debug.Log("OnApplicationQuit 호출됨!");
     }
 
     public Player InstantiatePlayer()

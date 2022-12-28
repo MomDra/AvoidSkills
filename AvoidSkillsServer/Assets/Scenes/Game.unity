@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 75796073}
   - component: {fileID: 75796074}
+  - component: {fileID: 75796075}
   m_Layer: 0
   m_Name: Skills
   m_TagString: Untagged
@@ -168,6 +169,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillInfo: {fileID: 11400000, guid: 8d0ed4059368ec34c9a292d924966902, type: 2}
+--- !u!114 &75796075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 75796072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8002ee51a717bab489daf34d5e6e6b0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillInfo: {fileID: 11400000, guid: 47bbcc55a6da5bc4bb08cc6cb5c87d96, type: 2}
 --- !u!1 &576781086
 GameObject:
   m_ObjectHideFlags: 0

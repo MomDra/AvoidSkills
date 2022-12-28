@@ -11,7 +11,7 @@ namespace Network
 
         private void Awake()
         {
-            skillManager = new SkillManager();
+            skillManager = GetComponent<SkillManager>();
             status = GetComponent<PlayerStatus>();
         }
 
@@ -23,14 +23,12 @@ namespace Network
             }
             if (Input.GetKeyDown(KeyCode.Q))
             {
-                ClientSend.ShootSkill(SkillCode.NORMALARROW, SkillLevel.LEVEL1, MousePointer.Instance.MousePositionInWorld);
-
-                // skillManager.NormalAttack();
+                skillManager.NormalAttack();
             }
-            // if (Input.GetKeyDown(KeyCode.F))
-            // {
-            //     skillManager.UserCustomSkill();
-            // }
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                skillManager.UserCustomSkill();
+            }
             // if (Input.GetKeyDown(KeyCode.Alpha1))
             // {
             //     skillManager.ItemSkill1();
