@@ -7,9 +7,11 @@ public class ItemBox : MonoBehaviour
     [SerializeField]
     private float destroyTime;
     [SerializeField]
-    private GameObject itemMarblePrefab;
+    private int levelUpInterval;
+    [SerializeField]
+    private GameObject itemBallPrefab;
 
-    private int level = 1;
+    private SkillLevel level = SkillLevel.LEVEL1;
     private float timer;
     
     private void Awake() {
@@ -21,15 +23,35 @@ public class ItemBox : MonoBehaviour
     private void Update()
     {
         timer += Time.deltaTime;
-        if(timer >= 10 && level < 3){
+        if(timer >= levelUpInterval && (int) level < 3){
             timer = 0;
             ++level;
+            ChangeColorByLevel();
         }
     }
 
-    private void OnCollisionEnter(Collision other) {
+    private void ChangeColorByLevel(){
+        Color changeColor = GetComponent<Renderer>().material.color;
+        switch (level){
+            case SkillLevel.LEVEL1:
+                break;
+            case SkillLevel.LEVEL2:
+                changeColor = Color.yellow;
+                break;
+            case SkillLevel.LEVEL3:
+                changeColor = Color.red;
+                break;
+        }
+        GetComponent<Renderer>().material.color = changeColor;
+    }
+
+    private void OnTriggerEnter(Collider other) {
         if(other.gameObject.tag == "Projectile" || other.gameObject.tag == "Player"){
+            GameObject clone = Instantiate(itemBallPrefab, transform.position, Quaternion.identity);
+            clone.GetComponent<ItemBall>().skillLevel = level;
+
             Destroy(this.gameObject);
         }
     }
+
 }

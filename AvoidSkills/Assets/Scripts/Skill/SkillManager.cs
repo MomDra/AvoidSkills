@@ -6,27 +6,29 @@ public class SkillManager : MonoBehaviour
 {
     private Transform playerTransform;
     private PlayerStatus playerStatus;
+    private SkillUIManager skillUIManager;
 
-    private SkillCommand normalAttackCommand;
+    public SlotList slotList{ get; private set; }
 
-    private SkillCommand userCustomSkillCommand;
+    public SkillCommand[] skillComands{ get; private set; } // 1. NormalAttack 2. UserSkill 3~5. itemSkills
+    public CoolDownTimer[] currCoolDowns{ get; private set; } // 1. NormalAttack 2. UserSkill 3~5. itemSkills
 
-    private SkillCommand[] itemSkillCommands;
-
-    private CoolDownTimer currCoolDown_NormalAttack = new CoolDownTimer();
-    private CoolDownTimer currCoolDown_UserCustomSkill= new CoolDownTimer();
-    private CoolDownTimer currCoolDown_ItemSkill1= new CoolDownTimer();
-    private CoolDownTimer currCoolDown_ItemSkill2= new CoolDownTimer();
-    private CoolDownTimer currCoolDown_ItemSkill3= new CoolDownTimer();
 
     private void Awake()
     {
         this.playerTransform = this.transform;
         this.playerStatus = GetComponent<PlayerStatus>();
-        normalAttackCommand = SkillDB.Instance.GetSkill(SkillCode.NORMALARROW, SkillLevel.LEVEL1);
-        userCustomSkillCommand = SkillDB.Instance.GetSkill(SkillCode.ARCANESHIFT, SkillLevel.LEVEL1);
+        skillUIManager = GetComponent<SkillUIManager>();
 
-        itemSkillCommands = new SkillCommand[3];
+        slotList = new SlotList();
+        skillComands = new SkillCommand[5]; 
+        currCoolDowns = new CoolDownTimer[5];
+
+        for (int i = 0; i < 5;++i){
+           currCoolDowns[i] = new CoolDownTimer();
+        }
+        skillComands[0] = SkillDB.Instance.GetSkill(SkillCode.NORMALARROW, SkillLevel.LEVEL1);
+        skillComands[1] = SkillDB.Instance.GetSkill(SkillCode.ARCANESHIFT, SkillLevel.LEVEL1);
     }
 
     private IEnumerator CoolDownCoroutine(CoolDownTimer timer){
@@ -37,54 +39,90 @@ public class SkillManager : MonoBehaviour
         timer.reset();
     }
 
-    private bool CheckCoolDown(SkillInfo skillInfo, CoolDownTimer currCoolDown){
-        if(currCoolDown.currTime==0){
-            currCoolDown.set(skillInfo.coolDownTime);
-            StartCoroutine(CoolDownCoroutine(currCoolDown));
+    private bool CheckCoolDown(int i){
+        if(currCoolDowns[i].currTime==0){
+            currCoolDowns[i].set(skillComands[i].SkillInfo.coolDownTime);
+            StartCoroutine(CoolDownCoroutine(currCoolDowns[i]));
+            StartCoroutine(skillUIManager.CoolDownGaugeUpdateCoroutine(i));
             return true;
         }
-        Debug.Log(skillInfo.skillName + " 이(가) 아직 준비되지 않았습니다!");
+        Debug.Log(skillComands[i].SkillInfo.skillName + " 이(가) 아직 준비되지 않았습니다!");
         return false;
+    }
+
+    private void CountCheck(int i){
+        if(skillComands[i].SkillInfo.useType != UseType.Permanent){
+            if(skillComands[i].SkillInfo.useType == UseType.MultipleTimes) skillComands[i].currUsableCount--;
+            if(skillComands[i].currUsableCount==0) deleteItem(i);
+        }
+    }
+
+    public void addItem(SkillCode code, SkillLevel level){
+        int index = slotList.add();
+        skillComands[index] = SkillDB.Instance.GetSkill(code, level);
+        currCoolDowns[index] = new CoolDownTimer();
+        skillUIManager.addSkillUI(skillComands[index], index);
+    }
+
+    private void deleteItem(int index){
+        slotList.delete(index);
+        skillComands[index] = null;
+        skillUIManager.deleteSkillUI(index);
     }
 
     public void NormalAttack()
     {
-        if(CheckCoolDown(normalAttackCommand.SkillInfo, currCoolDown_NormalAttack))
-            normalAttackCommand.cmd(playerTransform, playerStatus);
+        if (CheckCoolDown(0))
+        {
+            skillComands[0].cmd(playerTransform, playerStatus);
+            CountCheck(0);
+        }
     }
 
     public void UserCustomSkill()
     {
-        if(CheckCoolDown(userCustomSkillCommand.SkillInfo, currCoolDown_UserCustomSkill)) 
-            userCustomSkillCommand.cmd(playerTransform, playerStatus);
+        if (CheckCoolDown(1))
+        {
+            skillComands[1].cmd(playerTransform, playerStatus);
+            CountCheck(1);
+        }
     }
 
     public void ItemSkill1()
     {
-        if (itemSkillCommands[0] != null)
+        if (skillComands[2] != null)
         {
-            if(CheckCoolDown(itemSkillCommands[0].SkillInfo, currCoolDown_ItemSkill1)) 
-            itemSkillCommands[0].cmd(playerTransform, playerStatus);
+            if (CheckCoolDown(2))
+            {
+                skillComands[2].cmd(playerTransform, playerStatus);
+                CountCheck(2);
+            }
         }
         else Debug.Log("1번 스킬은 비어있습니다!");
     }
 
     public void ItemSkill2()
     {
-        if (itemSkillCommands[1] != null)
+        if (skillComands[3] != null)
         {
-            if(CheckCoolDown(itemSkillCommands[1].SkillInfo, currCoolDown_ItemSkill2)) 
-            itemSkillCommands[1].cmd(playerTransform, playerStatus);
+            if (CheckCoolDown(3))
+            {
+                skillComands[3].cmd(playerTransform, playerStatus);
+                CountCheck(3);
+            }
         }
         else Debug.Log("2번 스킬은 비어있습니다!");
     }
 
     public void ItemSkill3()
     {
-        if (itemSkillCommands[2] != null)
+        if (skillComands[4] != null)
         {
-            if(CheckCoolDown(itemSkillCommands[3].SkillInfo, currCoolDown_ItemSkill3)) 
-            itemSkillCommands[3].cmd(playerTransform, playerStatus);
+            if (CheckCoolDown(4))
+            {
+                skillComands[4].cmd(playerTransform, playerStatus);
+                CountCheck(4);
+            }
         }
         else Debug.Log("3번 스킬은 비어있습니다!");
     }

@@ -1,6 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
+public enum UseType
+{
+    Permanent,
+    OnlyOnce,
+    MultipleTimes
+}
 
 public enum SkillType
 {
@@ -19,11 +27,10 @@ public class SkillInfo : ScriptableObject
     public int projectileSpeed;
     public float delay;
     public SkillLevel level;
-    public int coolDownTime;
+    public float coolDownTime;
     public SkillType skillType;
-
-
-
-
+    public Sprite skillImage;
     public GameObject skillPrefab;
+    public UseType useType;
+    public int usableCount;
 }
