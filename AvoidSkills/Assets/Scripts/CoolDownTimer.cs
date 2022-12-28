@@ -6,6 +6,10 @@ public class CoolDownTimer
 {
     public float currTime{ get; private set; }
 
+    public CoolDownTimer(){
+        currTime = 0;
+    }
+
     public void tik(){
         if(currTime > 0) currTime -= 0.1f;
     }

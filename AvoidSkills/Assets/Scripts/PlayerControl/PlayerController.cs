@@ -89,6 +89,8 @@ public class PlayerController : Unit
         status.playerStop = false;
         StartCoroutine(MoveCoroutine());
     }
+
+    
     
 
 }

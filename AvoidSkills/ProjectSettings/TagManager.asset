@@ -6,6 +6,9 @@ TagManager:
   tags:
   - ItemBox
   - Projectile
+  - GaugeUI
+  - CountUI
+  - Item
   layers:
   - Default
   - TransparentFX

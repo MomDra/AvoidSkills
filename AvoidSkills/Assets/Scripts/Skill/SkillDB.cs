@@ -22,7 +22,7 @@ public class SkillDB : MonoBehaviour
     public static SkillDB Instance { get => instance; }
 
     [SerializeField]
-    Dictionary<SkillCode, SkillCommand[]> skillsDic;
+    public Dictionary<SkillCode, SkillCommand[]> skillsDic;
 
     private void Awake()
     {

@@ -21,4 +21,7 @@ MonoBehaviour:
   level: 0
   coolDownTime: 0
   skillType: 0
+  skillImage: {fileID: 21300000, guid: b7cc93db2a52e554aa20bf06c9a14005, type: 3}
   skillPrefab: {fileID: 0}
+  useType: 1
+  usableCount: 1
