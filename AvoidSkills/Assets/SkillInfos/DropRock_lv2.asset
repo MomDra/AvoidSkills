@@ -10,13 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b06b9e907dd68164bb342564c5feafdc, type: 3}
-  m_Name: DropRock
+  m_Name: DropRock_lv2
   m_EditorClassIdentifier: 
-  skillName: Drop_Rock
-  damage: 100
-  range: 40
-  speed: 4
-  delay: 0
+  skillCode: 2
+  skillName: Drop_Rock_lv2
+  damage: 200
+  range: 50
+  projectileSpeed: 3
+  delay: 1
   level: 1
+  coolDownTime: 0
   skillType: 0
   skillPrefab: {fileID: 0}

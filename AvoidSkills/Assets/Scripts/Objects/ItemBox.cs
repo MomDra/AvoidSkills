@@ -6,6 +6,8 @@ public class ItemBox : MonoBehaviour
 {
     [SerializeField]
     private float destroyTime;
+    [SerializeField]
+    private GameObject itemMarblePrefab;
 
     private int level = 1;
     private float timer;
@@ -26,7 +28,7 @@ public class ItemBox : MonoBehaviour
     }
 
     private void OnCollisionEnter(Collision other) {
-        if(other.gameObject.tag == "Projectile"){
+        if(other.gameObject.tag == "Projectile" || other.gameObject.tag == "Player"){
             Destroy(this.gameObject);
         }
     }

@@ -1,68 +1,78 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : Unit
 {
-    private State state = State.STAND;
-
-    private SkillManager skillManager = new SkillManager();
-
-    [HideInInspector]
-    public PlayerStatus status;
+    private SkillManager skillManager;
 
     private void Awake()
     {
         rigid = GetComponent<Rigidbody>();
         status = GetComponent<PlayerStatus>();
-        skillManager.player = this.gameObject;
-        skillManager.NormalAttackCommand = new NormalArrowCommand();
-        skillManager.UserCustomSkillCommand = new ArcaneShiftCommand();
+        skillManager = GetComponent<SkillManager>();
 
-        attackDelayTimer = 1f / attackSpeed;
+        hpBar.SetActive(true);
     }
 
-    private void Update() 
+    private void Update()
     {
-        skillManager.status = status;
-        skillManager.playerPos = transform.position;
-        
-        if(!canAttack){
-            attackDelayTimer -= Time.deltaTime;
-            if(attackDelayTimer <=0){
-                canAttack = true;
-                attackDelayTimer = 1f / attackSpeed;
-            }
+        // Action 
+        if (Input.GetMouseButtonDown(0))
+        {
+            skillManager.NormalAttack();
         }
-        
-        if (Input.GetMouseButtonDown(0) && canAttack){
-            canAttack = false;
-            skillManager.normalAttack();
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            skillManager.UserCustomSkill();
         }
-        if(Input.GetMouseButtonDown(1)){
-            if(status.isMoving) StartCoroutine(MovePosUpdateCoroutine());
+        if(Input.GetKeyDown(KeyCode.Alpha1)){
+            skillManager.ItemSkill1();
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha2)){
+            skillManager.ItemSkill2();
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha3)){
+            skillManager.ItemSkill3();
+        }
+
+        // Move
+        if (Input.GetMouseButtonDown(1))
+        {
+            if (status.isMoving) StartCoroutine(MovePosUpdateCoroutine());
             else StartCoroutine(MoveCoroutine());
         }
 
-        if(Input.GetKeyDown(KeyCode.F)){
-            skillManager.userCustomSkill();
-        }
-        if(Input.GetKeyDown(KeyCode.S)){
+        if (Input.GetKeyDown(KeyCode.S))
+        {
             status.playerStop = true;
-        }else if(Input.GetKeyUp(KeyCode.S)){
+        }
+        else if (Input.GetKeyUp(KeyCode.S))
+        {
             status.playerStop = false;
         }
     }
 
-    private IEnumerator MoveCoroutine(){ // Move by Mouse
+    private void LateUpdate()
+    {
+        
+        hpBar.GetComponent<RectTransform>().position = Camera.main.WorldToScreenPoint(transform.position + new Vector3(0, 1.5f, 0));
+    }
+
+
+    private IEnumerator MoveCoroutine()
+    { // Move by Mouse
         status.isMoving = true;
         Vector3 orgPos = transform.position;
         Vector3 toPos = MousePointer.Instance.MousePositionInWorld;
         float limitDistance = Vector3.Distance(orgPos, toPos);
-        while(orgPos != toPos){
+        while (orgPos != toPos)
+        {
             transform.position = Vector3.MoveTowards(transform.position, toPos, status.moveSpeed * Time.deltaTime);
-            if(status.playerStop) break;
-            if (Vector3.Distance(orgPos, transform.position) >= limitDistance){
+            if (status.playerStop) break;
+            if (Vector3.Distance(orgPos, transform.position) >= limitDistance)
+            {
                 transform.position = toPos;
                 break;
             }
@@ -72,10 +82,13 @@ public class PlayerController : Unit
         status.playerStop = false;
     }
 
-    private IEnumerator MovePosUpdateCoroutine(){
+    private IEnumerator MovePosUpdateCoroutine()
+    {
         status.playerStop = true;
         yield return new WaitForSeconds(0.01f);
         status.playerStop = false;
         StartCoroutine(MoveCoroutine());
     }
+    
+
 }
