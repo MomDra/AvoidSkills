@@ -26,17 +26,12 @@ public class ServerHandle
         Server.clients[_fromClient].player.SetTargetPos(_targetPos);
     }
 
-    public static void PlayerShoot(int _fromClient, Packet _packet)
+    public static void ShootSkill(int _fromClient, Packet _packet)
     {
-        Vector3 _shootDirection = _packet.ReadVector3();
+        SkillCode _skillCode = (SkillCode)_packet.ReadInt();
+        SkillLevel _skillLevel = (SkillLevel)_packet.ReadInt();
+        Vector3 _mousePos = _packet.ReadVector3();
 
-        Server.clients[_fromClient].player.Shoot(_shootDirection);
-    }
-
-    public static void PlayerThrowItem(int _fromClient, Packet _packet)
-    {
-        Vector3 _throwDirection = _packet.ReadVector3();
-
-        Server.clients[_fromClient].player.ThrowItem(_throwDirection);
+        Server.clients[_fromClient].player.Shoot(_skillCode, _skillLevel, _mousePos);
     }
 }

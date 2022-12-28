@@ -98,7 +98,6 @@ public class ClientHandle : MonoBehaviour
         int _thrownByPlayer = _packet.ReadInt();
 
         GameManager.Instance.SpawnProjectile(_projectileId, _position);
-        GameManager.players[_thrownByPlayer].itemCount--;
     }
 
     public static void ProjectilePosition(Packet _packet)
@@ -115,5 +114,13 @@ public class ClientHandle : MonoBehaviour
         Vector3 _position = _packet.ReadVector3();
 
         GameManager.projectiles[_projectileId].Explode(_position);
+    }
+
+    public static void DestoryProjectile(Packet _packet)
+    {
+        int _projectileId = _packet.ReadInt();
+
+        GameManager.projectiles[_projectileId].Destory();
+        GameManager.projectiles.Remove(_projectileId);
     }
 }

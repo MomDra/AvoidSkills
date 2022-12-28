@@ -119,7 +119,7 @@ public class ServerSend : MonoBehaviour
         using (Packet _packet = new Packet((int)ServerPackets.playerHealth))
         {
             _packet.Write(_player.id);
-            _packet.Write(_player.health);
+            _packet.Write(_player.status.hp);
 
             SendTCPDataToAll(_packet);
         }
@@ -197,6 +197,16 @@ public class ServerSend : MonoBehaviour
         {
             _packet.Write(_projectile.id);
             _packet.Write(_projectile.transform.position);
+
+            SendTCPDataToAll(_packet);
+        }
+    }
+
+    public static void DestoryProjectile(Projectile _projectile)
+    {
+        using (Packet _packet = new Packet((int)ServerPackets.destoryProjectile))
+        {
+            _packet.Write(_projectile.id);
 
             SendTCPDataToAll(_packet);
         }

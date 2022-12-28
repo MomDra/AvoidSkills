@@ -111,12 +111,11 @@ public class Server
         }
 
         packetHandlers = new Dictionary<int, PacketHandler>()
-            {
-                {(int)ClientPackets.welcomeReceived, ServerHandle.WelcomeReceived},
-                {(int)ClientPackets.playerShoot, ServerHandle.PlayerShoot},
-                {(int)ClientPackets.playerThrowItem, ServerHandle.PlayerThrowItem},
-                {(int)ClientPackets.playerTargetPosition, ServerHandle.PlayerTargetPosition}
-            };
+        {
+            {(int)ClientPackets.welcomeReceived, ServerHandle.WelcomeReceived},
+            {(int)ClientPackets.playerTargetPosition, ServerHandle.PlayerTargetPosition},
+            {(int)ClientPackets.shootSkill, ServerHandle.ShootSkill}
+        };
 
         Debug.Log("Initialized packets.");
     }

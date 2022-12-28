@@ -82,7 +82,8 @@ public class Client : MonoBehaviour
             {(int)ServerPackets.itemPickedUp, ClientHandle.ItemPickedUp},
             {(int)ServerPackets.spawnProjectile, ClientHandle.SpawnProjectile},
             {(int)ServerPackets.projectilePosition, ClientHandle.ProjectilePosition},
-            {(int)ServerPackets.projectileExploded, ClientHandle.ProjectileExploded}
+            {(int)ServerPackets.projectileExploded, ClientHandle.ProjectileExploded},
+            {(int)ServerPackets.destoryProjectile, ClientHandle.DestoryProjectile}
         };
 
         Debug.Log("Initialized packets.");

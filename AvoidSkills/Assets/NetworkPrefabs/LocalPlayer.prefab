@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5139756064155969672}
   - component: {fileID: 3759408882369996260}
   - component: {fileID: 2526194993135021196}
+  - component: {fileID: 3821338204973973490}
   m_Layer: 0
   m_Name: LocalPlayer
   m_TagString: Untagged
@@ -64,7 +65,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a79175c501f0c0343832d7bacaa57cd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camTransform: {fileID: 0}
+--- !u!114 &3821338204973973490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2254150103642978228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 426ecbc12fe3af1419605ecd865bbbe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 0
+  hp: 0
+  armor: 0
+  moveSpeed: 0
+  isMoving: 0
+  playerStop: 0
 --- !u!1 &4988206235014421804
 GameObject:
   m_ObjectHideFlags: 0

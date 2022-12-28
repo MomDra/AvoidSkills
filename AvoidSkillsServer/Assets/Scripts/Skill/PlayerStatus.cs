@@ -16,15 +16,7 @@ public class PlayerStatus : MonoBehaviour
     public State state = State.STAND;
 
     public int hp;
+    public int maxHp;
     public int armor;
-
-    [SerializeField]
     public float moveSpeed;
-
-    [HideInInspector]
-    public bool isMoving = false;
-    [HideInInspector]
-    public bool playerStop = false;
 }
-
-

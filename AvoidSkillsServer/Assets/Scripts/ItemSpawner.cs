@@ -20,17 +20,17 @@ public class ItemSpawner : MonoBehaviour
         StartCoroutine(SpawnItem());
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (hasItem && other.CompareTag("Player"))
-        {
-            Player _player = other.GetComponent<Player>();
-            if (_player.AttemptPickupItem())
-            {
-                ItemPickedUp(_player.id);
-            }
-        }
-    }
+    // private void OnTriggerEnter(Collider other)
+    // {
+    //     if (hasItem && other.CompareTag("Player"))
+    //     {
+    //         Player _player = other.GetComponent<Player>();
+    //         if (_player.AttemptPickupItem())
+    //         {
+    //             ItemPickedUp(_player.id);
+    //         }
+    //     }
+    // }
 
     private IEnumerator SpawnItem()
     {

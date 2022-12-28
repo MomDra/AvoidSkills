@@ -9,16 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b06b9e907dd68164bb342564c5feafdc, type: 3}
-  m_Name: DropRock3
+  m_Script: {fileID: 11500000, guid: 1c378bb53504ab84a99ddbe0a5747647, type: 3}
+  m_Name: NormalArrow
   m_EditorClassIdentifier: 
-  skillCode: 2
-  skillName: Drop_Rock
-  damage: 100
-  range: 40
-  projectileSpeed: 0
+  skillCode: 0
+  skillName: Normal_Arrow
+  damage: 20
+  range: 100
+  projectileSpeed: 30
   delay: 0
-  level: 2
-  coolDownTime: 0
+  level: 0
+  coolDownTime: 1
   skillType: 0
-  skillPrefab: {fileID: 0}
+  skillPrefab: {fileID: 8336911800259214814, guid: 62492e1e60144e647aa1359b378656e1, type: 3}

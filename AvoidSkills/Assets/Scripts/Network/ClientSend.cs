@@ -40,21 +40,13 @@ public class ClientSend
         }
     }
 
-    public static void PlayerShoot(Vector3 _facing)
+    public static void ShootSkill(SkillCode _skillCode, SkillLevel _skillLevel, Vector3 _mousePos)
     {
-        using (Packet _packet = new Packet((int)ClientPackets.playerShoot))
+        using (Packet _packet = new Packet((int)ClientPackets.shootSkill))
         {
-            _packet.Write(_facing);
-
-            SendTCPData(_packet);
-        }
-    }
-
-    public static void PlayerThrowItem(Vector3 _facing)
-    {
-        using (Packet _packet = new Packet((int)ClientPackets.playerThrowItem))
-        {
-            _packet.Write(_facing);
+            _packet.Write((int)_skillCode);
+            _packet.Write((int)_skillLevel);
+            _packet.Write(_mousePos);
 
             SendTCPData(_packet);
         }
