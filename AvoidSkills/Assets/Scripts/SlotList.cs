@@ -4,33 +4,40 @@ using UnityEngine;
 
 public class SlotList
 {
-    private const int SIZE = 3;
+    private int size = 0;
     private int next = 0;
     private bool[] slot;
 
     public SlotList(){
-        slot = new bool[SIZE];
+        slot = new bool[3];
         for (int i = 0; i < 3;++i) slot[i]=false;
     }
 
+    public bool isFull(){
+        
+        return size == 3;
+    }
+
     public int add(){
+        ++size;
         slot[next] = true;
+        int tmp = next + 2;
         nextIndexUpdate();
-        return next + 2;
+        return tmp;
     }
 
     public void delete(int index){
-        slot[index + 2] = false;
+        --size;
+        slot[index - 2] = false;
         nextIndexUpdate();
     }
 
-    public void nextIndexUpdate(){
+    private void nextIndexUpdate(){
         for (int i = 0; i < 3;++i){
             if (!slot[i]){
                 next = i;
                 return;
             }
         }
-        Debug.Log("아이템 슬롯이 가득 차있습니다!");
     }
 }

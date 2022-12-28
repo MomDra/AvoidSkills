@@ -8,6 +8,7 @@ TagManager:
   - Projectile
   - GaugeUI
   - CountUI
+  - Item
   layers:
   - Default
   - TransparentFX

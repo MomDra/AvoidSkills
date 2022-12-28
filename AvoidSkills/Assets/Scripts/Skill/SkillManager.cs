@@ -8,7 +8,7 @@ public class SkillManager : MonoBehaviour
     private PlayerStatus playerStatus;
     private SkillUIManager skillUIManager;
 
-    private SlotList slotList;
+    public SlotList slotList{ get; private set; }
 
     public SkillCommand[] skillComands{ get; private set; } // 1. NormalAttack 2. UserSkill 3~5. itemSkills
     public CoolDownTimer[] currCoolDowns{ get; private set; } // 1. NormalAttack 2. UserSkill 3~5. itemSkills
@@ -42,20 +42,6 @@ public class SkillManager : MonoBehaviour
     private bool CheckCoolDown(int i){
         if(currCoolDowns[i].currTime==0){
             currCoolDowns[i].set(skillComands[i].SkillInfo.coolDownTime);
-
-            if(skillComands[i].SkillInfo.useType == UseType.OnlyOnce){
-                if(skillComands[i].currUsableCount==0){
-                    deleteItem(i);
-                    return true;
-                }
-            }
-
-            if(skillComands[i].SkillInfo.useType == UseType.ManyTimes){
-                if(--skillComands[i].currUsableCount == 0){
-                    deleteItem(i);
-                    return true;
-                }
-            }
             StartCoroutine(CoolDownCoroutine(currCoolDowns[i]));
             StartCoroutine(skillUIManager.CoolDownGaugeUpdateCoroutine(i));
             return true;
@@ -64,37 +50,53 @@ public class SkillManager : MonoBehaviour
         return false;
     }
 
-    public void addItem(SkillCommand newItem){
-        int index = slotList.add();
-        skillComands[index] = newItem;
-        currCoolDowns[index] = new CoolDownTimer();
-        skillUIManager.addItem(newItem, index);
+    private void CountCheck(int i){
+        if(skillComands[i].SkillInfo.useType != UseType.Permanent){
+            if(skillComands[i].SkillInfo.useType == UseType.MultipleTimes) skillComands[i].currUsableCount--;
+            if(skillComands[i].currUsableCount==0) deleteItem(i);
+        }
     }
 
-    public void deleteItem(int index){
+    public void addItem(SkillCode code, SkillLevel level){
+        int index = slotList.add();
+        skillComands[index] = SkillDB.Instance.GetSkill(code, level);
+        currCoolDowns[index] = new CoolDownTimer();
+        skillUIManager.addSkillUI(skillComands[index], index);
+    }
+
+    private void deleteItem(int index){
         slotList.delete(index);
         skillComands[index] = null;
-        skillUIManager.deleteItem(index);
+        skillUIManager.deleteSkillUI(index);
     }
 
     public void NormalAttack()
     {
-        if(CheckCoolDown(0))
+        if (CheckCoolDown(0))
+        {
             skillComands[0].cmd(playerTransform, playerStatus);
+            CountCheck(0);
+        }
     }
 
     public void UserCustomSkill()
     {
-        if(CheckCoolDown(1))
+        if (CheckCoolDown(1))
+        {
             skillComands[1].cmd(playerTransform, playerStatus);
+            CountCheck(1);
+        }
     }
 
     public void ItemSkill1()
     {
         if (skillComands[2] != null)
         {
-            if(CheckCoolDown(2)) 
-            skillComands[2].cmd(playerTransform, playerStatus);
+            if (CheckCoolDown(2))
+            {
+                skillComands[2].cmd(playerTransform, playerStatus);
+                CountCheck(2);
+            }
         }
         else Debug.Log("1번 스킬은 비어있습니다!");
     }
@@ -103,8 +105,11 @@ public class SkillManager : MonoBehaviour
     {
         if (skillComands[3] != null)
         {
-            if(CheckCoolDown(3)) 
-            skillComands[3].cmd(playerTransform, playerStatus);
+            if (CheckCoolDown(3))
+            {
+                skillComands[3].cmd(playerTransform, playerStatus);
+                CountCheck(3);
+            }
         }
         else Debug.Log("2번 스킬은 비어있습니다!");
     }
@@ -113,8 +118,11 @@ public class SkillManager : MonoBehaviour
     {
         if (skillComands[4] != null)
         {
-            if(CheckCoolDown(4)) 
-            skillComands[4].cmd(playerTransform, playerStatus);
+            if (CheckCoolDown(4))
+            {
+                skillComands[4].cmd(playerTransform, playerStatus);
+                CountCheck(4);
+            }
         }
         else Debug.Log("3번 스킬은 비어있습니다!");
     }

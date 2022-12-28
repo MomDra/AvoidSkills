@@ -7,7 +7,7 @@ public enum UseType
 {
     Permanent,
     OnlyOnce,
-    ManyTimes
+    MultipleTimes
 }
 
 public enum SkillType

@@ -10,6 +10,8 @@ public class SkillUIManager : MonoBehaviour
 
     [SerializeField]
     private GameObject[] slotPrefabs;
+    [SerializeField]
+    private Sprite emptyPrefabs;
 
     private Slot[] slots;
 
@@ -30,13 +32,13 @@ public class SkillUIManager : MonoBehaviour
         }
     }
 
-    public void addItem(SkillCommand command, int index){
+    public void addSkillUI(SkillCommand command, int index){
         slots[index].itemImage.sprite = command.SkillInfo.skillImage;
         slots[index].skillGauge.fillAmount = 0f;
     }
 
-    public void deleteItem(int index){
-        slots[index].itemImage.sprite = null;
+    public void deleteSkillUI(int index){
+        slots[index].itemImage.sprite = emptyPrefabs;
         slots[index].skillGauge.fillAmount = 0f;
     }
 
@@ -46,6 +48,7 @@ public class SkillUIManager : MonoBehaviour
 
         while (currCoolDownTime >= 0)
         {
+            if(skillManager.skillComands[i]==null)break;
             currCoolDownTime = skillManager.currCoolDowns[i].currTime;
             slots[i].skillGauge.fillAmount = currCoolDownTime / skillManager.skillComands[i].SkillInfo.coolDownTime;
             gaugeColor.a = (currCoolDownTime / skillManager.skillComands[i].SkillInfo.coolDownTime) * 0.7f;
