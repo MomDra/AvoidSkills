@@ -8,7 +8,6 @@ public class Player : MonoBehaviour
     public string username;
     public CharacterController controller;
     public Transform shootOrigin;
-    public float gravity = -9.81f;
     public float moveSpeed = 5f;
     public float jumpSpeed = 5f;
     public float throwForce = 600f;
@@ -17,12 +16,12 @@ public class Player : MonoBehaviour
     public int itemAmount = 0;
     public int maxItemAmount = 3;
 
-    private bool[] inputs;
     private float yVelocity = 0f;
+
+    Vector3 targetPos;
 
     private void Start()
     {
-        gravity *= Time.fixedDeltaTime * Time.fixedDeltaTime;
         moveSpeed *= Time.fixedDeltaTime;
         jumpSpeed *= Time.fixedDeltaTime;
     }
@@ -32,8 +31,6 @@ public class Player : MonoBehaviour
         id = _id;
         username = _username;
         health = maxHealth;
-
-        inputs = new bool[5];
     }
 
     public void FixedUpdate()
@@ -43,55 +40,22 @@ public class Player : MonoBehaviour
             return;
         }
 
-        Vector2 _inputDirection = Vector2.zero;
-
-        if (inputs[0])
-        {
-            _inputDirection.y += 1f;
-        }
-        if (inputs[1])
-        {
-            _inputDirection.y -= 1;
-        }
-        if (inputs[2])
-        {
-            _inputDirection.x += 1;
-        }
-        if (inputs[3])
-        {
-            _inputDirection.x -= 1;
-        }
-
-        Move(_inputDirection);
-
+        Move();
     }
 
-    private void Move(Vector2 _inputDirection)
+    private void Move()
     {
-        Vector3 _moveDirection = transform.right * _inputDirection.x + transform.forward * _inputDirection.y;
+        Vector3 _moveDirection = (targetPos - transform.position).normalized;
         _moveDirection *= moveSpeed;
 
-        if (controller.isGrounded)
-        {
-            yVelocity = 0f;
-            if (inputs[4])
-            {
-                yVelocity = jumpSpeed;
-            }
-        }
-        yVelocity += gravity;
-
-        _moveDirection.y = yVelocity;
         controller.Move(_moveDirection);
 
         ServerSend.PlayerPosition(this);
-        ServerSend.PlayerRotation(this);
     }
 
-    public void SetInput(bool[] _inputs, Quaternion _rotation)
+    public void SetTargetPos(Vector3 _targetPos)
     {
-        inputs = _inputs;
-        transform.rotation = _rotation;
+        targetPos = _targetPos;
     }
 
     public void Shoot(Vector3 _viewDirection)

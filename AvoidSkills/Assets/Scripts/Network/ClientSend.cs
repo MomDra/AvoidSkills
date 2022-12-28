@@ -8,13 +8,13 @@ public class ClientSend
     private static void SendTCPData(Packet _packet)
     {
         _packet.WriteLength();
-        Client.instance.tcp.SendData(_packet);
+        Client.Instance.tcp.SendData(_packet);
     }
 
     private static void SendUDPData(Packet _packet)
     {
         _packet.WriteLength();
-        Client.instance.udp.SendData(_packet);
+        Client.Instance.udp.SendData(_packet);
     }
 
     #region Packets
@@ -22,25 +22,21 @@ public class ClientSend
     {
         using (Packet _packet = new Packet((int)ClientPackets.welcomeReceived))
         {
-            _packet.Write(Client.instance.myId);
-            _packet.Write(UIManager.instance.usernameField.text);
+            _packet.Write(Client.Instance.MyId);
+            _packet.Write(Client.Instance.UserName);
 
             SendTCPData(_packet);
+            SendUDPData(_packet); // 서버에 udp 연결을 위한 udp 데이터 전송
         }
     }
 
-    public static void PlayerMovement(bool[] _inputs)
+    public static void PlayerTargetPosition(Vector3 _targetPos)
     {
-        using (Packet _packet = new Packet((int)ClientPackets.playerMovement))
+        using (Packet _packet = new Packet((int)ClientPackets.playerTargetPosition))
         {
-            _packet.Write(_inputs.Length);
-            foreach (bool _input in _inputs)
-            {
-                _packet.Write(_input);
-            }
-            _packet.Write(GameManager.players[Client.instance.myId].transform.rotation);
+            _packet.Write(_targetPos);
 
-            SendUDPData(_packet);
+            SendTCPData(_packet);
         }
     }
 

@@ -7,12 +7,27 @@ using System;
 
 public class Client : MonoBehaviour
 {
-    public static Client instance;
-    public static int dataBufferSize = 4096;
+    private static Client instance;
+    public static Client Instance { get => instance; }
+    private static int dataBufferSize = 4096;
 
-    public string ip = "127.0.0.1";
-    public int port = 26950;
-    public int myId = 0;
+    [SerializeField]
+    private string ip = "127.0.0.1";
+    [SerializeField]
+    private int port = 26950;
+    [SerializeField]
+    private int myId = 0;
+    public int MyId
+    {
+        get => myId;
+        set
+        {
+            myId = value;
+            Debug.Log($"Clinet Id가 {value}로 설정되었습니다.");
+        }
+    }
+    public string UserName { get; private set; }
+
     public TCP tcp;
     public UDP udp;
 
@@ -33,22 +48,22 @@ public class Client : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        tcp = new TCP();
-        udp = new UDP();
-    }
-
     private void OnApplicationQuit()
     {
         Disconnect();
     }
 
-    public void ConnectToServer()
+    public void ConnectToServer(string _ip, string _userName)
     {
+        ip = _ip;
+        UserName = _userName;
+
+        tcp = new TCP();
+        udp = new UDP();
+
         IntitializeClientData();
-        isConnected = true;
         tcp.Connect();
+        isConnected = true;
     }
 
     private void IntitializeClientData()
@@ -101,7 +116,7 @@ public class Client : MonoBehaviour
             };
 
             receiveBuffer = new byte[dataBufferSize];
-            socket.BeginConnect(instance.ip, instance.port, ConnectCallback, socket);
+            socket.BeginConnect(Instance.ip, Instance.port, ConnectCallback, socket);
         }
 
         private void ConnectCallback(IAsyncResult _result)
@@ -145,7 +160,7 @@ public class Client : MonoBehaviour
                 if (_byteLength <= 0)
                 {
                     // 연결 끊기
-                    instance.Disconnect(); // 왜 Client의 disconnect를 호출한 것일까?
+                    Instance.Disconnect(); // 왜 Client의 disconnect를 호출한 것일까?
                     return;
                 }
 
@@ -211,7 +226,7 @@ public class Client : MonoBehaviour
 
         private void Disconnect()
         {
-            instance.Disconnect();
+            Instance.Disconnect();
             stream = null;
             receiveData = null;
             receiveBuffer = null;
@@ -226,7 +241,7 @@ public class Client : MonoBehaviour
 
         public UDP()
         {
-            endPoint = new IPEndPoint(IPAddress.Parse(instance.ip), instance.port);
+            endPoint = new IPEndPoint(IPAddress.Parse(Instance.ip), Instance.port);
         }
 
         public void Connect(int _localPort)
@@ -241,10 +256,14 @@ public class Client : MonoBehaviour
         {
             try
             {
-                _packet.InsertInt(instance.myId);
+                _packet.InsertInt(Instance.myId);
                 if (socket != null)
                 {
                     socket.BeginSend(_packet.ToArray(), _packet.Length(), null, null);
+                }
+                else
+                {
+                    Debug.Log("udp socket이 null임");
                 }
             }
             catch (Exception _ex)
@@ -262,7 +281,7 @@ public class Client : MonoBehaviour
 
                 if (_data.Length < 4)
                 {
-                    instance.Disconnect();
+                    Instance.Disconnect();
                     return;
                 }
 
@@ -295,12 +314,11 @@ public class Client : MonoBehaviour
 
         private void Disconnect()
         {
-            instance.Disconnect();
+            Instance.Disconnect();
 
             endPoint = null;
             socket = null;
         }
     }
-
 }
 

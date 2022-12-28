@@ -9,7 +9,7 @@ public class ServerHandle
         int _clientIdCheck = _packet.ReadInt();
         string _username = _packet.ReadString();
 
-        Debug.Log($"{Server.clients[_fromClient].tcp.socket.Client.RemoteEndPoint} connected successfully and is now player {_fromClient}.");
+        Debug.Log($"{Server.clients[_fromClient].tcp.socket.Client.RemoteEndPoint} connected successfully and is now player {_fromClient}, UserName: {_username}.");
         if (_fromClient != _clientIdCheck)
         {
             Debug.Log($"Player \"{_username}\" (ID: {_fromClient}) has assumed the wrong client ID ({_clientIdCheck})!");
@@ -19,17 +19,11 @@ public class ServerHandle
         Server.clients[_fromClient].SendIntoGame(_username);
     }
 
-    public static void PlayerMovement(int _fromClient, Packet _packet)
+    public static void PlayerTargetPosition(int _fromClient, Packet _packet)
     {
-        bool[] _inputs = new bool[_packet.ReadInt()];
-        for (int i = 0; i < _inputs.Length; ++i)
-        {
-            _inputs[i] = _packet.ReadBool();
-        }
+        Vector3 _targetPos = _packet.ReadVector3();
 
-        Quaternion _rotation = _packet.ReadQuaternion();
-
-        Server.clients[_fromClient].player.SetInput(_inputs, _rotation);
+        Server.clients[_fromClient].player.SetTargetPos(_targetPos);
     }
 
     public static void PlayerShoot(int _fromClient, Packet _packet)

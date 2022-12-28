@@ -92,6 +92,10 @@ public class Server
             {
                 udpListener.BeginSend(_packet.ToArray(), _packet.Length(), _clientEndPoint, null, null);
             }
+            else
+            {
+                // Debug.Log("_clientEndPoint가 null임");
+            }
         }
         catch (Exception _ex)
         {
@@ -109,9 +113,9 @@ public class Server
         packetHandlers = new Dictionary<int, PacketHandler>()
             {
                 {(int)ClientPackets.welcomeReceived, ServerHandle.WelcomeReceived},
-                {(int)ClientPackets.playerMovement, ServerHandle.PlayerMovement},
                 {(int)ClientPackets.playerShoot, ServerHandle.PlayerShoot},
-                {(int)ClientPackets.playerThrowItem, ServerHandle.PlayerThrowItem}
+                {(int)ClientPackets.playerThrowItem, ServerHandle.PlayerThrowItem},
+                {(int)ClientPackets.playerTargetPosition, ServerHandle.PlayerTargetPosition}
             };
 
         Debug.Log("Initialized packets.");

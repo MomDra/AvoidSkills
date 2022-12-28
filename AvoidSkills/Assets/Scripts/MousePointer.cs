@@ -17,7 +17,7 @@ public class MousePointer : MonoBehaviour
         {
             instance = this;
             mainCamera = Camera.main;
-            meshCollider = GameObject.Find("Ground").GetComponent<MeshCollider>();
+            meshCollider = GameObject.Find("Ground").GetComponentInChildren<MeshCollider>();
         }
         else if (instance != this)
         {

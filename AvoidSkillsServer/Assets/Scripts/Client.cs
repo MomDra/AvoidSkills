@@ -186,7 +186,6 @@ public class Client
         }
     }
 
-
     public void SendIntoGame(string _playerName)
     {
         player = NetworkManager.Instance.InstantiatePlayer();
@@ -213,10 +212,10 @@ public class Client
             }
         }
 
-        foreach (ItemSpawner _itemSpawner in ItemSpawner.spawners.Values)
-        {
-            ServerSend.CreateItemSpawner(id, _itemSpawner.spawnerId, _itemSpawner.transform.position, _itemSpawner.hasItem);
-        }
+        // foreach (ItemSpawner _itemSpawner in ItemSpawner.spawners.Values)
+        // {
+        //     ServerSend.CreateItemSpawner(id, _itemSpawner.spawnerId, _itemSpawner.transform.position, _itemSpawner.hasItem);
+        // }
     }
 
     private void Disconnect()

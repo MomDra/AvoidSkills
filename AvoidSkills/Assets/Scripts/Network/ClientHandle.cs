@@ -12,10 +12,10 @@ public class ClientHandle : MonoBehaviour
         int _myId = _packet.ReadInt();
 
         Debug.Log($"Message from server: {_msg}");
-        Client.instance.myId = _myId;
+        Client.Instance.MyId = _myId;
 
+        Client.Instance.udp.Connect(((IPEndPoint)Client.Instance.tcp.socket.Client.LocalEndPoint).Port);
         ClientSend.WelcomeReceived();
-        Client.instance.udp.Connect(((IPEndPoint)Client.instance.tcp.socket.Client.LocalEndPoint).Port);
     }
 
     public static void SpawnPlayer(Packet _packet)
