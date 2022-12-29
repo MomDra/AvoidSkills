@@ -12,7 +12,7 @@ public abstract class SkillCommand : MonoBehaviour, Command
     [SerializeField]
     protected SkillInfo skillInfo;
     public SkillInfo SkillInfo { get => skillInfo; }
-    public int currUsableCount;
+    public int currUsableCount{ get; set; }
 
     private void Awake() {
         currUsableCount = skillInfo.usableCount;
