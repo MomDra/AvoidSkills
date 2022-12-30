@@ -16,12 +16,13 @@ MonoBehaviour:
   skillName: Fall_Book_lv2
   damage: 20
   range: 0
-  projectileSpeed: 0
+  projectileSpeed: 10
   delay: 1
   level: 1
   coolDownTime: 0
   skillType: 0
-  skillImage: {fileID: 0}
-  skillPrefab: {fileID: 0}
+  skillImage: {fileID: 21300000, guid: 01a67a6208d22a34786b7fe862328038, type: 3}
+  skillPrefab: {fileID: 4671822481953806898, guid: 4c937c18db080d34a92f110799d3df77, type: 3}
+  subPrefabs: []
   useType: 1
   usableCount: 0

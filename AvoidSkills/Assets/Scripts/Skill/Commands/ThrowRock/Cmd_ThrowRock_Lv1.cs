@@ -21,9 +21,10 @@ public class Cmd_ThrowRock_Lv1 : SkillCommand
 
     public override void cmd(Transform player, PlayerStatus status)
     {
-        GameObject ob = Instantiate(skillInfo.skillPrefab, player.position + new Vector3(0, 1.2f, 0), Quaternion.identity);
-        Destroy(ob, 4f);
-        Vector3 force = (MousePointer.Instance.MousePositionInWorld - player.position).normalized * skillInfo.projectileSpeed;
+        Vector3 dir = (MousePointer.Instance.MousePositionInWorld - player.position).normalized;
+        GameObject ob = Instantiate(skillInfo.skillPrefab, player.position + dir + new Vector3(0,0.5f,0), Quaternion.identity);
+        Destroy(ob, 2f);
+        Vector3 force = dir * skillInfo.projectileSpeed;
 
         ob.GetComponent<Rigidbody>().velocity = force;
     }

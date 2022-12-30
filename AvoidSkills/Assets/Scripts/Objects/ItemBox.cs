@@ -4,26 +4,20 @@ using UnityEngine;
 
 public class ItemBox : MonoBehaviour
 {
-    [SerializeField]
-    private float destroyTime;
-    [SerializeField]
-    private int levelUpInterval;
-    [SerializeField]
-    private GameObject itemBallPrefab;
 
     private SkillLevel level = SkillLevel.LEVEL1;
     private float timer;
     
     private void Awake() {
         timer = 0;
-        Destroy(this.gameObject, destroyTime);
+        Destroy(this.gameObject, EnvironmentManager.Instance.itemBoxDestroyTime);
     }
 
     // Update is called once per frame
     private void Update()
     {
         timer += Time.deltaTime;
-        if(timer >= levelUpInterval && (int) level < 3){
+        if(timer >= EnvironmentManager.Instance.itemBoxLevelUpInterval && (int) level < 3){
             timer = 0;
             ++level;
             ChangeColorByLevel();
@@ -47,7 +41,7 @@ public class ItemBox : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
         if(other.gameObject.tag == "Projectile" || other.gameObject.tag == "Player"){
-            GameObject clone = Instantiate(itemBallPrefab, transform.position, Quaternion.identity);
+            GameObject clone = Instantiate(EnvironmentManager.Instance.itemBallPrefab, transform.position, Quaternion.identity);
             clone.GetComponent<ItemBall>().skillLevel = level;
 
             Destroy(this.gameObject);

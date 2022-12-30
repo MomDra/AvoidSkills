@@ -23,7 +23,7 @@ public class SkillInfo : ScriptableObject
     public SkillCode skillCode;
     public string skillName;
     public int damage;
-    public int range;
+    public float range;
     public int projectileSpeed;
     public float delay;
     public SkillLevel level;
@@ -31,6 +31,7 @@ public class SkillInfo : ScriptableObject
     public SkillType skillType;
     public Sprite skillImage;
     public GameObject skillPrefab;
+    public GameObject[] subPrefabs;
     public UseType useType;
     public int usableCount;
 }
