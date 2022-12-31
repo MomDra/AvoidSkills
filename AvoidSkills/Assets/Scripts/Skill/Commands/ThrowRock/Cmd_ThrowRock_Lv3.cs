@@ -27,7 +27,7 @@ public class Cmd_ThrowRock_Lv3 : SkillCommand
         Destroy(ob1, 2f);
         Destroy(ob2, 2f);
         Destroy(ob3, 2f);
-        Vector3 force = dir * skillInfo.projectileSpeed;
+        Vector3 force = dir * skillInfo.speed;
 
         ob1.GetComponent<Rigidbody>().velocity = force;
         ob2.GetComponent<Rigidbody>().velocity = force;

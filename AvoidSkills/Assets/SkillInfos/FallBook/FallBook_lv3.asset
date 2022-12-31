@@ -16,7 +16,7 @@ MonoBehaviour:
   skillName: Fall_Book_lv3
   damage: 40
   range: 0
-  projectileSpeed: 12
+  speed: 12
   delay: 0.5
   level: 2
   coolDownTime: 0
@@ -26,3 +26,4 @@ MonoBehaviour:
   subPrefabs: []
   useType: 1
   usableCount: 0
+  description: 

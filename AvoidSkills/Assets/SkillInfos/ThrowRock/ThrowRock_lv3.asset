@@ -16,7 +16,7 @@ MonoBehaviour:
   skillName: Throw_Rock_lv3
   damage: 35
   range: 0
-  projectileSpeed: 35
+  speed: 35
   delay: 0
   level: 2
   coolDownTime: 0
@@ -26,3 +26,4 @@ MonoBehaviour:
   subPrefabs: []
   useType: 1
   usableCount: 0
+  description: 

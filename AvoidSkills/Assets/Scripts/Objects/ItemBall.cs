@@ -35,7 +35,7 @@ public class ItemBall : MonoBehaviour
 
     private void RandomSkill(){
         
-        skillCode = (SkillCode) random.Next(2, (int) EnvironmentManager.Instance.limitSkillCode + 1);
+        skillCode = (SkillCode) random.Next((int)EnvironmentManager.Instance.beginSkillCode, (int) EnvironmentManager.Instance.endSkillCode + 1);
     }
 
     private void OnCollisionEnter(Collision other)
@@ -48,6 +48,7 @@ public class ItemBall : MonoBehaviour
                 return;
             }
             other.gameObject.GetComponent<SkillManager>().addItem(skillCode, skillLevel);
+            Debug.Log("code: " + skillCode + " level: " + skillLevel);
             Destroy(this.gameObject);
         }
     }

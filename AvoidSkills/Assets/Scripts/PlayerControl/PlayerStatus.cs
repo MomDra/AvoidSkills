@@ -15,7 +15,9 @@ public class PlayerStatus : MonoBehaviour
     [HideInInspector]
     public State state = State.STAND;
 
-    public int hp;
+    public int maxHP;
+    [HideInInspector]
+    public int currHP;
     public int armor;
 
     [SerializeField]

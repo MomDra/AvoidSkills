@@ -10,7 +10,8 @@ public class EnvironmentManager : MonoBehaviour
     public float itemBoxSpawnInterval;
     public float itemBoxDestroyTime;
     public int itemBoxLevelUpInterval;
-    public SkillCode limitSkillCode;
+    public SkillCode beginSkillCode;
+    public SkillCode endSkillCode;
 
     [SerializeField]
     private GameObject itemBoxPrefab;

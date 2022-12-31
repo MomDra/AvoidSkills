@@ -24,7 +24,7 @@ public class Cmd_ThrowRock_Lv1 : SkillCommand
         Vector3 dir = (MousePointer.Instance.MousePositionInWorld - player.position).normalized;
         GameObject ob = Instantiate(skillInfo.skillPrefab, player.position + dir + new Vector3(0,0.5f,0), Quaternion.identity);
         Destroy(ob, 2f);
-        Vector3 force = dir * skillInfo.projectileSpeed;
+        Vector3 force = dir * skillInfo.speed;
 
         ob.GetComponent<Rigidbody>().velocity = force;
     }
