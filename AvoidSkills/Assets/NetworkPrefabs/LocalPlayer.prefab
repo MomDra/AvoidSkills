@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2526194993135021196}
   - component: {fileID: 3821338204973973490}
   - component: {fileID: -3449401762309241108}
+  - component: {fileID: 7901069140405455431}
   m_Layer: 0
   m_Name: LocalPlayer
   m_TagString: Untagged
@@ -79,9 +80,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
-  hp: 0
+  hp: 100
   armor: 0
-  moveSpeed: 0
+  moveSpeed: 5
   isMoving: 0
   playerStop: 0
 --- !u!114 &-3449401762309241108
@@ -96,6 +97,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d42472b1e9c106e4eaff2f3234a2446e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7901069140405455431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2254150103642978228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7776ea5bfbc92c44988556f9de29cd05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillUIView: {fileID: 0}
 --- !u!1 &4988206235014421804
 GameObject:
   m_ObjectHideFlags: 0

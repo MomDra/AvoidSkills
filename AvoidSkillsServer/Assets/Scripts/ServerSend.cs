@@ -212,5 +212,19 @@ public class ServerSend : MonoBehaviour
         }
     }
 
+    public static void PlayerStatus(Player _player)
+    {
+        using (Packet _packet = new Packet((int)ServerPackets.playerStatus))
+        {
+            _packet.Write((int)_player.status.state);
+            _packet.Write(_player.status.hp);
+            _packet.Write(_player.status.maxHp);
+            _packet.Write(_player.status.armor);
+            _packet.Write(_player.status.moveSpeed);
+
+            SendTCPData(_player.id, _packet);
+        }
+    }
+
     #endregion
 }

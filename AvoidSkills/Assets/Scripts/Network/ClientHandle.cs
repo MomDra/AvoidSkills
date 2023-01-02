@@ -123,4 +123,13 @@ public class ClientHandle : MonoBehaviour
         GameManager.projectiles[_projectileId].Destory();
         GameManager.projectiles.Remove(_projectileId);
     }
+
+    public static void PlayerStatus(Packet _packet)
+    {
+        State _state = (State)_packet.ReadInt();
+        int _hp = _packet.ReadInt();
+        int _maxHp = _packet.ReadInt();
+        int _armor = _packet.ReadInt();
+        float _moveSpeed = _packet.ReadFloat();
+    }
 }

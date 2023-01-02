@@ -12,18 +12,12 @@ public enum State
 
 public class PlayerStatus : MonoBehaviour
 {
-    [HideInInspector]
     public State state = State.STAND;
 
     public int hp;
     public int armor;
-
-    [SerializeField]
     public float moveSpeed;
-
-    [HideInInspector]
     public bool isMoving = false;
-    [HideInInspector]
     public bool playerStop = false;
 }
 
