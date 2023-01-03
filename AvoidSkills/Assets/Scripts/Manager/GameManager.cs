@@ -36,13 +36,15 @@ public class GameManager : MonoBehaviour
         if (_id == Client.Instance.MyId)
         {
             _player = Instantiate(localPlayerPrefab, _position, _rotation);
+            _player.GetComponent<PlayerManager>().Initialize(_id, _username, true);
         }
         else
         {
             _player = Instantiate(playerPrefab, _position, _rotation);
+            _player.GetComponent<PlayerManager>().Initialize(_id, _username, false);
         }
 
-        _player.GetComponent<PlayerManager>().Initialize(_id, _username);
+
         players.Add(_id, _player.GetComponent<PlayerManager>());
     }
 

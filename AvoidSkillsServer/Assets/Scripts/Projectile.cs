@@ -24,7 +24,6 @@ public class Projectile : MonoBehaviour
     private void Start()
     {
         id = nextProjectileId;
-        Debug.Log(id + "hahaha");
         ++nextProjectileId;
         projectiles.Add(id, this);
 
@@ -70,8 +69,6 @@ public class Projectile : MonoBehaviour
 
     private void Destory()
     {
-        Debug.Log("whwywywyw");
-
         projectiles.Remove(id);
         ServerSend.DestoryProjectile(this);
         Destroy(gameObject);

@@ -128,8 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
-  rigid: {fileID: 8336911800259214812}
   thrownByPlayer: 0
-  initialForce: {x: 0, y: 0, z: 0}
-  explosionRadius: 1.5
-  explosionDamage: 75
+  skillCode: 0
+  skillLevel: 0
+  destroyWhenCollision: 1

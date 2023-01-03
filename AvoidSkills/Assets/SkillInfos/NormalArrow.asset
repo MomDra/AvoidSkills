@@ -19,7 +19,7 @@ MonoBehaviour:
   speed: 40
   delay: 0
   level: 0
-  coolDownTime: 5
+  coolDownTime: 1
   skillType: 0
   skillImage: {fileID: 21300000, guid: 86327ee3a5a4bce4081a95203ee75c7c, type: 3}
   skillPrefab: {fileID: 3543981949475230879, guid: 361bd3012eed57741a2530981b233414, type: 3}

@@ -11,16 +11,29 @@ public class PlayerManager : MonoBehaviour
     public int itemCount = 0;
     public MeshRenderer model;
 
-    public void Initialize(int _id, string _username)
+    private HpUIController hpUIController;
+    private bool isLocalPlayer;
+
+    private void Awake()
+    {
+        hpUIController = GetComponent<HpUIController>();
+    }
+
+    public void Initialize(int _id, string _username, bool _isLocalPlayer)
     {
         id = _id;
         username = _username;
         health = maxHealth;
+        isLocalPlayer = _isLocalPlayer;
     }
 
     public void SetHealth(float _health)
     {
         health = _health;
+
+        Debug.Log($"health: {_health}, max: {maxHealth}");
+
+        if (isLocalPlayer) hpUIController.SetHpBarHealth(health, maxHealth);
 
         if (health <= 0f)
         {

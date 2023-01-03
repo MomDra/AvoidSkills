@@ -54,7 +54,7 @@ public class ClientHandle : MonoBehaviour
     public static void PlayerHealth(Packet _packet)
     {
         int _id = _packet.ReadInt();
-        float _health = _packet.ReadFloat();
+        int _health = _packet.ReadInt();
 
         GameManager.players[_id].SetHealth(_health);
     }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SkillUIController : MonoBehaviour
 {
-    private SkillUIController instance;
+    private static SkillUIController instance;
 
 
     SkillUIView skillUIView;
