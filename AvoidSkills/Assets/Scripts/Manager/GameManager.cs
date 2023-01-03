@@ -14,7 +14,6 @@ public class GameManager : MonoBehaviour
     public GameObject localPlayerPrefab;
     public GameObject playerPrefab;
     public GameObject itemSpawnerPrefab;
-    public GameObject projectilePrefab;
 
     private void Awake()
     {
