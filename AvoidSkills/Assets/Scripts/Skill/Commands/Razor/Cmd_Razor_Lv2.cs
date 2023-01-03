@@ -18,8 +18,23 @@ public class Cmd_Razor_Lv2 : SkillCommand
         }
     }
 
+    public override void GeneratePreview(Transform player)
+    {
+        throw new System.NotImplementedException();
+    }
 
-    public override void cmd(Transform player, PlayerStatus status)
+    public override void previewUpdate(Transform player)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void DestroyPreview()
+    {
+        throw new System.NotImplementedException();
+    }
+
+
+    public override void run(Transform player, PlayerStatus status)
     {
         GameObject ob = Instantiate(skillInfo.skillPrefab, player.position, Quaternion.identity);
         Destroy(ob, 2f);

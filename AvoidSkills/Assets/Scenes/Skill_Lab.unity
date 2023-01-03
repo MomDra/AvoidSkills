@@ -908,7 +908,7 @@ MonoBehaviour:
   itemBoxDestroyTime: 25
   itemBoxLevelUpInterval: 4
   beginSkillCode: 2
-  endSkillCode: 5
+  endSkillCode: 2
   itemBoxPrefab: {fileID: 7105969462260867821, guid: a47cd6b23160ae34393e13b365215fbd, type: 3}
   itemBallPrefab: {fileID: 582844479265566629, guid: 5eed79b0fc6ff4746950e58a5a7b7a76, type: 3}
 --- !u!1 &1106093706

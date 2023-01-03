@@ -18,7 +18,22 @@ public class Cmd_ArcaneShift_UC : SkillCommand
         }
     }
 
-    public override void cmd(Transform player, PlayerStatus status)
+    public override void GeneratePreview(Transform player)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void previewUpdate(Transform player)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void DestroyPreview()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void run(Transform player, PlayerStatus status)
     {
         status.playerStop = true;
         player.transform.position += (MousePointer.Instance.MousePositionInWorld - player.position).normalized * skillInfo.range;
