@@ -21,7 +21,7 @@ public class Cmd_NormalArrow_NA : SkillCommand
     public override void cmd(Transform player, PlayerStatus status)
     {
         Vector3 arrowPos = player.position + (MousePointer.Instance.MousePositionInWorld - player.position).normalized;
-        Vector3 velocity = (MousePointer.Instance.MousePositionInWorld - arrowPos).normalized * skillInfo.projectileSpeed;
+        Vector3 velocity = (MousePointer.Instance.MousePositionInWorld - arrowPos).normalized * skillInfo.speed;
 
         GameObject clone = Instantiate(skillInfo.skillPrefab, arrowPos, Quaternion.identity);
         clone.GetComponent<Rigidbody>().velocity = velocity;

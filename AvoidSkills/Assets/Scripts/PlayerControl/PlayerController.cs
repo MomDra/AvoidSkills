@@ -90,7 +90,18 @@ public class PlayerController : Unit
         StartCoroutine(MoveCoroutine());
     }
 
-    
+    public void Damage(int amount){
+        if(status.currHP - amount > 0){
+            status.currHP -= amount;
+        }else{
+            Dead();
+        }
+    }
+
+    private void Dead(){
+        Debug.Log("Player Dead");
+        this.gameObject.SetActive(false);
+    }
     
 
 }

@@ -6,7 +6,17 @@ public enum SkillCode
 {
     NORMALARROW = 0,
     ARCANESHIFT,
-    DROPROCK
+    THROWROCK,
+    FALLBOOK,
+    FIRECIRCLE,
+    RAZOR,
+    CHASINGMISSILE,
+    SUMMONZOMBIE,
+    BARRICADE,
+    ICESHEET,
+    MIRROR,
+    GRABBOT,
+    BLOCKWALL
 }
 
 public enum SkillLevel

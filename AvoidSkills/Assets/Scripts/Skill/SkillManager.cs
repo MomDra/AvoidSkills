@@ -75,7 +75,6 @@ public class SkillManager : MonoBehaviour
         if (CheckCoolDown(0))
         {
             skillComands[0].cmd(playerTransform, playerStatus);
-            CountCheck(0);
         }
     }
 
@@ -84,7 +83,6 @@ public class SkillManager : MonoBehaviour
         if (CheckCoolDown(1))
         {
             skillComands[1].cmd(playerTransform, playerStatus);
-            CountCheck(1);
         }
     }
 
