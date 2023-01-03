@@ -66,15 +66,6 @@ public class ClientHandle : MonoBehaviour
         GameManager.players[_id].Respawn();
     }
 
-    public static void CreateItemSpawner(Packet _packet)
-    {
-        int _spawnerId = _packet.ReadInt();
-        Vector3 _spawnerPosition = _packet.ReadVector3();
-        bool _hasItem = _packet.ReadBool();
-
-        GameManager.Instance.CreateItemSpawner(_spawnerId, _spawnerPosition, _hasItem);
-    }
-
     public static void ItemSpawned(Packet _packet)
     {
         int _spawnerId = _packet.ReadInt();
@@ -98,7 +89,6 @@ public class ClientHandle : MonoBehaviour
         int _thrownByPlayer = _packet.ReadInt();
 
         GameManager.Instance.SpawnProjectile(_projectileId, _position);
-        GameManager.players[_thrownByPlayer].itemCount--;
     }
 
     public static void ProjectilePosition(Packet _packet)
@@ -115,5 +105,22 @@ public class ClientHandle : MonoBehaviour
         Vector3 _position = _packet.ReadVector3();
 
         GameManager.projectiles[_projectileId].Explode(_position);
+    }
+
+    public static void DestoryProjectile(Packet _packet)
+    {
+        int _projectileId = _packet.ReadInt();
+
+        GameManager.projectiles[_projectileId].Destory();
+        GameManager.projectiles.Remove(_projectileId);
+    }
+
+    public static void PlayerStatus(Packet _packet)
+    {
+        State _state = (State)_packet.ReadInt();
+        int _hp = _packet.ReadInt();
+        int _maxHp = _packet.ReadInt();
+        int _armor = _packet.ReadInt();
+        float _moveSpeed = _packet.ReadFloat();
     }
 }

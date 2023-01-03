@@ -8,17 +8,18 @@ public class SlotList
     private int next = 0;
     private bool[] slot;
 
-    public SlotList(){
+    public SlotList()
+    {
         slot = new bool[3];
-        for (int i = 0; i < 3;++i) slot[i]=false;
     }
 
-    public bool isFull(){
-        
+    public bool isFull()
+    {
         return size == 3;
     }
 
-    public int add(){
+    public int add()
+    {
         ++size;
         slot[next] = true;
         int tmp = next + 2;
@@ -26,15 +27,19 @@ public class SlotList
         return tmp;
     }
 
-    public void delete(int index){
+    public void delete(int index)
+    {
         --size;
         slot[index - 2] = false;
         nextIndexUpdate();
     }
 
-    private void nextIndexUpdate(){
-        for (int i = 0; i < 3;++i){
-            if (!slot[i]){
+    private void nextIndexUpdate()
+    {
+        for (int i = 0; i < 3; ++i)
+        {
+            if (!slot[i])
+            {
                 next = i;
                 return;
             }

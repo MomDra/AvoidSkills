@@ -14,21 +14,20 @@ public enum ServerPackets
     playerDisconnected,
     playerHealth,
     playerRespawned,
-    createItemSpawner,
     itemSpawned,
     itemPickedUp,
     spawnProjectile,
     projectilePosition,
-    projectileExploded
+    projectileExploded,
+    destoryProjectile
 }
 
 /// <summary>Sent from client to server.</summary>
 public enum ClientPackets
 {
     welcomeReceived = 1,
-    playerShoot,
-    playerThrowItem,
-    playerTargetPosition
+    playerTargetPosition,
+    shootSkill
 }
 
 public class Packet : IDisposable

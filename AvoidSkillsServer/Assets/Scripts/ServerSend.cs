@@ -119,7 +119,7 @@ public class ServerSend : MonoBehaviour
         using (Packet _packet = new Packet((int)ServerPackets.playerHealth))
         {
             _packet.Write(_player.id);
-            _packet.Write(_player.health);
+            _packet.Write(_player.status.hp);
 
             SendTCPDataToAll(_packet);
         }
@@ -132,18 +132,6 @@ public class ServerSend : MonoBehaviour
             _packet.Write(_player.id);
 
             SendTCPDataToAll(_packet);
-        }
-    }
-
-    public static void CreateItemSpawner(int _toClient, int _spawnerId, Vector3 _spawnerPosition, bool _hasItem)
-    {
-        using (Packet _packet = new Packet((int)ServerPackets.createItemSpawner))
-        {
-            _packet.Write(_spawnerId);
-            _packet.Write(_spawnerPosition);
-            _packet.Write(_hasItem);
-
-            SendTCPData(_toClient, _packet);
         }
     }
 
@@ -199,6 +187,30 @@ public class ServerSend : MonoBehaviour
             _packet.Write(_projectile.transform.position);
 
             SendTCPDataToAll(_packet);
+        }
+    }
+
+    public static void DestoryProjectile(Projectile _projectile)
+    {
+        using (Packet _packet = new Packet((int)ServerPackets.destoryProjectile))
+        {
+            _packet.Write(_projectile.id);
+
+            SendTCPDataToAll(_packet);
+        }
+    }
+
+    public static void PlayerStatus(Player _player)
+    {
+        using (Packet _packet = new Packet((int)ServerPackets.playerStatus))
+        {
+            _packet.Write((int)_player.status.state);
+            _packet.Write(_player.status.hp);
+            _packet.Write(_player.status.maxHp);
+            _packet.Write(_player.status.armor);
+            _packet.Write(_player.status.moveSpeed);
+
+            SendTCPData(_player.id, _packet);
         }
     }
 

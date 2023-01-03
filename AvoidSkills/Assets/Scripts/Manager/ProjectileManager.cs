@@ -20,4 +20,9 @@ public class ProjectileManager : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public void Destory()
+    {
+        Destroy(gameObject);
+    }
+
 }

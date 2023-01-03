@@ -11,8 +11,6 @@ public class Projectile : MonoBehaviour
     public Rigidbody rigid;
     public int thrownByPlayer;
     public Vector3 initialForce;
-    public float explosionRadius = 1.5f;
-    public float explosionDamage = 75f;
 
 
     private void Start()
@@ -23,8 +21,7 @@ public class Projectile : MonoBehaviour
 
         ServerSend.SpawnProjectile(this, thrownByPlayer);
 
-        rigid.AddForce(initialForce);
-        StartCoroutine(ExplodeAfterTime());
+        StartCoroutine(DestroySelf());
     }
 
     private void FixedUpdate()
@@ -34,13 +31,20 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        Debug.Log(other.collider.name + "haha");
-        Explode();
+        Player otherPlayer = other.gameObject.GetComponent<Player>();
+        if (otherPlayer != null)
+        {
+            if (otherPlayer.id != thrownByPlayer)
+            {
+                otherPlayer.TakeDamage(10);
+            }
+
+            Destory();
+        }
     }
 
-    public void Initialize(Vector3 _initialMovementDirection, float _initialForceStrength, int _thrownByPlayer)
+    public void Initialize(int _thrownByPlayer)
     {
-        initialForce = _initialMovementDirection * _initialForceStrength;
         thrownByPlayer = _thrownByPlayer;
     }
 
@@ -48,24 +52,23 @@ public class Projectile : MonoBehaviour
     {
         ServerSend.ProjectileExploded(this);
 
-        Collider[] _colliders = Physics.OverlapSphere(transform.position, explosionRadius);
-        foreach (Collider _collider in _colliders)
-        {
-            if (_collider.CompareTag("Player"))
-            {
-                _collider.GetComponent<Player>().TakeDamage(explosionDamage);
-            }
-        }
 
         projectiles.Remove(id);
         Destroy(gameObject);
     }
 
-    private IEnumerator ExplodeAfterTime()
+    private void Destory()
     {
-        yield return new WaitForSeconds(10f);
+        projectiles.Remove(id);
+        ServerSend.DestoryProjectile(this);
+        Destroy(gameObject);
+    }
 
-        Explode();
+    private IEnumerator DestroySelf()
+    {
+        yield return new WaitForSeconds(0.8f);
+
+        Destory();
     }
 }
 
