@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:AvoidSkills/Assets/SkillInfos/FallBook/FallBook_lv1.asset.meta
-guid: 19023144391ed2c41a65ada0e13405a6
-========
-guid: 47bbcc55a6da5bc4bb08cc6cb5c87d96
->>>>>>>> feature/UnityGameServer:AvoidSkillsServer/Assets/SkillInfos/ArcaneShift.asset.meta
+guid: 7ad7f728d458aab48a8c2f87e02fed21
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 11400000
