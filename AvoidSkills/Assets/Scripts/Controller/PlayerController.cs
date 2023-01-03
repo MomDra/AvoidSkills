@@ -29,10 +29,10 @@ namespace Network
             {
                 skillManager.UserCustomSkill();
             }
-            // if (Input.GetKeyDown(KeyCode.Alpha1))
-            // {
-            //     skillManager.ItemSkill1();
-            // }
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                skillManager.ItemSkill1();
+            }
             // if (Input.GetKeyDown(KeyCode.Alpha2))
             // {
             //     skillManager.ItemSkill2();

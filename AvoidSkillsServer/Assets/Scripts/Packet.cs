@@ -14,7 +14,6 @@ public enum ServerPackets
     playerDisconnected,
     playerHealth,
     playerRespawned,
-    createItemSpawner,
     itemSpawned,
     itemPickedUp,
     spawnProjectile,
