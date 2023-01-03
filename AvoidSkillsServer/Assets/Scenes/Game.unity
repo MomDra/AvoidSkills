@@ -134,6 +134,9 @@ GameObject:
   - component: {fileID: 75796073}
   - component: {fileID: 75796074}
   - component: {fileID: 75796075}
+  - component: {fileID: 75796076}
+  - component: {fileID: 75796077}
+  - component: {fileID: 75796078}
   m_Layer: 0
   m_Name: Skills
   m_TagString: Untagged
@@ -168,7 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6d6a9d84248b5c47ae34e912d57fde2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillInfo: {fileID: 11400000, guid: 8d0ed4059368ec34c9a292d924966902, type: 2}
+  skillInfo: {fileID: 11400000, guid: 2866ecc1edfef74469d63eeb46875024, type: 2}
 --- !u!114 &75796075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,7 +184,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8002ee51a717bab489daf34d5e6e6b0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillInfo: {fileID: 11400000, guid: 47bbcc55a6da5bc4bb08cc6cb5c87d96, type: 2}
+  skillInfo: {fileID: 11400000, guid: 9a3e7fcd19ce90f4198af563de0a3700, type: 2}
+--- !u!114 &75796076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 75796072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e33fd0c720043334ba67c98110c71701, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillInfo: {fileID: 11400000, guid: 8616c49075dc0974b9bb97870b68687f, type: 2}
+--- !u!114 &75796077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 75796072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7c2f048c379ead4f83212d6081f1922, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillInfo: {fileID: 11400000, guid: 40293eb8562cd2c4d83a919eda42eaae, type: 2}
+--- !u!114 &75796078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 75796072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6ab7ef3ce8d4d84bbebb2484862cb87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillInfo: {fileID: 11400000, guid: 6294dee244824f14eb05ef8990adc64a, type: 2}
 --- !u!1 &576781086
 GameObject:
   m_ObjectHideFlags: 0

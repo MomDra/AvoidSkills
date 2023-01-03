@@ -7,15 +7,24 @@ public class Projectile : MonoBehaviour
     public static Dictionary<int, Projectile> projectiles = new Dictionary<int, Projectile>();
     private static int nextProjectileId = 1;
 
+    [HideInInspector]
     public int id;
-    public Rigidbody rigid;
+    [HideInInspector]
     public int thrownByPlayer;
-    public Vector3 initialForce;
+    private float destroyTime;
+    [HideInInspector]
+    public SkillCode skillCode;
+    [HideInInspector]
+    public SkillLevel skillLevel;
+
+    [SerializeField]
+    private bool destroyWhenCollision;
 
 
     private void Start()
     {
         id = nextProjectileId;
+        Debug.Log(id + "hahaha");
         ++nextProjectileId;
         projectiles.Add(id, this);
 
@@ -37,15 +46,17 @@ public class Projectile : MonoBehaviour
             if (otherPlayer.id != thrownByPlayer)
             {
                 otherPlayer.TakeDamage(10);
+                if (destroyWhenCollision) Destory();
             }
-
-            Destory();
         }
     }
 
-    public void Initialize(int _thrownByPlayer)
+    public void Initialize(int _thrownByPlayer, float _destroyTime, SkillCode _skillCode, SkillLevel _skillLevel)
     {
         thrownByPlayer = _thrownByPlayer;
+        destroyTime = _destroyTime;
+        skillCode = _skillCode;
+        skillLevel = _skillLevel;
     }
 
     private void Explode()
@@ -59,6 +70,8 @@ public class Projectile : MonoBehaviour
 
     private void Destory()
     {
+        Debug.Log("whwywywyw");
+
         projectiles.Remove(id);
         ServerSend.DestoryProjectile(this);
         Destroy(gameObject);
@@ -66,7 +79,7 @@ public class Projectile : MonoBehaviour
 
     private IEnumerator DestroySelf()
     {
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(destroyTime);
 
         Destory();
     }

@@ -164,6 +164,9 @@ public class ServerSend : MonoBehaviour
             _packet.Write(_projectile.transform.position);
             _packet.Write(_thrownByPlaeyr);
 
+            _packet.Write((int)_projectile.skillCode);
+            _packet.Write((int)_projectile.skillLevel);
+
             SendTCPDataToAll(_packet);
         }
     }
@@ -174,6 +177,7 @@ public class ServerSend : MonoBehaviour
         {
             _packet.Write(_projectile.id);
             _packet.Write(_projectile.transform.position);
+            _packet.Write(_projectile.transform.rotation);
 
             SendTCPDataToAll(_packet);
         }

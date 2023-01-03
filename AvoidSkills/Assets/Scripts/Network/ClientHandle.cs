@@ -88,15 +88,20 @@ public class ClientHandle : MonoBehaviour
         Vector3 _position = _packet.ReadVector3();
         int _thrownByPlayer = _packet.ReadInt();
 
-        GameManager.Instance.SpawnProjectile(_projectileId, _position);
+        SkillCode _skillCode = (SkillCode)_packet.ReadInt();
+        SkillLevel _skillLevel = (SkillLevel)_packet.ReadInt();
+
+        GameManager.Instance.SpawnProjectile(_projectileId, _position, _skillCode, _skillLevel);
     }
 
     public static void ProjectilePosition(Packet _packet)
     {
         int _projectileId = _packet.ReadInt();
         Vector3 _position = _packet.ReadVector3();
+        Quaternion _rotation = _packet.ReadQuaternion();
 
         GameManager.projectiles[_projectileId].transform.position = _position;
+        GameManager.projectiles[_projectileId].transform.rotation = _rotation;
     }
 
     public static void ProjectileExploded(Packet _packet)

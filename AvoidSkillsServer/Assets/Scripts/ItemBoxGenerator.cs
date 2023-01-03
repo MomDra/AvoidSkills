@@ -20,7 +20,6 @@ public class ItemBoxGenerator : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            Debug.Log("awake");
         }
         else if (instance != this)
         {
@@ -31,7 +30,6 @@ public class ItemBoxGenerator : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("start");
         StartCoroutine(SpawnItemBoxCoroutine());
     }
 
