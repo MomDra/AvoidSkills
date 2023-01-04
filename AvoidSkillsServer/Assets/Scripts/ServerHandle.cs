@@ -16,7 +16,7 @@ public class ServerHandle
         }
 
         // send player into game
-        Server.clients[_fromClient].SendIntoGame(_username);
+        // Server.clients[_fromClient].SendIntoGame(_username);
     }
 
     public static void PlayerTargetPosition(int _fromClient, Packet _packet)

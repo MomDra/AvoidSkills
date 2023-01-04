@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Net;
 
 public class ClientHandle : MonoBehaviour
@@ -16,6 +17,8 @@ public class ClientHandle : MonoBehaviour
 
         Client.Instance.udp.Connect(((IPEndPoint)Client.Instance.tcp.socket.Client.LocalEndPoint).Port);
         ClientSend.WelcomeReceived();
+
+        SceneManager.LoadScene(1);
     }
 
     public static void SpawnPlayer(Packet _packet)

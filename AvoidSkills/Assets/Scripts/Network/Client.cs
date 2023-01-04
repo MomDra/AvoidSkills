@@ -40,6 +40,11 @@ public class Client : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+            // DontDestroyOnLoad(gameObject);
+
+            IntitializeClientData();
+            tcp = new TCP();
+            udp = new UDP();
         }
         else if (instance != this)
         {
@@ -57,13 +62,7 @@ public class Client : MonoBehaviour
     {
         ip = _ip;
         UserName = _userName;
-
-        tcp = new TCP();
-        udp = new UDP();
-
-        IntitializeClientData();
         tcp.Connect();
-        isConnected = true;
     }
 
     private void IntitializeClientData()
@@ -134,6 +133,7 @@ public class Client : MonoBehaviour
             receiveData = new Packet();
 
             stream.BeginRead(receiveBuffer, 0, dataBufferSize, ReceiveCallback, null);
+            instance.isConnected = true;
         }
 
         public void SendData(Packet _packet)
