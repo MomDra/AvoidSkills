@@ -30,6 +30,7 @@ public class SkillInfo : ScriptableObject
     public float coolDownTime;
     public SkillType skillType;
     public Sprite skillImage;
+    public GameObject previewPrefab;
     public GameObject skillPrefab;
     public GameObject[] subPrefabs;
     public UseType useType;

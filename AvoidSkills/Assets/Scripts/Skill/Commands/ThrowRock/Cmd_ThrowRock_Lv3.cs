@@ -18,7 +18,30 @@ public class Cmd_ThrowRock_Lv3 : SkillCommand
         }
     }
 
-    public override void cmd(Transform player, PlayerStatus status)
+    public GameObject pr{ get; private set; }
+    private LineRenderer lr;
+    private Vector3[] points = new Vector3[2];
+
+    public override void GeneratePreview(Transform player)
+    {
+        pr = Instantiate(skillInfo.previewPrefab);
+        pr.SetActive(true);
+        lr = pr.GetComponent<LineRenderer>();
+    }
+
+    public override void previewUpdate(Transform player)
+    {
+        points[0] = player.position;
+        points[1] = MousePointer.Instance.MousePositionInWorld;
+        lr.SetPositions(points);
+    }
+
+    public override void DestroyPreview()
+    {
+        Destroy(pr);
+    }
+
+    public override void run(Transform player, PlayerStatus status)
     {
         Vector3 dir = (MousePointer.Instance.MousePositionInWorld - player.position).normalized;
         GameObject ob1 = Instantiate(skillInfo.skillPrefab, player.position + dir + new Vector3(0,0.5f,0), Quaternion.identity);

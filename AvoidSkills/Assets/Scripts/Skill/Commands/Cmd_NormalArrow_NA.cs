@@ -18,7 +18,22 @@ public class Cmd_NormalArrow_NA : SkillCommand
         }
     }
 
-    public override void cmd(Transform player, PlayerStatus status)
+
+    public override void GeneratePreview(Transform player)
+    {
+        
+    }
+
+    public override void previewUpdate(Transform player)
+    {
+        
+    }
+
+    public override void DestroyPreview()
+    {
+    }
+
+    public override void run(Transform player, PlayerStatus status)
     {
         Vector3 arrowPos = player.position + (MousePointer.Instance.MousePositionInWorld - player.position).normalized;
         Vector3 velocity = (MousePointer.Instance.MousePositionInWorld - arrowPos).normalized * skillInfo.speed;
