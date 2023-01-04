@@ -137,6 +137,9 @@ GameObject:
   - component: {fileID: 75796076}
   - component: {fileID: 75796077}
   - component: {fileID: 75796078}
+  - component: {fileID: 75796079}
+  - component: {fileID: 75796080}
+  - component: {fileID: 75796081}
   m_Layer: 0
   m_Name: Skills
   m_TagString: Untagged
@@ -224,6 +227,45 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillInfo: {fileID: 11400000, guid: 6294dee244824f14eb05ef8990adc64a, type: 2}
+--- !u!114 &75796079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 75796072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93565e27968ce6a40ae868308f5218b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillInfo: {fileID: 11400000, guid: 29942011f3e036a4ca7d3b3207f455da, type: 2}
+--- !u!114 &75796080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 75796072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb7195c0aa90bce429393ae0cbf61e30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillInfo: {fileID: 11400000, guid: f11ae0944a0e34a4caddfd4906a92397, type: 2}
+--- !u!114 &75796081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 75796072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba51a83f0fa75354784f62a7d3ea71a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillInfo: {fileID: 11400000, guid: 35fcb81603a942242b2bef7695fc0b74, type: 2}
 --- !u!1 &576781086
 GameObject:
   m_ObjectHideFlags: 0

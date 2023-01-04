@@ -22,7 +22,7 @@ MonoBehaviour:
   coolDownTime: 0
   skillType: 0
   skillImage: {fileID: 21300000, guid: 16cc3543844473643b2ac2710cd31fcd, type: 3}
-  skillPrefab: {fileID: 4671822481953806898, guid: 4c937c18db080d34a92f110799d3df77, type: 3}
+  skillPrefab: {fileID: 4671822481953806898, guid: 568b6da4e9db90d4d8758cf7623999b3, type: 3}
   subPrefabs: []
   useType: 1
   usableCount: 0
