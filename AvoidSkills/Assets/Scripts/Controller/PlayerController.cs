@@ -6,22 +6,45 @@ namespace Network
 {
     public class PlayerController : MonoBehaviour
     {
-        private void FixedUpdate()
+        private SkillManager skillManager;
+        private PlayerStatus status;
+
+        private void Awake()
         {
-            SendInputToServer();
+            skillManager = GetComponent<SkillManager>();
+            status = GetComponent<PlayerStatus>();
         }
 
-        private void SendInputToServer()
+        private void Update()
         {
-            bool[] _inputs = new bool[]
+            if (Input.GetMouseButtonDown(1))
             {
-            Input.GetKey(KeyCode.W),
-            Input.GetKey(KeyCode.S),
-            Input.GetKey(KeyCode.A),
-            Input.GetKey(KeyCode.D)
-            };
+                ClientSend.PlayerTargetPosition(MousePointer.Instance.MousePositionInWorld);
+            }
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                skillManager.NormalAttack();
+            }
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                skillManager.UserCustomSkill();
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                skillManager.ItemSkill1();
+            }
+            // if (Input.GetKeyDown(KeyCode.Alpha2))
+            // {
+            //     skillManager.ItemSkill2();
+            // }
+            // if (Input.GetKeyDown(KeyCode.Alpha3))
+            // {
+            //     skillManager.ItemSkill3();
+            // }
+        }
 
-            ClientSend.PlayerMovement(_inputs);
+        private void FixedUpdate()
+        {
         }
     }
 }

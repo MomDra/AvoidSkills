@@ -8,9 +8,13 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get => instance; }
 
     public static Dictionary<int, PlayerManager> players = new Dictionary<int, PlayerManager>();
+    public static Dictionary<int, ItemSpawner> itemSpawners = new Dictionary<int, ItemSpawner>();
+    public static Dictionary<int, ProjectileManager> projectiles = new Dictionary<int, ProjectileManager>();
 
     public GameObject localPlayerPrefab;
     public GameObject playerPrefab;
+    public GameObject itemSpawnerPrefab;
+    public GameObject projectilePrefab;
 
     private void Awake()
     {
@@ -29,7 +33,7 @@ public class GameManager : MonoBehaviour
     {
         GameObject _player;
 
-        if (_id == Client.instance.myId)
+        if (_id == Client.Instance.MyId)
         {
             _player = Instantiate(localPlayerPrefab, _position, _rotation);
         }
@@ -38,8 +42,21 @@ public class GameManager : MonoBehaviour
             _player = Instantiate(playerPrefab, _position, _rotation);
         }
 
-        _player.GetComponent<PlayerManager>().id = _id;
-        _player.GetComponent<PlayerManager>().username = _username;
+        _player.GetComponent<PlayerManager>().Initialize(_id, _username);
         players.Add(_id, _player.GetComponent<PlayerManager>());
+    }
+
+    public void CreateItemSpawner(int _spawnerId, Vector3 _position, bool _hasItem)
+    {
+        GameObject _spawner = Instantiate(itemSpawnerPrefab, _position, itemSpawnerPrefab.transform.rotation);
+        _spawner.GetComponent<ItemSpawner>().Initialize(_spawnerId, _hasItem);
+        itemSpawners.Add(_spawnerId, _spawner.GetComponent<ItemSpawner>());
+    }
+
+    public void SpawnProjectile(int _id, Vector3 _position)
+    {
+        GameObject _projectile = Instantiate(projectilePrefab, _position, Quaternion.identity);
+        _projectile.GetComponent<ProjectileManager>().Initialize(_id);
+        projectiles.Add(_id, _projectile.GetComponent<ProjectileManager>());
     }
 }

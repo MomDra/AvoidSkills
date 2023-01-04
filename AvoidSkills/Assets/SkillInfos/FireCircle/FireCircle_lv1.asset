@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: FireCircle_lv1
   m_EditorClassIdentifier: 
   skillCode: 4
-  skillName: Fire_Circle_Lv1
+  skillName: Fire_Circle_lv1
   damage: 2
   range: 1
-  projectileSpeed: 0
+  speed: 0
   delay: 0
   level: 0
   coolDownTime: 0
@@ -26,3 +26,4 @@ MonoBehaviour:
   subPrefabs: []
   useType: 1
   usableCount: 0
+  description: 
