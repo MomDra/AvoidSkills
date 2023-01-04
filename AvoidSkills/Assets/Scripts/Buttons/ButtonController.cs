@@ -7,22 +7,48 @@ using TMPro;
 public class ButtonController: MonoBehaviour
 {
 
-    public void Join(){
-        string ip = GameObject.Find("Input_IP_Address").GetComponent<TMP_InputField>().text;
-        string name = GameObject.Find("Input_Nickname").GetComponent<TMP_InputField>().text;
-        Debug.Log("["+ip+"] " + name + " is trying to join the game");
+    public void Ready(){
+        Debug.Log("Ready");
+    }
+
+    public void GameStart(){
+        Debug.Log("Game Start");
     }
 
     public void Option(){
         Debug.Log("Option");
-    } 
-
-    public void Prev(){
-        GameObject.Find("UserCustomSkills").GetComponent<UserCustomSkillDB>().Prev();
     }
 
-    public void Next(){
-        GameObject.Find("UserCustomSkills").GetComponent<UserCustomSkillDB>().Next();
+    public void ShiftBlueTeam(){
+        Debug.Log("Shift Blue Team");
+    }
+
+    public void ShiftRedTeam(){
+        Debug.Log("Shift Red Team");
+    }
+
+    public void SettingRule(){
+        Debug.Log("Setting Rule");
+    }
+
+    public void SelectCharacter(){
+        Debug.Log("Select Character");
+    }
+
+    public void SelectNormalAttack(){
+        Debug.Log("Select NormalAttack");
+    }
+
+    public void SelectCustomSkill(){
+        Debug.Log("Select CustomSkill");
+    }
+
+    public void PrevMapImage(){
+        Debug.Log("Prev Map Image");
+    }
+
+    public void NextMapImage(){
+        Debug.Log("Next Map Image");
     }
 
     public void Exit(){
