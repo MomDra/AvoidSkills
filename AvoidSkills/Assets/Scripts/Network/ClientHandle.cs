@@ -156,4 +156,13 @@ public class ClientHandle
 
         MemberUIView.Instance.RemoveMember(_userId);
     }
+
+    public static void RoomKing(Packet _packet)
+    {
+        int _roomKingId = _packet.ReadInt();
+
+
+        MemberUIView.Instance.SetRoomKing(_roomKingId);
+        ReadyStartUIView.Instance.SetReadyStartButton(Client.Instance.MyId == _roomKingId);
+    }
 }

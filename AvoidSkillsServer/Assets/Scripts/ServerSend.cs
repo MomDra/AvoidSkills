@@ -241,5 +241,15 @@ public class ServerSend : MonoBehaviour
         }
     }
 
+    public static void RoomKing(int _roomKingId)
+    {
+        using (Packet _packet = new Packet((int)ServerPackets.roomKing))
+        {
+            _packet.Write(_roomKingId);
+
+            SendTCPDataToAll(_packet);
+        }
+    }
+
     #endregion
 }

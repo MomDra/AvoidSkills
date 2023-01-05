@@ -25,7 +25,7 @@ public class ConnectUIView : MonoBehaviour
             ipAddresssField = tMP_InputFields[1];
             Button[] buttons = GetComponentsInChildren<Button>();
             joinButton = buttons[0];
-            quitButton = buttons[1];
+            quitButton = buttons[2];
             buttonText = joinButton.GetComponentInChildren<TextMeshProUGUI>();
 
             joinButton.onClick.AddListener(ConnectToServer);

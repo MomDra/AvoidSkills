@@ -51,5 +51,15 @@ public class ClientSend
             SendTCPData(_packet);
         }
     }
+
+    public static void ReadyStartButton()
+    {
+        using (Packet _packet = new Packet((int)ClientPackets.readyStartButton))
+        {
+            _packet.Write(true);
+
+            SendTCPData(_packet);
+        }
+    }
     #endregion
 }

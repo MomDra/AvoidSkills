@@ -82,9 +82,7 @@ public class GameRoom
 
         if (numUser == 0)
         {
-            _user.isRoomKing = true;
-            roomKing = _user;
-            Debug.Log($"now {_user.id} is roomking");
+            SetRoomking(_user);
         }
 
         for (int i = 0; i < 4; ++i)
@@ -133,9 +131,7 @@ public class GameRoom
             {
                 if (allUsers[i] != null)
                 {
-                    allUsers[i].isRoomKing = true;
-                    roomKing = allUsers[i];
-                    Debug.Log($"now {allUsers[i].id} is roomking");
+                    SetRoomking(allUsers[i]);
                     return;
                 }
             }
@@ -143,7 +139,22 @@ public class GameRoom
         }
         else
         {
-            roomKing = null;
+            SetRoomking(null);
+        }
+    }
+
+    private void SetRoomking(GameRoomUser _user)
+    {
+        roomKing = _user;
+        if (_user != null)
+        {
+            _user.isRoomKing = true;
+            Debug.Log($"now {_user.id} is roomking");
+
+            ServerSend.RoomKing(roomKing.id);
+        }
+        else
+        {
             Debug.Log("now roomking is null");
         }
     }
