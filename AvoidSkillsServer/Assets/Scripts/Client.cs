@@ -10,6 +10,7 @@ public class Client
     public static int dataBufferSize = 4096;
 
     public int id;
+    public string playerName;
     public Player player;
     public TCP tcp;
     public UDP udp;
@@ -148,7 +149,7 @@ public class Client
     public class UDP
     {
         public IPEndPoint endPoint;
-        private int id;
+        private readonly int id;
 
         public UDP(int _id)
         {
@@ -222,15 +223,16 @@ public class Client
     {
         Debug.Log($"{tcp.socket.Client.RemoteEndPoint} has disconnected");
 
-        ThreadManager.ExecuteOnMainThread(() =>
-        {
-            UnityEngine.Object.Destroy(player.gameObject);
-            player = null;
-        });
+        // ThreadManager.ExecuteOnMainThread(() =>
+        // {
+        //     UnityEngine.Object.Destroy(player.gameObject);
+        //     player = null;
+        // });
 
         tcp.Disconnect();
         udp.Disconnect();
 
-        ServerSend.playerDisconnected(id);
+        // ServerSend.playerDisconnected(id);
+        Server.gameRoom.RemoveUser(id);
     }
 }

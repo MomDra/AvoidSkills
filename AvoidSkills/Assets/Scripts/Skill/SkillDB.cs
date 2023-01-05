@@ -72,4 +72,9 @@ public class SkillDB : MonoBehaviour
     {
         return skillsDic[skillCode][(int)level];
     }
+
+    public GameObject GetSkillPrefab(SkillCode _skillCode, SkillLevel _level)
+    {
+        return skillsDic[_skillCode][(int)_level].SkillInfo.skillPrefab;
+    }
 }

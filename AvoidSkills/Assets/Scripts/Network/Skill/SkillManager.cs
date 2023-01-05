@@ -30,6 +30,7 @@ namespace Network
 
             skillCommands[0] = SkillDB.Instance.GetSkill(SkillCode.NORMALARROW, SkillLevel.LEVEL1);
             skillCommands[1] = SkillDB.Instance.GetSkill(SkillCode.ARCANESHIFT, SkillLevel.LEVEL1);
+            skillCommands[2] = SkillDB.Instance.GetSkill(SkillCode.FALLBOOK, SkillLevel.LEVEL1);
 
             skillUIController.SetSkillImage(skillCommands[0].SkillInfo.skillImage, 0);
             skillUIController.SetSkillImage(skillCommands[1].SkillInfo.skillImage, 1);
@@ -108,8 +109,9 @@ namespace Network
         {
             if (skillCommands[2] != null && CheckCoolTime(2))
             {
-                skillCommands[2].cmd(playerTransform, playerStatus);
-                CountCheck(2);
+                ClientSend.ShootSkill(skillCommands[2].SkillInfo.skillCode, skillCommands[2].SkillInfo.level, MousePointer.Instance.MousePositionInWorld);
+                SetCoolTime(5, 2);
+                // CountCheck(2);
             }
         }
 

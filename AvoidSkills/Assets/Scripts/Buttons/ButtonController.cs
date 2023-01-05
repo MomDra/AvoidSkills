@@ -3,56 +3,79 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
-public class ButtonController: MonoBehaviour
+public class ButtonController : MonoBehaviour
 {
 
-    public void Ready(){
+    public void Ready()
+    {
         Debug.Log("Ready");
     }
 
-    public void GameStart(){
+    public void GameStart()
+    {
         Debug.Log("Game Start");
     }
 
-    public void Option(){
+    public void Option()
+    {
         Debug.Log("Option");
     }
 
-    public void ShiftBlueTeam(){
+    public void ShiftBlueTeam()
+    {
         Debug.Log("Shift Blue Team");
     }
 
-    public void ShiftRedTeam(){
+    public void ShiftRedTeam()
+    {
         Debug.Log("Shift Red Team");
     }
 
-    public void SettingRule(){
+    public void SettingRule()
+    {
         Debug.Log("Setting Rule");
     }
 
-    public void SelectCharacter(){
+    public void SelectCharacter()
+    {
         Debug.Log("Select Character");
     }
 
-    public void SelectNormalAttack(){
+    public void SelectNormalAttack()
+    {
         Debug.Log("Select NormalAttack");
     }
 
-    public void SelectCustomSkill(){
+    public void SelectCustomSkill()
+    {
         Debug.Log("Select CustomSkill");
     }
 
-    public void PrevMapImage(){
+    public void PrevMapImage()
+    {
         Debug.Log("Prev Map Image");
     }
 
-    public void NextMapImage(){
+    public void NextMapImage()
+    {
         Debug.Log("Next Map Image");
     }
 
-    public void Exit(){
+    public void Exit()
+    {
         Debug.Log("Exit");
-        Application.Quit();
+        if (ConnectUIView.instance == null)
+        {
+            Debug.Log("null");
+
+        }
+        else
+        {
+            Debug.Log("not null");
+        }
+
+        SceneManager.LoadScene(0);
     }
 }

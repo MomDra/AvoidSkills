@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/StartScreenUI.unity
+    guid: f4b560c4518526d4fba493ade8d42f17
+  - enabled: 1
+    path: Assets/Scenes/WaitingRoom.unity
+    guid: 026718c1160bfa14682daba32a95563b
+  - enabled: 1
     path: Assets/Scenes/Main.unity
     guid: ce58a20ef3bdc234c94c951407587766
   m_configObjects: {}

@@ -40,6 +40,9 @@ public class Client : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+            DontDestroyOnLoad(gameObject);
+
+            IntitializeClientData();
         }
         else if (instance != this)
         {
@@ -57,13 +60,9 @@ public class Client : MonoBehaviour
     {
         ip = _ip;
         UserName = _userName;
-
         tcp = new TCP();
         udp = new UDP();
-
-        IntitializeClientData();
         tcp.Connect();
-        isConnected = true;
     }
 
     private void IntitializeClientData()
@@ -82,13 +81,15 @@ public class Client : MonoBehaviour
             {(int)ServerPackets.spawnProjectile, ClientHandle.SpawnProjectile},
             {(int)ServerPackets.projectilePosition, ClientHandle.ProjectilePosition},
             {(int)ServerPackets.projectileExploded, ClientHandle.ProjectileExploded},
-            {(int)ServerPackets.destoryProjectile, ClientHandle.DestoryProjectile}
+            {(int)ServerPackets.destoryProjectile, ClientHandle.DestoryProjectile},
+            {(int)ServerPackets.addMember, ClientHandle.AddMember},
+            {(int)ServerPackets.removeMember, ClientHandle.RemoveMember}
         };
 
         Debug.Log("Initialized packets.");
     }
 
-    private void Disconnect()
+    public void Disconnect()
     {
         if (isConnected)
         {
@@ -134,6 +135,7 @@ public class Client : MonoBehaviour
             receiveData = new Packet();
 
             stream.BeginRead(receiveBuffer, 0, dataBufferSize, ReceiveCallback, null);
+            instance.isConnected = true;
         }
 
         public void SendData(Packet _packet)
@@ -287,9 +289,10 @@ public class Client : MonoBehaviour
 
                 HandleData(_data);
             }
-            catch
+            catch (Exception _ex)
             {
                 // 연결 끊기
+                Debug.Log($"UDP 수신 에러로 연결 종료: {_ex}");
                 Disconnect();
             }
         }

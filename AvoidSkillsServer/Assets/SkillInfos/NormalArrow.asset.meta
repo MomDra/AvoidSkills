@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:AvoidSkills/Assets/SkillInfos/FallBook/FallBook_lv2.asset.meta
-guid: 483ab2fdf0a8a164ab2b9bd7e79a3f19
-========
-guid: 8d0ed4059368ec34c9a292d924966902
->>>>>>>> feature/UnityGameServer:AvoidSkillsServer/Assets/SkillInfos/NormalArrow.asset.meta
+guid: 2866ecc1edfef74469d63eeb46875024
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 11400000

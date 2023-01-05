@@ -12,6 +12,11 @@ class ThreadManager : MonoBehaviour
     private void Update()
     {
         UpdateMain();
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            ClientSend.WelcomeReceived();
+        }
     }
 
     /// <summary>Sets an action to be executed on the main thread.</summary>

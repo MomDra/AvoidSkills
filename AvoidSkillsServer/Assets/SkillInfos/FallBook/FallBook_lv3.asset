@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c378bb53504ab84a99ddbe0a5747647, type: 3}
+  m_Name: FallBook_lv3
+  m_EditorClassIdentifier: 
+  skillCode: 3
+  skillName: Fall_Book_lv2
+  damage: 40
+  range: 0
+  projectileSpeed: 12
+  delay: 0.5
+  level: 2
+  coolDownTime: 0
+  skillType: 0
+  skillPrefab: {fileID: 4671822481953806898, guid: b7f1d2f219a760d44ae0bd60230539ec, type: 3}

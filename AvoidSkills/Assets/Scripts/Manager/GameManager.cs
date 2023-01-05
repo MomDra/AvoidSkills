@@ -14,7 +14,6 @@ public class GameManager : MonoBehaviour
     public GameObject localPlayerPrefab;
     public GameObject playerPrefab;
     public GameObject itemSpawnerPrefab;
-    public GameObject projectilePrefab;
 
     private void Awake()
     {
@@ -36,13 +35,15 @@ public class GameManager : MonoBehaviour
         if (_id == Client.Instance.MyId)
         {
             _player = Instantiate(localPlayerPrefab, _position, _rotation);
+            _player.GetComponent<PlayerManager>().Initialize(_id, _username, true);
         }
         else
         {
             _player = Instantiate(playerPrefab, _position, _rotation);
+            _player.GetComponent<PlayerManager>().Initialize(_id, _username, false);
         }
 
-        _player.GetComponent<PlayerManager>().Initialize(_id, _username);
+
         players.Add(_id, _player.GetComponent<PlayerManager>());
     }
 
@@ -53,10 +54,11 @@ public class GameManager : MonoBehaviour
         itemSpawners.Add(_spawnerId, _spawner.GetComponent<ItemSpawner>());
     }
 
-    public void SpawnProjectile(int _id, Vector3 _position)
+    public void SpawnProjectile(int _id, Vector3 _position, SkillCode _skillCode, SkillLevel _skillLevel)
     {
-        GameObject _projectile = Instantiate(projectilePrefab, _position, Quaternion.identity);
+        GameObject _projectile = Instantiate(SkillDB.Instance.GetSkillPrefab(_skillCode, _skillLevel), _position, Quaternion.identity);
         _projectile.GetComponent<ProjectileManager>().Initialize(_id);
+
         projectiles.Add(_id, _projectile.GetComponent<ProjectileManager>());
     }
 }

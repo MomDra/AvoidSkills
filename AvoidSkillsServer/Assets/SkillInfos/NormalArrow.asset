@@ -9,37 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-<<<<<<<< HEAD:AvoidSkills/Assets/SkillInfos/FallBook/FallBook_lv1.asset
-  m_Script: {fileID: 11500000, guid: b06b9e907dd68164bb342564c5feafdc, type: 3}
-  m_Name: FallBook_lv1
-  m_EditorClassIdentifier: 
-  skillCode: 3
-  skillName: Fall_Book_lv1
-  damage: 10
-  range: 0
-  speed: 7
-  delay: 1
-========
   m_Script: {fileID: 11500000, guid: 1c378bb53504ab84a99ddbe0a5747647, type: 3}
   m_Name: NormalArrow
   m_EditorClassIdentifier: 
   skillCode: 0
   skillName: Normal_Arrow
-  damage: 20
-  range: 100
-  projectileSpeed: 30
+  damage: 5
+  range: 0
+  projectileSpeed: 40
   delay: 0
->>>>>>>> feature/UnityGameServer:AvoidSkillsServer/Assets/SkillInfos/NormalArrow.asset
   level: 0
-  coolDownTime: 1
+  coolDownTime: 0
   skillType: 0
-<<<<<<<< HEAD:AvoidSkills/Assets/SkillInfos/FallBook/FallBook_lv1.asset
-  skillImage: {fileID: 21300000, guid: 16cc3543844473643b2ac2710cd31fcd, type: 3}
-  skillPrefab: {fileID: 4671822481953806898, guid: 4c937c18db080d34a92f110799d3df77, type: 3}
-  subPrefabs: []
-  useType: 1
-  usableCount: 0
-  description: 
-========
   skillPrefab: {fileID: 8336911800259214814, guid: 62492e1e60144e647aa1359b378656e1, type: 3}
->>>>>>>> feature/UnityGameServer:AvoidSkillsServer/Assets/SkillInfos/NormalArrow.asset

@@ -33,6 +33,7 @@ namespace Network
             {
                 skillManager.ItemSkill1();
             }
+
             // if (Input.GetKeyDown(KeyCode.Alpha2))
             // {
             //     skillManager.ItemSkill2();
@@ -41,6 +42,11 @@ namespace Network
             // {
             //     skillManager.ItemSkill3();
             // }
+
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                ClientSend.PlayerTargetPosition(transform.position);
+            }
         }
 
         private void FixedUpdate()

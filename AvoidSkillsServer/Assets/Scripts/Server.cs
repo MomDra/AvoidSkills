@@ -12,6 +12,7 @@ public class Server
     public static Dictionary<int, Client> clients = new Dictionary<int, Client>();
     public delegate void PacketHandler(int _fromClient, Packet _packet);
     public static Dictionary<int, PacketHandler> packetHandlers;
+    public static GameRoom gameRoom = new GameRoom();
 
     private static TcpListener tcpListener;
     private static UdpClient udpListener;
@@ -69,6 +70,7 @@ public class Server
                 if (clients[_clientId].udp.endPoint == null)
                 {
                     clients[_clientId].udp.Connect(_clientEndPoint);
+                    Debug.Log("UDP 연결 설정함!");
                     return;
                 }
 
