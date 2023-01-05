@@ -46,4 +46,18 @@ public class ServerHandle
 
         Server.clients[_fromClient].player.ShootSkill(_skillCode, _skillLevel, _mousePos);
     }
+
+    public static void ReadyButton(int _fromClient, Packet _packet)
+    {
+        bool _isReady = _packet.ReadBool();
+
+        Server.gameRoom.SetReady(_fromClient, _isReady);
+    }
+
+    public static void StartButton(int _fromClient, Packet _packet)
+    {
+        bool _start = _packet.ReadBool();
+
+        Server.gameRoom.StartGame(_start);
+    }
 }

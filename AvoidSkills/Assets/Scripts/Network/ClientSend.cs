@@ -52,9 +52,19 @@ public class ClientSend
         }
     }
 
-    public static void ReadyStartButton()
+    public static void ReadyButton(bool _isReady)
     {
-        using (Packet _packet = new Packet((int)ClientPackets.readyStartButton))
+        using (Packet _packet = new Packet((int)ClientPackets.readyButton))
+        {
+            _packet.Write(_isReady);
+
+            SendTCPData(_packet);
+        }
+    }
+
+    public static void StartButton()
+    {
+        using (Packet _packet = new Packet((int)ClientPackets.startButton))
         {
             _packet.Write(true);
 

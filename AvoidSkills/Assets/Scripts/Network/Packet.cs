@@ -23,7 +23,8 @@ public enum ServerPackets
     playerStatus,
     addMember,
     removeMember,
-    roomKing
+    roomKing,
+    userReady
 }
 
 /// <summary>Sent from client to server.</summary>
@@ -32,7 +33,8 @@ public enum ClientPackets
     welcomeReceived = 1,
     playerTargetPosition,
     shootSkill,
-    readyStartButton
+    readyButton,
+    startButton
 }
 
 public class Packet : IDisposable

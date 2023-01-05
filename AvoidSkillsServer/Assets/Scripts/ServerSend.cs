@@ -251,5 +251,16 @@ public class ServerSend : MonoBehaviour
         }
     }
 
+    public static void UserReady(int _userId, bool _isReady)
+    {
+        using (Packet _packet = new Packet((int)ServerPackets.userReady))
+        {
+            _packet.Write(_userId);
+            _packet.Write(_isReady);
+
+            SendTCPDataToAll(_packet);
+        }
+    }
+
     #endregion
 }

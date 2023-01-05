@@ -123,6 +123,42 @@ public class GameRoom
         }
     }
 
+    public void SetReady(int _userId, bool _isReady)
+    {
+        for (int i = 0; i < 4; ++i)
+        {
+            if (allUsers[i] != null && allUsers[i].id == _userId)
+            {
+                allUsers[i].SetReady(_isReady);
+                break;
+            }
+        }
+
+        ServerSend.UserReady(_userId, _isReady);
+    }
+
+    public void StartGame(bool _start)
+    {
+        bool _isAllReady = true;
+        for (int i = 0; i < 4; ++i)
+        {
+            if (allUsers[i] != null && allUsers[i].isReady == false)
+            {
+                _isAllReady = false;
+                break;
+            }
+        }
+
+        if (_isAllReady)
+        {
+            Debug.Log("Game Start!!!!!!!!!");
+        }
+        else
+        {
+            Debug.Log("Every user doesn't ready");
+        }
+    }
+
     private void ResetRoomKing()
     {
         if (numUser >= 1)
@@ -148,7 +184,8 @@ public class GameRoom
         roomKing = _user;
         if (_user != null)
         {
-            _user.isRoomKing = true;
+            _user.SetRoomking(true);
+            _user.SetReady(true);
             Debug.Log($"now {_user.id} is roomking");
 
             ServerSend.RoomKing(roomKing.id);

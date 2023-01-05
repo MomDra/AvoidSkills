@@ -11,6 +11,9 @@ public class ReadyStartUIView : MonoBehaviour
 
     private Button readyStartButton;
 
+    private bool isRoomKing;
+    private bool isReady;
+
     private void Awake()
     {
         if (instance == null)
@@ -19,7 +22,7 @@ public class ReadyStartUIView : MonoBehaviour
 
             readyStartButton = GetComponentInChildren<Button>();
 
-            readyStartButton.onClick.AddListener(ReadyStartGame);
+            readyStartButton.onClick.AddListener(PressedReadyStartButton);
         }
         else if (instance != this)
         {
@@ -29,26 +32,31 @@ public class ReadyStartUIView : MonoBehaviour
         }
     }
 
-    public void SetReadyStartButton(bool _isRoomKing)
+    public void ReadyStartTextUpdate(bool _isRoomKing)
     {
         if (_isRoomKing)
         {
             readyStartButton.GetComponentInChildren<TextMeshProUGUI>().text = "Start";
+            isRoomKing = true;
         }
         else
         {
             readyStartButton.GetComponentInChildren<TextMeshProUGUI>().text = "Ready";
+            isRoomKing = false;
         }
     }
 
 
-    private void ReadyStartGame()
+    private void PressedReadyStartButton()
     {
-        // id와 reay버튼을 눌렀음 보냄
-
-        // ready 버튼 색깔 ㅠㅏ란색으로 바꿈
-        // check 표시 하는거 이런거
-
-        // ClientSend.ReadyStartButton();
+        if (isRoomKing)
+        {
+            ClientSend.StartButton();
+        }
+        else
+        {
+            isReady = !isReady;
+            ClientSend.ReadyButton(isReady);
+        }
     }
 }

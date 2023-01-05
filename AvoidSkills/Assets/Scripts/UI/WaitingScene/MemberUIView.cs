@@ -118,7 +118,7 @@ public class MemberUIView : MonoBehaviour
         }
     }
 
-    public void SetRoomKing(int _roomKingId)
+    public void CrownImageUpdate(int _roomKingId)
     {
         for (int i = 0; i < 4; ++i)
         {
@@ -127,6 +127,28 @@ public class MemberUIView : MonoBehaviour
                 Image _stateImage = playerPanes[i].GetComponentsInChildren<Image>()[4];
                 _stateImage.sprite = crownImage;
                 _stateImage.color = Color.white;
+            }
+        }
+    }
+
+    public void CheckImageUpdate(int _userId, bool _isReady)
+    {
+        for (int i = 0; i < 4; ++i)
+        {
+            if (paneUserId[i] == _userId)
+            {
+                Image _stateImage = playerPanes[i].GetComponentsInChildren<Image>()[4];
+
+                if (_isReady)
+                {
+                    _stateImage.sprite = checkImage;
+                    _stateImage.color = Color.white;
+                }
+                else
+                {
+                    _stateImage.sprite = null;
+                    _stateImage.color = new Color(1f, 1f, 1f, 0f);
+                }
             }
         }
     }

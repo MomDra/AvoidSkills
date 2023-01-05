@@ -162,7 +162,15 @@ public class ClientHandle
         int _roomKingId = _packet.ReadInt();
 
 
-        MemberUIView.Instance.SetRoomKing(_roomKingId);
-        ReadyStartUIView.Instance.SetReadyStartButton(Client.Instance.MyId == _roomKingId);
+        MemberUIView.Instance.CrownImageUpdate(_roomKingId);
+        ReadyStartUIView.Instance.ReadyStartTextUpdate(Client.Instance.MyId == _roomKingId);
+    }
+
+    public static void UserReady(Packet _packet)
+    {
+        int _userId = _packet.ReadInt();
+        bool _isReady = _packet.ReadBool();
+
+        MemberUIView.Instance.CheckImageUpdate(_userId, _isReady);
     }
 }
