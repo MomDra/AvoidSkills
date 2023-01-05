@@ -19,7 +19,10 @@ public enum ServerPackets
     spawnProjectile,
     projectilePosition,
     projectileExploded,
-    destoryProjectile
+    destoryProjectile,
+    playerStatus,
+    addMember,
+    removeMember
 }
 
 /// <summary>Sent from client to server.</summary>

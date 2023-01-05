@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class ConnectUIView : MonoBehaviour
 {
-    private static ConnectUIView instance;
+    public static ConnectUIView instance;
     private TMP_InputField usernameField;
     private TMP_InputField ipAddresssField;
     private Button joinButton;
@@ -62,9 +62,6 @@ public class ConnectUIView : MonoBehaviour
         joinButton.interactable = true;
         ipAddresssField.interactable = true;
         usernameField.interactable = true;
-
-
-        Debug.Log("haiafdkasfj");
     }
 
     private void QuitGame()

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Net;
 
-public class ClientHandle : MonoBehaviour
+public class ClientHandle
 {
 
     public static void Welcome(Packet _packet)
@@ -16,9 +16,11 @@ public class ClientHandle : MonoBehaviour
         Client.Instance.MyId = _myId;
 
         Client.Instance.udp.Connect(((IPEndPoint)Client.Instance.tcp.socket.Client.LocalEndPoint).Port);
-        ClientSend.WelcomeReceived();
+
 
         SceneManager.LoadScene(1);
+
+        ClientSend.WelcomeReceived();
     }
 
     public static void SpawnPlayer(Packet _packet)
@@ -50,7 +52,7 @@ public class ClientHandle : MonoBehaviour
     public static void PlayerDisconnected(Packet _packet)
     {
         int _id = _packet.ReadInt();
-        Destroy(GameManager.players[_id].gameObject);
+        GameObject.Destroy(GameManager.players[_id].gameObject);
         GameManager.players.Remove(_id);
     }
 
@@ -130,5 +132,28 @@ public class ClientHandle : MonoBehaviour
         int _maxHp = _packet.ReadInt();
         int _armor = _packet.ReadInt();
         float _moveSpeed = _packet.ReadFloat();
+    }
+
+    public static void AddMember(Packet _packet)
+    {
+        int _id = _packet.ReadInt();
+        string _userName = _packet.ReadString();
+        bool _isRed = _packet.ReadBool();
+        bool _isRoomKing = _packet.ReadBool();
+
+        Debug.Log($"{_userName}: {_id} - {_isRed}");
+
+        GameRoomUser gameRoomUser = new GameRoomUser(_id, _userName, _isRed, _isRoomKing);
+
+        MemberUIView.Instance.AddMember(gameRoomUser);
+    }
+
+    public static void RemoveMember(Packet _packet)
+    {
+        int _userId = _packet.ReadInt();
+
+        Debug.Log("_userId 나갔음" + _userId);
+
+        MemberUIView.Instance.RemoveMember(_userId);
     }
 }
