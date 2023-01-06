@@ -14,8 +14,7 @@ public class GameRoom
     public int numRedUser { get; private set; }
 
     private GameRoomUser roomKing;
-
-    InGameRoom inGameRoom;
+    public InGameRoom inGameRoom;
 
     public GameRoom()
     {

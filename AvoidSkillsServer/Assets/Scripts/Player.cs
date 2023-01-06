@@ -74,6 +74,9 @@ public class Player : MonoBehaviour
             controller.enabled = false;
             transform.position = new Vector3(0f, 25f, 0f);
             ServerSend.PlayerPosition(this);
+
+            Server.gameRoom.inGameRoom.DeadPlayer(id);
+
             StartCoroutine(Respawn());
         }
 

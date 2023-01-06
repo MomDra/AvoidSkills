@@ -9,6 +9,9 @@ public class InGameRoom
     private Dictionary<int, GameRoomUser> allUsers;
     private Dictionary<int, Player> player;
 
+    int blueTeamScore;
+    int redTeamScore;
+
     public InGameRoom()
     {
         player = new Dictionary<int, Player>();
@@ -17,6 +20,8 @@ public class InGameRoom
     public void GameStart(Dictionary<int, GameRoomUser> _allUsers)
     {
         allUsers = _allUsers;
+        blueTeamScore = 0;
+        redTeamScore = 0;
 
         SpawnPlayer();
     }
@@ -40,5 +45,19 @@ public class InGameRoom
                 ServerSend.SpawnPlayer(_roomUser.id, _player);
             }
         }
+    }
+
+    public void DeadPlayer(int _userId)
+    {
+        if (allUsers[_userId].isRed)
+        {
+            ++blueTeamScore;
+        }
+        else
+        {
+            ++redTeamScore;
+        }
+
+        ServerSend.ScoreUpdate(blueTeamScore, redTeamScore);
     }
 }

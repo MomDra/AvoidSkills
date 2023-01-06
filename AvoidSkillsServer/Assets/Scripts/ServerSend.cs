@@ -272,5 +272,16 @@ public class ServerSend : MonoBehaviour
         }
     }
 
+    public static void ScoreUpdate(int _blueTeamScore, int _redTeamScore)
+    {
+        using (Packet _packet = new Packet((int)ServerPackets.scoreUpdate))
+        {
+            _packet.Write(_blueTeamScore);
+            _packet.Write(_redTeamScore);
+
+            SendTCPDataToAll(_packet);
+        }
+    }
+
     #endregion
 }
