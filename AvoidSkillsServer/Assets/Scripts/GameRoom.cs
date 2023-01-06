@@ -17,11 +17,15 @@ public class GameRoom
 
     private GameRoomUser roomKing;
 
+    InGameRoom inGameRoom;
+
     public GameRoom()
     {
         blueUsers = new GameRoomUser[2];
         redUsers = new GameRoomUser[2];
         allUsers = new GameRoomUser[4];
+
+        inGameRoom = new InGameRoom();
 
         numUser = 0;
         numblueUser = 0;
@@ -151,7 +155,8 @@ public class GameRoom
 
         if (_isAllReady)
         {
-            Debug.Log("Game Start!!!!!!!!!");
+            ServerSend.StartGame();
+            inGameRoom.GameStart(allUsers);
         }
         else
         {
@@ -171,7 +176,6 @@ public class GameRoom
                     return;
                 }
             }
-
         }
         else
         {
