@@ -30,7 +30,7 @@ public class ClientHandle
         Vector3 _position = _packet.ReadVector3();
         Quaternion _rotation = _packet.ReadQuaternion();
 
-        Debug.Log("spawn");
+        Debug.Log("Player Spawn: " + _id + " / " + _username + " / " + _position + " / " + _rotation);
 
         GameManager.Instance.SpawnPlayer(_id, _username, _position, _rotation);
     }
@@ -40,10 +40,9 @@ public class ClientHandle
         int _id = _packet.ReadInt();
         Vector3 _position = _packet.ReadVector3();
 
-        Debug.Log(_position);
         try
         {
-             GameManager.players[_id].transform.position = _position;
+            GameManager.players[_id].transform.position = _position;
         }
         catch (System.Exception)
         {
@@ -185,6 +184,13 @@ public class ClientHandle
         bool _isStart = _packet.ReadBool();
         
         SceneManager.LoadScene(2); 
+    }
+    
+    public static void ScoreUpdate(Packet _packet){
+        int _blueTeamScore = _packet.ReadInt();
+        int _redTeamScore = _packet.ReadInt();
+
+        ScoreUIView.Instance.ScoreTextUpdate(_blueTeamScore, _redTeamScore);
     }
 
     public static void ItemBallPositionUpdate(){

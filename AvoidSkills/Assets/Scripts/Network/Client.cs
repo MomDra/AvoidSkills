@@ -86,8 +86,9 @@ public class Client : MonoBehaviour
             {(int)ServerPackets.removeMember, ClientHandle.RemoveMember},
             {(int)ServerPackets.roomKing, ClientHandle.RoomKingUpdate},
             {(int)ServerPackets.userReady, ClientHandle.UserReady},
-            {(int)ServerPackets.startGame, ClientHandle.StartGame}
-        };
+            {(int)ServerPackets.startGame, ClientHandle.StartGame},
+            {(int)ServerPackets.scoreUpdate, ClientHandle.ScoreUpdate}
+    };
 
         Debug.Log("Initialized packets.");
     }
