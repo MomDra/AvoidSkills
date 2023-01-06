@@ -70,7 +70,6 @@ public class Server
                 if (clients[_clientId].udp.endPoint == null)
                 {
                     clients[_clientId].udp.Connect(_clientEndPoint);
-                    Debug.Log("UDP 연결 설정함!");
                     return;
                 }
 
