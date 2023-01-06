@@ -24,7 +24,8 @@ public enum ServerPackets
     addMember,
     removeMember,
     roomKing,
-    userReady
+    userReady,
+    startGame
 }
 
 /// <summary>Sent from client to server.</summary>

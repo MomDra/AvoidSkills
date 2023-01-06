@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemBox : MonoBehaviour
+public class SpawnItemBox : MonoBehaviour
 {
 
     private SkillLevel level = SkillLevel.LEVEL1;

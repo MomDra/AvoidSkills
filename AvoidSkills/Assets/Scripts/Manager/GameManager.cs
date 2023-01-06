@@ -8,7 +8,6 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get => instance; }
 
     public static Dictionary<int, PlayerManager> players = new Dictionary<int, PlayerManager>();
-    public static Dictionary<int, ItemSpawner> itemSpawners = new Dictionary<int, ItemSpawner>();
     public static Dictionary<int, ProjectileManager> projectiles = new Dictionary<int, ProjectileManager>();
 
     public GameObject localPlayerPrefab;
@@ -50,11 +49,9 @@ public class GameManager : MonoBehaviour
     public void CreateItemSpawner(int _spawnerId, Vector3 _position, bool _hasItem)
     {
         GameObject _spawner = Instantiate(itemSpawnerPrefab, _position, itemSpawnerPrefab.transform.rotation);
-        _spawner.GetComponent<ItemSpawner>().Initialize(_spawnerId, _hasItem);
-        itemSpawners.Add(_spawnerId, _spawner.GetComponent<ItemSpawner>());
     }
 
-    public void SpawnProjectile(int _id, Vector3 _position, SkillCode _skillCode, SkillLevel _skillLevel)
+    public void InstantiateProjectile(int _id, Vector3 _position, SkillCode _skillCode, SkillLevel _skillLevel)
     {
         GameObject _projectile = Instantiate(SkillDB.Instance.GetSkillPrefab(_skillCode, _skillLevel), _position, Quaternion.identity);
         _projectile.GetComponent<ProjectileManager>().Initialize(_id);

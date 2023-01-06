@@ -30,18 +30,28 @@ public class ClientHandle
         Vector3 _position = _packet.ReadVector3();
         Quaternion _rotation = _packet.ReadQuaternion();
 
+        Debug.Log("spawn");
+
         GameManager.Instance.SpawnPlayer(_id, _username, _position, _rotation);
     }
 
-    public static void PlayerPosition(Packet _packet)
+    public static void PlayerPositionUpdate(Packet _packet)
     {
         int _id = _packet.ReadInt();
         Vector3 _position = _packet.ReadVector3();
 
-        GameManager.players[_id].transform.position = _position;
+        Debug.Log(_position);
+        try
+        {
+             GameManager.players[_id].transform.position = _position;
+        }
+        catch (System.Exception)
+        {
+            
+        }
     }
 
-    public static void PlayerRotation(Packet _packet)
+    public static void PlayerRotationUpdate(Packet _packet)
     {
         int _id = _packet.ReadInt();
         Quaternion _rotation = _packet.ReadQuaternion();
@@ -56,7 +66,7 @@ public class ClientHandle
         GameManager.players.Remove(_id);
     }
 
-    public static void PlayerHealth(Packet _packet)
+    public static void SetPlayerHealth(Packet _packet)
     {
         int _id = _packet.ReadInt();
         int _health = _packet.ReadInt();
@@ -74,8 +84,6 @@ public class ClientHandle
     public static void ItemSpawned(Packet _packet)
     {
         int _spawnerId = _packet.ReadInt();
-
-        GameManager.itemSpawners[_spawnerId].ItemSpawned();
     }
 
     public static void ItemPickedUp(Packet _packet)
@@ -83,11 +91,10 @@ public class ClientHandle
         int _spawnerId = _packet.ReadInt();
         int _byPlayer = _packet.ReadInt();
 
-        GameManager.itemSpawners[_spawnerId].ItemPickedUp();
         GameManager.players[_byPlayer].itemCount++;
     }
 
-    public static void SpawnProjectile(Packet _packet)
+    public static void InstantiateProjectile(Packet _packet)
     {
         int _projectileId = _packet.ReadInt();
         Vector3 _position = _packet.ReadVector3();
@@ -96,10 +103,10 @@ public class ClientHandle
         SkillCode _skillCode = (SkillCode)_packet.ReadInt();
         SkillLevel _skillLevel = (SkillLevel)_packet.ReadInt();
 
-        GameManager.Instance.SpawnProjectile(_projectileId, _position, _skillCode, _skillLevel);
+        GameManager.Instance.InstantiateProjectile(_projectileId, _position, _skillCode, _skillLevel);
     }
 
-    public static void ProjectilePosition(Packet _packet)
+    public static void ProjectilePositionUpdate(Packet _packet)
     {
         int _projectileId = _packet.ReadInt();
         Vector3 _position = _packet.ReadVector3();
@@ -117,7 +124,7 @@ public class ClientHandle
         GameManager.projectiles[_projectileId].Explode(_position);
     }
 
-    public static void DestoryProjectile(Packet _packet)
+    public static void ProjectileDestroyed(Packet _packet)
     {
         int _projectileId = _packet.ReadInt();
 
@@ -157,7 +164,7 @@ public class ClientHandle
         MemberUIView.Instance.RemoveMember(_userId);
     }
 
-    public static void RoomKing(Packet _packet)
+    public static void RoomKingUpdate(Packet _packet)
     {
         int _roomKingId = _packet.ReadInt();
 
@@ -173,4 +180,20 @@ public class ClientHandle
 
         MemberUIView.Instance.CheckImageUpdate(_userId, _isReady);
     }
+    
+    public static void StartGame(Packet _packet){
+        bool _isStart = _packet.ReadBool();
+        
+        SceneManager.LoadScene(2); 
+    }
+
+    public static void ItemBallPositionUpdate(){
+        
+    }
+
+
+
+
+
+    
 }

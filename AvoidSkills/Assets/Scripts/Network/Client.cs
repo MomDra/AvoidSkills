@@ -71,21 +71,22 @@ public class Client : MonoBehaviour
         {
             {(int)ServerPackets.welcome, ClientHandle.Welcome},
             {(int)ServerPackets.spawnPlayer, ClientHandle.SpawnPlayer},
-            {(int)ServerPackets.playerPosition, ClientHandle.PlayerPosition},
-            {(int)ServerPackets.playerRotation, ClientHandle.PlayerRotation},
+            {(int)ServerPackets.playerPosition, ClientHandle.PlayerPositionUpdate},
+            {(int)ServerPackets.playerRotation, ClientHandle.PlayerRotationUpdate},
             {(int)ServerPackets.playerDisconnected, ClientHandle.PlayerDisconnected},
-            {(int)ServerPackets.playerHealth, ClientHandle.PlayerHealth},
+            {(int)ServerPackets.playerHealth, ClientHandle.SetPlayerHealth},
             {(int)ServerPackets.playerRespawned, ClientHandle.PlayerRespawned},
             {(int)ServerPackets.itemSpawned, ClientHandle.ItemSpawned},
             {(int)ServerPackets.itemPickedUp, ClientHandle.ItemPickedUp},
-            {(int)ServerPackets.spawnProjectile, ClientHandle.SpawnProjectile},
-            {(int)ServerPackets.projectilePosition, ClientHandle.ProjectilePosition},
+            {(int)ServerPackets.spawnProjectile, ClientHandle.InstantiateProjectile},
+            {(int)ServerPackets.projectilePosition, ClientHandle.ProjectilePositionUpdate},
             {(int)ServerPackets.projectileExploded, ClientHandle.ProjectileExploded},
-            {(int)ServerPackets.destoryProjectile, ClientHandle.DestoryProjectile},
+            {(int)ServerPackets.destoryProjectile, ClientHandle.ProjectileDestroyed},
             {(int)ServerPackets.addMember, ClientHandle.AddMember},
             {(int)ServerPackets.removeMember, ClientHandle.RemoveMember},
-            {(int)ServerPackets.roomKing, ClientHandle.RoomKing},
-            {(int)ServerPackets.userReady, ClientHandle.UserReady}
+            {(int)ServerPackets.roomKing, ClientHandle.RoomKingUpdate},
+            {(int)ServerPackets.userReady, ClientHandle.UserReady},
+            {(int)ServerPackets.startGame, ClientHandle.StartGame}
         };
 
         Debug.Log("Initialized packets.");

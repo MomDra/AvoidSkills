@@ -49,6 +49,7 @@ public class ReadyStartUIView : MonoBehaviour
 
     private void PressedReadyStartButton()
     {
+        StartCoroutine(InteractableFalse());
         if (isRoomKing)
         {
             ClientSend.StartButton();
@@ -58,5 +59,12 @@ public class ReadyStartUIView : MonoBehaviour
             isReady = !isReady;
             ClientSend.ReadyButton(isReady);
         }
+        
+    }
+
+    private IEnumerator InteractableFalse(){
+        readyStartButton.interactable = false;
+        yield return new WaitForSeconds(2f);
+        readyStartButton.interactable = true;
     }
 }

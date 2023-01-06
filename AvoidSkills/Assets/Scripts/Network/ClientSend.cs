@@ -26,7 +26,7 @@ public class ClientSend
             _packet.Write(Client.Instance.UserName);
 
             SendTCPData(_packet);
-            // SendUDPData(_packet); // 서버에 udp 연결을 위한 udp 데이터 전송
+            SendUDPData(_packet); // 서버에 udp 연결을 위한 udp 데이터 전송
         }
     }
 
@@ -71,5 +71,8 @@ public class ClientSend
             SendTCPData(_packet);
         }
     }
+
+    
+
     #endregion
 }
