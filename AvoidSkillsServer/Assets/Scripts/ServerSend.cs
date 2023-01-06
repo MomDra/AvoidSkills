@@ -262,5 +262,15 @@ public class ServerSend : MonoBehaviour
         }
     }
 
+    public static void StartGame()
+    {
+        using (Packet _packet = new Packet((int)ServerPackets.startGame))
+        {
+            _packet.Write(true);
+
+            SendTCPDataToAll(_packet);
+        }
+    }
+
     #endregion
 }
