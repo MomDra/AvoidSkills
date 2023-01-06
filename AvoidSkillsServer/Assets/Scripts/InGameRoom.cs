@@ -6,15 +6,15 @@ public class InGameRoom
 {
     private bool isStarted;
 
-    private GameRoomUser[] allUsers;
-    private Player[] players;
+    private Dictionary<int, GameRoomUser> allUsers;
+    private Dictionary<int, Player> player;
 
     public InGameRoom()
     {
-        players = new Player[4];
+        player = new Dictionary<int, Player>();
     }
 
-    public void GameStart(GameRoomUser[] _allUsers)
+    public void GameStart(Dictionary<int, GameRoomUser> _allUsers)
     {
         allUsers = _allUsers;
 
@@ -23,30 +23,21 @@ public class InGameRoom
 
     private void SpawnPlayer()
     {
-        for (int i = 0; i < 4; ++i)
+        foreach (GameRoomUser _roomUser in allUsers.Values)
         {
-            if (allUsers[i] != null)
-            {
-                Player _player = NetworkManager.Instance.InstantiatePlayer();
-                _player.Initialize(allUsers[i].id, allUsers[i].userName);
+            Player _player = NetworkManager.Instance.InstantiatePlayer();
+            _player.Initialize(_roomUser.id, _roomUser.userName);
 
-                players[i] = _player;
+            player.Add(_roomUser.id, _player);
 
-                Server.clients[allUsers[i].id].player = _player;
-            }
+            Server.clients[_roomUser.id].player = _player;
         }
 
-        for (int i = 0; i < 4; ++i)
+        foreach (GameRoomUser _roomUser in allUsers.Values)
         {
-            if (allUsers[i] != null)
+            foreach (Player _player in player.Values)
             {
-                for (int j = 0; j < 4; ++j)
-                {
-                    if (players[j] != null)
-                    {
-                        ServerSend.SpawnPlayer(allUsers[i].id, players[j]);
-                    }
-                }
+                ServerSend.SpawnPlayer(_roomUser.id, _player);
             }
         }
     }

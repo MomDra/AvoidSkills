@@ -8,9 +8,7 @@ public class GameRoom
 
     public GameRoomUser[] redUsers { get; private set; }
 
-    // public GameRoomUser[] allUsers { get; private set; }
-    public GameRoomUser[] allUsers { get; private set; }
-
+    public Dictionary<int, GameRoomUser> allUsers { get; private set; }
     public int numUser { get; private set; }
     public int numblueUser { get; private set; }
     public int numRedUser { get; private set; }
@@ -23,7 +21,7 @@ public class GameRoom
     {
         blueUsers = new GameRoomUser[2];
         redUsers = new GameRoomUser[2];
-        allUsers = new GameRoomUser[4];
+        allUsers = new Dictionary<int, GameRoomUser>();
 
         inGameRoom = new InGameRoom();
 
@@ -49,28 +47,15 @@ public class GameRoom
         if (numUser <= 0) throw new System.Exception("user의 인원이 0보다 작아지려 하고 있습니다.");
 
         --numUser;
-
-        for (int i = 0; i < 4; ++i)
+        if (allUsers[_userId].isRed)
         {
-            if (allUsers[i] != null)
-            {
-                if (allUsers[i].id == _userId)
-                {
-                    if (allUsers[i].isRed)
-                    {
-                        --numRedUser;
-                    }
-                    else
-                    {
-                        --numblueUser;
-                    }
-
-                    allUsers[i] = null;
-                    break;
-                }
-            }
-
+            --numRedUser;
         }
+        else
+        {
+            --numblueUser;
+        }
+        allUsers.Remove(_userId);
 
         if (roomKing.id == _userId)
         {
@@ -89,14 +74,7 @@ public class GameRoom
             SetRoomking(_user);
         }
 
-        for (int i = 0; i < 4; ++i)
-        {
-            if (allUsers[i] == null)
-            {
-                allUsers[i] = _user;
-                break;
-            }
-        }
+        allUsers.Add(_user.id, _user); // 리펙토링
         ++numUser;
 
         if (numblueUser > numRedUser)
@@ -110,33 +88,20 @@ public class GameRoom
             _user.SetTeam(false);
         }
 
-        for (int i = 0; i < 4; ++i)
+        foreach (GameRoomUser _roomUser in allUsers.Values)
         {
-            if (allUsers[i] != null)
-            {
-                ServerSend.AddMember(allUsers[i].id, _user);
-            }
-        }
+            ServerSend.AddMember(_roomUser.id, _user);
 
-        for (int i = 0; i < 4; ++i)
-        {
-            if (allUsers[i] != null && allUsers[i] != _user)
+            if (_roomUser != _user)
             {
-                ServerSend.AddMember(_user.id, allUsers[i]);
+                ServerSend.AddMember(_user.id, _roomUser);
             }
         }
     }
 
     public void SetReady(int _userId, bool _isReady)
     {
-        for (int i = 0; i < 4; ++i)
-        {
-            if (allUsers[i] != null && allUsers[i].id == _userId)
-            {
-                allUsers[i].SetReady(_isReady);
-                break;
-            }
-        }
+        allUsers[_userId].SetReady(_isReady);
 
         ServerSend.UserReady(_userId, _isReady);
     }
@@ -144,9 +109,10 @@ public class GameRoom
     public void StartGame(bool _start)
     {
         bool _isAllReady = true;
-        for (int i = 0; i < 4; ++i)
+
+        foreach (GameRoomUser _roomUser in allUsers.Values)
         {
-            if (allUsers[i] != null && allUsers[i].isReady == false)
+            if (_roomUser.isReady == false)
             {
                 _isAllReady = false;
                 break;
@@ -168,13 +134,10 @@ public class GameRoom
     {
         if (numUser >= 1)
         {
-            for (int i = 0; i < 4; ++i)
+            foreach (GameRoomUser _roomUser in allUsers.Values)
             {
-                if (allUsers[i] != null)
-                {
-                    SetRoomking(allUsers[i]);
-                    return;
-                }
+                SetRoomking(_roomUser);
+                return;
             }
         }
         else
