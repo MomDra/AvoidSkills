@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+
+            ClientSend.InGameSceneLoaded();
         }
         else if (instance != this)
         {

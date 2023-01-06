@@ -60,4 +60,11 @@ public class ServerHandle
 
         Server.gameRoom.StartGame(_start);
     }
+
+    public static void InGameSceneLoaded(int _fromClient, Packet _packet)
+    {
+        bool _isLoaded = _packet.ReadBool();
+
+        Server.gameRoom.SetLoaded(_fromClient, _isLoaded);
+    }
 }

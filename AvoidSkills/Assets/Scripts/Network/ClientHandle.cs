@@ -46,7 +46,7 @@ public class ClientHandle
         }
         catch (System.Exception)
         {
-            
+
         }
     }
 
@@ -179,27 +179,30 @@ public class ClientHandle
 
         MemberUIView.Instance.CheckImageUpdate(_userId, _isReady);
     }
-    
-    public static void StartGame(Packet _packet){
+
+    public static void StartGame(Packet _packet)
+    {
         bool _isStart = _packet.ReadBool();
-        
-        SceneManager.LoadScene(2); 
+
+        SceneManager.LoadScene(2);
     }
-    
-    public static void ScoreUpdate(Packet _packet){
+
+    public static void ScoreUpdate(Packet _packet)
+    {
         int _blueTeamScore = _packet.ReadInt();
         int _redTeamScore = _packet.ReadInt();
 
         ScoreUIView.Instance.ScoreTextUpdate(_blueTeamScore, _redTeamScore);
     }
 
-    public static void ItemBallPositionUpdate(){
-        
+    public static void ItemBallPositionUpdate()
+    {
+
     }
 
 
 
 
 
-    
+
 }

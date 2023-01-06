@@ -161,4 +161,9 @@ public class GameRoom
             Debug.Log("now roomking is null");
         }
     }
+
+    public void SetLoaded(int _userId, bool _isLoaded)
+    {
+        allUsers[_userId].SetLoaded(_isLoaded);
+    }
 }

@@ -9,6 +9,7 @@ public class GameRoomUser
     public bool isRed { get; private set; }
     public bool isRoomKing { get; private set; }
     public bool isReady { get; private set; }
+    public bool isLoaded { get; private set; }
 
     public GameRoomUser(int _id, string _userName)
     {
@@ -31,5 +32,10 @@ public class GameRoomUser
     public void SetReady(bool _isReady)
     {
         isReady = _isReady;
+    }
+
+    public void SetLoaded(bool _isLoaded)
+    {
+        isLoaded = _isLoaded;
     }
 }

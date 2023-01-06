@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Threading;
+using System.Threading.Tasks;
 
 public class InGameRoom
 {
@@ -23,6 +25,7 @@ public class InGameRoom
         blueTeamScore = 0;
         redTeamScore = 0;
 
+        Thread.Sleep(100);
         SpawnPlayer();
     }
 

@@ -117,7 +117,8 @@ public class Server
             {(int)ClientPackets.playerTargetPosition, ServerHandle.PlayerTargetPosition},
             {(int)ClientPackets.shootSkill, ServerHandle.ShootSkill},
             {(int)ClientPackets.readyButton, ServerHandle.ReadyButton},
-            {(int)ClientPackets.startButton, ServerHandle.StartButton}
+            {(int)ClientPackets.startButton, ServerHandle.StartButton},
+            {(int)ClientPackets.inGameSceneLoaded, ServerHandle.InGameSceneLoaded}
         };
 
         Debug.Log("Initialized packets.");

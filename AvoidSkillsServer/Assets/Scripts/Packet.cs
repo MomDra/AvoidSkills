@@ -36,7 +36,8 @@ public enum ClientPackets
     playerTargetPosition,
     shootSkill,
     readyButton,
-    startButton
+    startButton,
+    inGameSceneLoaded
 }
 
 public class Packet : IDisposable

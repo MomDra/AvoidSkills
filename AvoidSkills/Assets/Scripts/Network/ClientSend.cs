@@ -72,7 +72,15 @@ public class ClientSend
         }
     }
 
-    
+    public static void InGameSceneLoaded()
+    {
+        using (Packet _packet = new Packet((int)ClientPackets.inGameSceneLoaded))
+        {
+            _packet.Write(true);
+
+            SendTCPData(_packet);
+        }
+    }
 
     #endregion
 }
