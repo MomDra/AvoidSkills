@@ -27,6 +27,15 @@ public class Client : MonoBehaviour
         }
     }
     public string UserName { get; private set; }
+    public bool isRed
+    {
+        get => isRed;
+        set
+        {
+            isRed = value;
+            Debug.Log($"Clinet Team가 {value}로 설정되었습니다.");
+        }
+    }
 
     public TCP tcp;
     public UDP udp;

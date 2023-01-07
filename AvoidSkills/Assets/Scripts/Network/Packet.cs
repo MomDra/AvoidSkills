@@ -26,7 +26,8 @@ public enum ServerPackets
     roomKing,
     userReady,
     startGame,
-    scoreUpdate
+    scoreUpdate,
+    endGame
 }
 
 /// <summary>Sent from client to server.</summary>
@@ -37,7 +38,8 @@ public enum ClientPackets
     shootSkill,
     readyButton,
     startButton,
-    inGameSceneLoaded
+    inGameSceneLoaded,
+    waitingRoomSceneLoaded
 }
 
 public class Packet : IDisposable

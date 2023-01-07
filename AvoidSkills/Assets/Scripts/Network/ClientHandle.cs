@@ -149,9 +149,7 @@ public class ClientHandle
 
         Debug.Log($"{_userName}: {_id} - {_isRed}");
 
-        GameRoomUser gameRoomUser = new GameRoomUser(_id, _userName, _isRed, _isRoomKing);
-
-        MemberUIView.Instance.AddMember(gameRoomUser);
+        MemberModel.Instance.AddMember(new GameUser(_id, _userName, _isRed, _isRoomKing));
     }
 
     public static void RemoveMember(Packet _packet)
@@ -160,16 +158,14 @@ public class ClientHandle
 
         Debug.Log("_userId 나갔음" + _userId);
 
-        MemberUIView.Instance.RemoveMember(_userId);
+        MemberModel.Instance.RemoveMember(_userId);
     }
 
     public static void RoomKingUpdate(Packet _packet)
     {
         int _roomKingId = _packet.ReadInt();
 
-
-        MemberUIView.Instance.CrownImageUpdate(_roomKingId);
-        ReadyStartUIView.Instance.ReadyStartTextUpdate(Client.Instance.MyId == _roomKingId);
+        MemberModel.Instance.SetRoomKing(_roomKingId);
     }
 
     public static void UserReady(Packet _packet)
@@ -177,7 +173,7 @@ public class ClientHandle
         int _userId = _packet.ReadInt();
         bool _isReady = _packet.ReadBool();
 
-        MemberUIView.Instance.CheckImageUpdate(_userId, _isReady);
+        MemberModel.Instance.SetReady(_userId, _isReady);
     }
 
     public static void StartGame(Packet _packet)
@@ -198,6 +194,12 @@ public class ClientHandle
     public static void ItemBallPositionUpdate()
     {
 
+    }
+
+    public static void EndGame(Packet _packet){
+        bool _isRedTeamWin = _packet.ReadBool();
+
+        ResultUIView.Instance.OpenResultPane(_isRedTeamWin);
     }
 
 

@@ -26,14 +26,19 @@ public class MemberUIView : MonoBehaviour
     private int numBlueUser;
     private int numRedUser;
 
-    private void Awake()
+    private void Awake() // Scene Loaded
     {
         if (instance == null)
         {
             instance = this;
             exitButton.onClick.AddListener(DisConnectToServer);
-
+            
             paneUserId = new int[4] { -1, -1, -1, -1 };
+
+            ClientSend.WaitingRoomSceneLoaded();
+            ClientSend.ReadyButton(false);
+            MemberModel.Instance.LoadMemberUI();
+
         }
         else if (instance != this)
         {
@@ -59,7 +64,7 @@ public class MemberUIView : MonoBehaviour
         throw new System.Exception($"{_userId}가 존재하지 않습니다");
     }
 
-    public void AddMember(GameRoomUser gameRoomUsers)
+    public void AddMember(GameUser gameRoomUsers)
     {
         if (gameRoomUsers.isRed)
         {
@@ -71,7 +76,7 @@ public class MemberUIView : MonoBehaviour
         }
     }
 
-    private void SetBlueMember(GameRoomUser _gameRoomUser, int _num)
+    private void SetBlueMember(GameUser _gameRoomUser, int _num)
     {
         for (int i = 0; i < 2; ++i)
         {
@@ -85,7 +90,7 @@ public class MemberUIView : MonoBehaviour
         throw new System.Exception("Blue User가 3명 이상입니다.");
     }
 
-    private void SetRedMember(GameRoomUser _gameRoomUser, int _num)
+    private void SetRedMember(GameUser _gameRoomUser, int _num)
     {
         for (int i = 2; i < 4; ++i)
         {
@@ -99,7 +104,7 @@ public class MemberUIView : MonoBehaviour
         throw new System.Exception("Red User가 3명 이상입니다.");
     }
 
-    private void SetMember(GameRoomUser _gameRoomUser, int _index)
+    private void SetMember(GameUser _gameRoomUser, int _index)
     {
         paneUserId[_index] = _gameRoomUser.id;
         playerPanes[_index].SetActive(true);

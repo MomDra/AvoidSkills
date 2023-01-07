@@ -82,5 +82,16 @@ public class ClientSend
         }
     }
 
+    public static void WaitingRoomSceneLoaded(){
+        using (Packet _packet = new Packet((int)ClientPackets.waitingRoomSceneLoaded))
+        {
+            _packet.Write(true);
+
+            SendTCPData(_packet);
+        }
+    }
+
+    
+
     #endregion
 }
