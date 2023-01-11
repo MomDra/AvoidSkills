@@ -57,4 +57,9 @@ public class MemberModel : MonoBehaviour
         }
     }
 
+    public void Clear()
+    {
+        memberDic.Clear();
+        myUser = null;
+    }
 }

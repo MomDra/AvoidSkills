@@ -107,6 +107,7 @@ public class OptionUIView : MonoBehaviour
 
     private void ExitGame(){
         SceneManager.LoadScene(0);
+        MemberModel.Instance.Clear();
         Client.Instance.Disconnect();
     }
 }

@@ -35,12 +35,6 @@ public class GameRoom
 
     }
 
-
-    public void StartGame()
-    {
-
-    }
-
     public void RemoveUser(int _userId)
     {
         if (numUser <= 0) throw new System.Exception("user의 인원이 0보다 작아지려 하고 있습니다.");
@@ -68,12 +62,7 @@ public class GameRoom
     {
         if (numUser >= 4) throw new System.Exception("user의 최대 인원을 초과하려 하고 있습니다.");
 
-        if (numUser == 0)
-        {
-            SetRoomking(_user);
-        }
-
-        allUsers.Add(_user.id, _user); // 리펙토링
+        allUsers.Add(_user.id, _user);
         ++numUser;
 
         if (numblueUser > numRedUser)
@@ -96,6 +85,11 @@ public class GameRoom
                 ServerSend.AddMember(_user.id, _roomUser);
             }
         }
+
+        if (numUser == 1)
+        {
+            SetRoomking(_user);
+        }
     }
 
     public void SetReady(int _userId, bool _isReady)
@@ -113,7 +107,9 @@ public class GameRoom
         {
             if (_roomUser.isReady == false)
             {
+                if (_roomUser.isRoomKing) continue;
                 _isAllReady = false;
+                Debug.Log($"{_roomUser.id} doesn't ready, {_roomUser.isReady}");
                 break;
             }
         }
@@ -147,12 +143,14 @@ public class GameRoom
 
     private void SetRoomking(GameRoomUser _user)
     {
+        Debug.Log("SetRoomking");
+
         roomKing = _user;
         if (_user != null)
         {
             _user.SetRoomking(true);
             _user.SetReady(true);
-            Debug.Log($"now {_user.id} is roomking");
+            Debug.Log($"now {_user.id} is roomking, {_user.isReady}");
 
             ServerSend.RoomKing(roomKing.id);
         }

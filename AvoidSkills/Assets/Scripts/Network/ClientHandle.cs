@@ -165,6 +165,8 @@ public class ClientHandle
     {
         int _roomKingId = _packet.ReadInt();
 
+        Debug.Log($"id: {_roomKingId}, RoomKingUpdate 패킷 들어옴");
+
         MemberModel.Instance.SetRoomKing(_roomKingId);
     }
 
