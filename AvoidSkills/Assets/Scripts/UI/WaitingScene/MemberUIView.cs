@@ -32,7 +32,7 @@ public class MemberUIView : MonoBehaviour
         {
             instance = this;
             exitButton.onClick.AddListener(DisConnectToServer);
-            
+
             paneUserId = new int[4] { -1, -1, -1, -1 };
 
             ClientSend.WaitingRoomSceneLoaded();

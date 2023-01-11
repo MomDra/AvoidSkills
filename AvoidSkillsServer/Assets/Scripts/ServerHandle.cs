@@ -65,6 +65,13 @@ public class ServerHandle
     {
         bool _isLoaded = _packet.ReadBool();
 
-        Server.gameRoom.SetLoaded(_fromClient, _isLoaded);
+        Server.gameRoom.SetInGameSceneLoaded(_fromClient, _isLoaded);
+    }
+
+    public static void WaitingRoomSceneLoaded(int _fromClient, Packet _packet)
+    {
+        bool _isLoaded = _packet.ReadBool();
+
+
     }
 }

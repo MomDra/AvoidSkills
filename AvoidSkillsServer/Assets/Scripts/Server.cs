@@ -47,6 +47,8 @@ public class Server
                 return;
             }
         }
+
+        _client.Client.Close();
     }
 
     private static void UDPReceiveCallback(IAsyncResult _result)
@@ -118,7 +120,8 @@ public class Server
             {(int)ClientPackets.shootSkill, ServerHandle.ShootSkill},
             {(int)ClientPackets.readyButton, ServerHandle.ReadyButton},
             {(int)ClientPackets.startButton, ServerHandle.StartButton},
-            {(int)ClientPackets.inGameSceneLoaded, ServerHandle.InGameSceneLoaded}
+            {(int)ClientPackets.inGameSceneLoaded, ServerHandle.InGameSceneLoaded},
+            {(int)ClientPackets.waitingRoomSceneLoaded, ServerHandle.WaitingRoomSceneLoaded}
         };
 
         Debug.Log("Initialized packets.");

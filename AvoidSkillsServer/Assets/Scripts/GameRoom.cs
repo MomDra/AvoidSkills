@@ -162,8 +162,8 @@ public class GameRoom
         }
     }
 
-    public void SetLoaded(int _userId, bool _isLoaded)
+    public void SetInGameSceneLoaded(int _userId, bool _isLoaded)
     {
-        allUsers[_userId].SetLoaded(_isLoaded);
+        allUsers[_userId].SetInGameSceneLoaded(_isLoaded);
     }
 }
