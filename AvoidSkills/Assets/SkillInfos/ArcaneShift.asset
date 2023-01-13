@@ -16,12 +16,15 @@ MonoBehaviour:
   skillName: Arcane_Shift
   damage: 10
   range: 5
-  projectileSpeed: 0
+  speed: 0
   delay: 0
   level: 0
   coolDownTime: 5
   skillType: 2
-  skillImage: {fileID: 21300000, guid: 100382b666a41f34d96bd53cfbdaf80e, type: 3}
+  skillImage: {fileID: 21300000, guid: f7726ec705d4e2245a1c85c86722366d, type: 3}
+  previewPrefab: {fileID: 0}
   skillPrefab: {fileID: 0}
+  subPrefabs: []
   useType: 0
   usableCount: -1
+  description: 
