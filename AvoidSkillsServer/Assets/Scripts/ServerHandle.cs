@@ -9,13 +9,6 @@ public class ServerHandle
         int _clientIdCheck = _packet.ReadInt();
         string _username = _packet.ReadString();
 
-        if (Server.clients == null) Debug.Log("haha1");
-        if (Server.clients[_fromClient] == null) Debug.Log("haha2");
-        if (Server.clients[_fromClient].tcp == null) Debug.Log("haha3");
-        if (Server.clients[_fromClient].tcp.socket == null) Debug.Log("haha4");
-        if (Server.clients[_fromClient].tcp.socket.Client == null) Debug.Log("haha5");
-        if (Server.clients[_fromClient].tcp.socket.Client.RemoteEndPoint == null) Debug.Log("haha4");
-
         Debug.Log($"{Server.clients[_fromClient].tcp.socket.Client.RemoteEndPoint} connected successfully and is now player {_fromClient}, UserName: {_username}.");
         if (_fromClient != _clientIdCheck)
         {
@@ -24,8 +17,6 @@ public class ServerHandle
 
         // send player into game
         // Server.clients[_fromClient].SendIntoGame(_username);
-
-
 
         GameRoomUser gameRoomUser = new GameRoomUser(_fromClient, _username);
         Server.gameRoom.AddUser(gameRoomUser);
@@ -65,6 +56,13 @@ public class ServerHandle
     {
         bool _isLoaded = _packet.ReadBool();
 
-        Server.gameRoom.SetLoaded(_fromClient, _isLoaded);
+        Server.gameRoom.SetInGameSceneLoaded(_fromClient, _isLoaded);
+    }
+
+    public static void WaitingRoomSceneLoaded(int _fromClient, Packet _packet)
+    {
+        bool _isLoaded = _packet.ReadBool();
+
+
     }
 }

@@ -283,5 +283,15 @@ public class ServerSend : MonoBehaviour
         }
     }
 
+    public static void EndGame(bool _isRedWin)
+    {
+        using (Packet _packet = new Packet((int)ServerPackets.endGame))
+        {
+            _packet.Write(_isRedWin);
+
+            SendTCPDataToAll(_packet);
+        }
+    }
+
     #endregion
 }

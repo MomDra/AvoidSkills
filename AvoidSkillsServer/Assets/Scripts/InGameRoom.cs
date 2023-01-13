@@ -55,12 +55,43 @@ public class InGameRoom
         if (allUsers[_userId].isRed)
         {
             ++blueTeamScore;
+
+            if (blueTeamScore >= 5)
+            {
+                EndGame(false);
+            }
         }
         else
         {
             ++redTeamScore;
+
+            if (redTeamScore >= 5)
+            {
+                EndGame(true);
+            }
         }
 
         ServerSend.ScoreUpdate(blueTeamScore, redTeamScore);
+    }
+
+    private void EndGame(bool _isRedWin)
+    {
+        Debug.Log("EndGame - " + (_isRedWin ? "Red Team" : "Blue Team") + "Win");
+
+        // 모든 플레이어 삭제
+        foreach (Player _player in player.Values)
+        {
+            Server.clients[_player.id].player = null;
+            GameObject.Destroy(_player.gameObject);
+        }
+
+        player.Clear();
+
+        foreach (GameRoomUser _gameRoomUser in allUsers.Values)
+        {
+            _gameRoomUser.SetReady(false);
+        }
+
+        ServerSend.EndGame(_isRedWin);
     }
 }

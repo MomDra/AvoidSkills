@@ -32,13 +32,13 @@ public class MemberUIView : MonoBehaviour
         {
             instance = this;
             exitButton.onClick.AddListener(DisConnectToServer);
-            
+
             paneUserId = new int[4] { -1, -1, -1, -1 };
 
             ClientSend.WaitingRoomSceneLoaded();
-            ClientSend.ReadyButton(false);
+            if(MemberModel.Instance.myUser.isRoomKing == false)
+                ClientSend.ReadyButton(false);
             MemberModel.Instance.LoadMemberUI();
-
         }
         else if (instance != this)
         {
@@ -160,6 +160,7 @@ public class MemberUIView : MonoBehaviour
 
     private void DisConnectToServer()
     {
+        MemberModel.Instance.Clear();
         SceneManager.LoadScene(0);
         Client.Instance.Disconnect();
     }

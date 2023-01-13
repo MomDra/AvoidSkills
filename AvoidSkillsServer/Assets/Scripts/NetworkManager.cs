@@ -29,7 +29,7 @@ public class NetworkManager : MonoBehaviour
         Application.targetFrameRate = 30; // 30 프레임 고정, 서버는 고 프레임이 필요 없기 때문임
 
 
-        Server.Start(10, 26950);
+        Server.Start(4, 26950);
     }
 
     private void OnApplicationQuit()
