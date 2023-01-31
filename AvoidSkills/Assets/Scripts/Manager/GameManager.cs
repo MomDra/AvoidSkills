@@ -60,4 +60,10 @@ public class GameManager : MonoBehaviour
 
         projectiles.Add(_id, _projectile.GetComponent<ProjectileManager>());
     }
+
+    public static void ClearInGameData()
+    {
+        players.Clear();
+        projectiles.Clear();
+    }
 }

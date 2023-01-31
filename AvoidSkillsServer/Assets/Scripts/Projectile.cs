@@ -80,6 +80,12 @@ public class Projectile : MonoBehaviour
 
         Destory();
     }
+
+    public static void Clear()
+    {
+        projectiles.Clear();
+        nextProjectileId = 1;
+    }
 }
 
 

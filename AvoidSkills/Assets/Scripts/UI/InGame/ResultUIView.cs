@@ -66,5 +66,7 @@ public class ResultUIView : MonoBehaviour
     private void QuitGame()
     {
         SceneManager.LoadScene(1);
+
+        GameManager.ClearInGameData();
     }
 }
