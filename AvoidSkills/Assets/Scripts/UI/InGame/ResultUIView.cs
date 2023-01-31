@@ -9,7 +9,7 @@ public class ResultUIView : MonoBehaviour
 {
     private static ResultUIView instance;
     public static ResultUIView Instance { get => instance; }
-    
+
     private GameObject resultPane;
 
     private Button okButton;
@@ -31,32 +31,40 @@ public class ResultUIView : MonoBehaviour
         }
     }
 
-    private void FindComponents(){
+    private void FindComponents()
+    {
         resultPane = transform.GetChild(3).gameObject;
         resultText = resultPane.GetComponentInChildren<TextMeshProUGUI>();
         okButton = resultPane.GetComponentInChildren<Button>();
     }
 
-    private void AddButtonListeners(){
+    private void AddButtonListeners()
+    {
         okButton.onClick.AddListener(QuitGame);
     }
 
-    public void OpenResultPane(bool _isRedTeamWin){
+    public void OpenResultPane(bool _isRedTeamWin)
+    {
         resultPane.SetActive(true);
-        if(_isRedTeamWin == MemberModel.Instance.myUser.isRed){
+        if (_isRedTeamWin == MemberModel.Instance.myUser.isRed)
+        {
             resultText.text = "Victory!!";
-        }else{
-            resultText.tag = "Defeat..";
+        }
+        else
+        {
+            resultText.text = "Defeat..";
         }
         StartCoroutine(WaitForGameEnd());
     }
 
-    private IEnumerator WaitForGameEnd(){
+    private IEnumerator WaitForGameEnd()
+    {
         yield return new WaitForSeconds(5f);
         QuitGame();
     }
 
-    private void QuitGame(){
+    private void QuitGame()
+    {
         SceneManager.LoadScene(1);
     }
 }

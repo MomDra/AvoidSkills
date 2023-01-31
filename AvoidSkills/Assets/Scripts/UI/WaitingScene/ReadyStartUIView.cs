@@ -32,6 +32,14 @@ public class ReadyStartUIView : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        if (MemberModel.Instance.myUser != null)
+        {
+            ReadyStartTextUpdate(MemberModel.Instance.myUser.isRoomKing);
+        }
+    }
+
     public void ReadyStartTextUpdate(bool _isRoomKing)
     {
         if (_isRoomKing)
@@ -49,7 +57,7 @@ public class ReadyStartUIView : MonoBehaviour
 
     private void PressedReadyStartButton()
     {
-        
+
         if (isRoomKing)
         {
             StartCoroutine(InteractableFalse(2f));
@@ -61,10 +69,11 @@ public class ReadyStartUIView : MonoBehaviour
             StartCoroutine(InteractableFalse(0.1f));
             ClientSend.ReadyButton(isReady);
         }
-        
+
     }
 
-    private IEnumerator InteractableFalse(float time){
+    private IEnumerator InteractableFalse(float time)
+    {
         readyStartButton.interactable = false;
         yield return new WaitForSeconds(time);
         readyStartButton.interactable = true;
