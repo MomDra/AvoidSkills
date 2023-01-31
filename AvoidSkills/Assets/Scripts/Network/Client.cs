@@ -96,7 +96,8 @@ public class Client : MonoBehaviour
             {(int)ServerPackets.roomKing, ClientHandle.RoomKingUpdate},
             {(int)ServerPackets.userReady, ClientHandle.UserReady},
             {(int)ServerPackets.startGame, ClientHandle.StartGame},
-            {(int)ServerPackets.scoreUpdate, ClientHandle.ScoreUpdate}
+            {(int)ServerPackets.scoreUpdate, ClientHandle.ScoreUpdate},
+            {(int)ServerPackets.endGame, ClientHandle.EndGame}
     };
 
         Debug.Log("Initialized packets.");

@@ -52,7 +52,7 @@ public class EnvironmentManager : MonoBehaviour
 
         Vector3 randomPosLeft = new Vector3(random.Next(-halfWidth, 0), 1, random.Next(-halfHeight, halfHeight));
         Vector3 randomPosRight = new Vector3(random.Next(0, halfWidth), 1, random.Next(-halfHeight, halfHeight));
-
+        
         GameObject ItemBoxInLeftArea = Instantiate(itemBoxPrefab, randomPosLeft, Quaternion.identity);
         GameObject ItemBoxInRightArea = Instantiate(itemBoxPrefab, randomPosRight, Quaternion.identity);
     }
