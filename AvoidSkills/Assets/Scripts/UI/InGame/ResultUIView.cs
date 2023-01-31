@@ -9,7 +9,7 @@ public class ResultUIView : MonoBehaviour
 {
     private static ResultUIView instance;
     public static ResultUIView Instance { get => instance; }
-
+    
     private GameObject resultPane;
 
     private Button okButton;
@@ -33,7 +33,7 @@ public class ResultUIView : MonoBehaviour
 
     private void FindComponents(){
         resultPane = transform.GetChild(3).gameObject;
-        resultText = resultText.GetComponentInChildren<TextMeshProUGUI>();
+        resultText = resultPane.GetComponentInChildren<TextMeshProUGUI>();
         okButton = resultPane.GetComponentInChildren<Button>();
     }
 
