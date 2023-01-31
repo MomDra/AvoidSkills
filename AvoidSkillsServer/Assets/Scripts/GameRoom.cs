@@ -39,6 +39,11 @@ public class GameRoom
     {
         if (numUser <= 0) throw new System.Exception("user의 인원이 0보다 작아지려 하고 있습니다.");
 
+        if (roomKing.id == _userId)
+        {
+            ResetRoomKing(inGameRoom.IsGameRunning);
+        }
+
         --numUser;
         if (allUsers[_userId].isRed)
         {
@@ -51,11 +56,6 @@ public class GameRoom
             if (numblueUser == 0) inGameRoom.EndGame(true);
         }
         allUsers.Remove(_userId);
-
-        if (roomKing.id == _userId)
-        {
-            ResetRoomKing(inGameRoom.IsGameRunning);
-        }
 
         ServerSend.RemoveMember(_userId);
     }
