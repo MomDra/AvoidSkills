@@ -46,6 +46,10 @@ public class MemberModel : MonoBehaviour
         ReadyStartUIView.Instance.ReadyStartTextUpdate(myUser.id == _userId);
     }
 
+    public void SetRoomKingModelOnly(int _userId){
+        memberDic[_userId].isRoomKing = true;
+    }
+
     public void SetReady(int _userId, bool _isReady){
         memberDic[_userId].isReady = true;
         MemberUIView.Instance.CheckImageUpdate(_userId, _isReady);

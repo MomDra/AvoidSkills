@@ -27,7 +27,8 @@ public enum ServerPackets
     userReady,
     startGame,
     scoreUpdate,
-    endGame
+    endGame,
+    roomKingModelOnly
 }
 
 /// <summary>Sent from client to server.</summary>

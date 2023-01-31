@@ -193,9 +193,8 @@ public class ClientHandle
         ScoreUIView.Instance.ScoreTextUpdate(_blueTeamScore, _redTeamScore);
     }
 
-    public static void ItemBallPositionUpdate()
-    {
-
+    public static void ItemBallPositionUpdate(){
+        
     }
 
     public static void EndGame(Packet _packet){
@@ -204,7 +203,11 @@ public class ClientHandle
         ResultUIView.Instance.OpenResultPane(_isRedTeamWin);
     }
 
+    public static void RoomKingModelOnly(Packet _packet){
+        int _id = _packet.ReadInt();
 
+        MemberModel.Instance.SetRoomKingModelOnly(_id);
+    }
 
 
 
