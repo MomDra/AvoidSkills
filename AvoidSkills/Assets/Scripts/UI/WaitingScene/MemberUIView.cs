@@ -36,8 +36,6 @@ public class MemberUIView : MonoBehaviour
             paneUserId = new int[4] { -1, -1, -1, -1 };
 
             ClientSend.WaitingRoomSceneLoaded();
-            // if (MemberModel.Instance.myUser.isRoomKing == false)
-            //     ClientSend.ReadyButton(false);
             MemberModel.Instance.LoadMemberUI();
         }
         else if (instance != this)
@@ -45,6 +43,15 @@ public class MemberUIView : MonoBehaviour
             Destroy(this);
 
             Debug.Log("객체가 2개 생성되었습니다. 객체를 삭제합니다.");
+        }
+    }
+
+    private void Start()
+    {
+        if (MemberModel.Instance.myUser != null)
+        {
+            if (MemberModel.Instance.myUser.isRoomKing == false)
+                ClientSend.ReadyButton(false);
         }
     }
 
