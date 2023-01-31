@@ -54,7 +54,7 @@ public class GameRoom
 
         if (roomKing.id == _userId)
         {
-            ResetRoomKing();
+            ResetRoomKing(inGameRoom.IsGameRunning);
         }
 
         ServerSend.RemoveMember(_userId);
@@ -90,7 +90,7 @@ public class GameRoom
 
         if (numUser == 1)
         {
-            SetRoomking(_user);
+            SetRoomking(_user, false);
         }
     }
 
@@ -127,23 +127,23 @@ public class GameRoom
         }
     }
 
-    private void ResetRoomKing()
+    private void ResetRoomKing(bool _isModelOnly)
     {
         if (numUser >= 1)
         {
             foreach (GameRoomUser _roomUser in allUsers.Values)
             {
-                SetRoomking(_roomUser);
+                SetRoomking(_roomUser, _isModelOnly);
                 return;
             }
         }
         else
         {
-            SetRoomking(null);
+            SetRoomking(null, _isModelOnly);
         }
     }
 
-    private void SetRoomking(GameRoomUser _user)
+    private void SetRoomking(GameRoomUser _user, bool _isModelOnly)
     {
         Debug.Log("SetRoomking");
 
@@ -154,7 +154,15 @@ public class GameRoom
             _user.SetReady(true);
             Debug.Log($"now {_user.id} is roomking, {_user.isReady}");
 
-            ServerSend.RoomKing(roomKing.id);
+
+            if (_isModelOnly)
+            {
+                ServerSend.RoomKingModelOnly(roomKing.id);
+            }
+            else
+            {
+                ServerSend.RoomKing(roomKing.id);
+            }
         }
         else
         {

@@ -14,7 +14,8 @@ public class InGameRoom
     int blueTeamScore;
     int redTeamScore;
 
-    bool isEnd;
+    bool isGameRunning;
+    public bool IsGameRunning { get => isGameRunning; }
 
     public InGameRoom()
     {
@@ -26,7 +27,7 @@ public class InGameRoom
         allUsers = _allUsers;
         blueTeamScore = 0;
         redTeamScore = 0;
-        isEnd = false;
+        isGameRunning = true;
 
         player.Clear();
 
@@ -81,8 +82,8 @@ public class InGameRoom
 
     public void EndGame(bool _isRedWin)
     {
-        if (isEnd) return;
-        isEnd = true;
+        if (!isGameRunning) return;
+        isGameRunning = false;
 
         Debug.Log("EndGame - " + (_isRedWin ? "Red Team" : "Blue Team") + "Win");
 
