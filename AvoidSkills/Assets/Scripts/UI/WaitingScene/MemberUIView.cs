@@ -36,8 +36,8 @@ public class MemberUIView : MonoBehaviour
             paneUserId = new int[4] { -1, -1, -1, -1 };
 
             ClientSend.WaitingRoomSceneLoaded();
-            if(MemberModel.Instance.myUser.isRoomKing == false)
-                ClientSend.ReadyButton(false);
+            // if (MemberModel.Instance.myUser.isRoomKing == false)
+            //     ClientSend.ReadyButton(false);
             MemberModel.Instance.LoadMemberUI();
         }
         else if (instance != this)
