@@ -22,11 +22,11 @@ public class ResultUIView : MonoBehaviour
         {
             instance = this;
             FindComponents();
+            // AddButtonListeners();
         }
         else if (instance != this)
         {
             Destroy(this);
-
             Debug.Log("객체가 2개 생성되었습니다. 객체를 삭제합니다.");
         }
     }
@@ -35,13 +35,13 @@ public class ResultUIView : MonoBehaviour
     {
         resultPane = transform.GetChild(3).gameObject;
         resultText = resultPane.GetComponentInChildren<TextMeshProUGUI>();
-        okButton = resultPane.GetComponentInChildren<Button>();
+        //okButton = resultPane.GetComponentInChildren<Button>();
     }
 
-    private void AddButtonListeners()
-    {
-        okButton.onClick.AddListener(QuitGame);
-    }
+    // private void AddButtonListeners()
+    // {
+    //     okButton.onClick.AddListener(QuitGame);
+    // }
 
     public void OpenResultPane(bool _isRedTeamWin)
     {
