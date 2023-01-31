@@ -16,7 +16,7 @@ public class InGameRoom
 
     public InGameRoom()
     {
-        player = new Dictionary<int, Player>();
+
     }
 
     public void GameStart(Dictionary<int, GameRoomUser> _allUsers)
@@ -24,6 +24,8 @@ public class InGameRoom
         allUsers = _allUsers;
         blueTeamScore = 0;
         redTeamScore = 0;
+
+        player = new Dictionary<int, Player>();
 
         Thread.Sleep(100);
         SpawnPlayer();
@@ -56,7 +58,7 @@ public class InGameRoom
         {
             ++blueTeamScore;
 
-            if (blueTeamScore >= 5)
+            if (blueTeamScore >= 1)
             {
                 EndGame(false);
             }
@@ -65,7 +67,7 @@ public class InGameRoom
         {
             ++redTeamScore;
 
-            if (redTeamScore >= 5)
+            if (redTeamScore >= 1)
             {
                 EndGame(true);
             }
