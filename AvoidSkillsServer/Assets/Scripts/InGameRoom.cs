@@ -14,9 +14,11 @@ public class InGameRoom
     int blueTeamScore;
     int redTeamScore;
 
+    bool isEnd;
+
     public InGameRoom()
     {
-
+        player = new Dictionary<int, Player>();
     }
 
     public void GameStart(Dictionary<int, GameRoomUser> _allUsers)
@@ -24,8 +26,9 @@ public class InGameRoom
         allUsers = _allUsers;
         blueTeamScore = 0;
         redTeamScore = 0;
+        isEnd = false;
 
-        player = new Dictionary<int, Player>();
+        player.Clear();
 
         Thread.Sleep(100);
         SpawnPlayer();
@@ -76,8 +79,11 @@ public class InGameRoom
         ServerSend.ScoreUpdate(blueTeamScore, redTeamScore);
     }
 
-    private void EndGame(bool _isRedWin)
+    public void EndGame(bool _isRedWin)
     {
+        if (isEnd) return;
+        isEnd = true;
+
         Debug.Log("EndGame - " + (_isRedWin ? "Red Team" : "Blue Team") + "Win");
 
         // 모든 플레이어 삭제

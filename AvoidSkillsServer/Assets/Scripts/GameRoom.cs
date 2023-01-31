@@ -43,10 +43,12 @@ public class GameRoom
         if (allUsers[_userId].isRed)
         {
             --numRedUser;
+            if (numRedUser == 0) inGameRoom.EndGame(false);
         }
         else
         {
             --numblueUser;
+            if (numblueUser == 0) inGameRoom.EndGame(true);
         }
         allUsers.Remove(_userId);
 
@@ -114,7 +116,7 @@ public class GameRoom
             }
         }
 
-        if (_isAllReady)
+        if (_isAllReady && numUser >= 2)
         {
             ServerSend.StartGame();
             inGameRoom.GameStart(allUsers);
