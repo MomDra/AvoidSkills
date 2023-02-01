@@ -6,12 +6,12 @@ public class ItemBoxManager : MonoBehaviour
 {
     public int id;
     public int level;
-    public GameObject itemBoxPrefab;
     public GameObject explosionPrefab;
 
     public void Initialize(int _id)
     {
         id = _id;
+        level = 1;
     }
 
     public void LevelUpdate(int amount = 1){
@@ -19,8 +19,18 @@ public class ItemBoxManager : MonoBehaviour
         ColorUpdate();
     }
 
-    private void ColorUpdate(){
-
+    public void ColorUpdate(){
+        MeshRenderer meshRenderer = GetComponent<MeshRenderer>();
+        Color _color = Color.white;
+        switch(level){
+            case 2:
+                _color = Color.yellow;
+                break;
+            case 3:
+                _color = Color.red;
+                break;
+        }
+        meshRenderer.material.color = _color;
     }
 
     public void Destory()

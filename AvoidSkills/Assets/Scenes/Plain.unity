@@ -18199,7 +18199,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   localPlayerPrefab: {fileID: 2254150103642978228, guid: a60ba4cd34392db459f5ce26d4eb1ca0, type: 3}
   playerPrefab: {fileID: 2254150103642978228, guid: b59799f91e23e10428e83a06005f7022, type: 3}
-  itemSpawnerPrefab: {fileID: 4518736531151333792, guid: cfe49afee36952f4c946cec2bc6b2e3b, type: 3}
+  itemBoxPrefab: {fileID: 7105969462260867821, guid: a47cd6b23160ae34393e13b365215fbd, type: 3}
+  itemBallPrefab: {fileID: 582844479265566629, guid: 5eed79b0fc6ff4746950e58a5a7b7a76, type: 3}
 --- !u!4 &1570970766
 Transform:
   m_ObjectHideFlags: 0

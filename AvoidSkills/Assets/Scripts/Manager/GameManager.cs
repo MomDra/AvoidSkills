@@ -58,6 +58,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void InstantiateItemBox(int _id, Vector3 _position){
+        Debug.Log($"Spawn ItemBox: {_id}");
         GameObject _itemBox = Instantiate(itemBoxPrefab, _position, Quaternion.identity);
         _itemBox.GetComponent<ItemBoxManager>().Initialize(_id);
 

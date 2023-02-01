@@ -239,7 +239,7 @@ public class ClientHandle
 
     public static void LevelUpItemBox(Packet _packet){
         int _id = _packet.ReadInt();
-
+        
         GameManager.Instance.LevelUpItemBox(_id);
     }
 

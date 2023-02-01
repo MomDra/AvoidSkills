@@ -5,7 +5,6 @@ using UnityEngine;
 public class ItemBallManager : MonoBehaviour
 {
     public int id;
-    public GameObject itemBallPrefab;
 
     public void Initialize(int _id)
     {
