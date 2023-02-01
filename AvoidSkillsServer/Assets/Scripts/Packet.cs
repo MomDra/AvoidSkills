@@ -28,7 +28,9 @@ public enum ServerPackets
     startGame,
     scoreUpdate,
     endGame,
-    roomKingModelOnly
+    roomKingModelOnly,
+    addMemberModelOnly,
+    removeMemberModelOnly
 }
 
 /// <summary>Sent from client to server.</summary>

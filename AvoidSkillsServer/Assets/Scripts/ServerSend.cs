@@ -303,5 +303,28 @@ public class ServerSend : MonoBehaviour
         }
     }
 
+    public static void AddMemberModelOnly(int _toClient, GameRoomUser _gameRoomUser)
+    {
+        using (Packet _packet = new Packet((int)ServerPackets.addMemberModelOnly))
+        {
+            _packet.Write(_gameRoomUser.id);
+            _packet.Write(_gameRoomUser.userName);
+            _packet.Write(_gameRoomUser.isRed);
+            _packet.Write(_gameRoomUser.isRoomKing);
+
+            SendTCPData(_toClient, _packet);
+        }
+    }
+
+    public static void RemoveMemberModelOnly(int _userId)
+    {
+        using (Packet _packet = new Packet((int)ServerPackets.removeMemberModelOnly))
+        {
+            _packet.Write(_userId);
+
+            SendTCPDataToAll(_packet);
+        }
+    }
+
     #endregion
 }

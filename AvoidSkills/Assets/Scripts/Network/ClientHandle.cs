@@ -193,23 +193,44 @@ public class ClientHandle
         ScoreUIView.Instance.ScoreTextUpdate(_blueTeamScore, _redTeamScore);
     }
 
-    public static void ItemBallPositionUpdate(){
-        
+    public static void ItemBallPositionUpdate()
+    {
+
     }
 
-    public static void EndGame(Packet _packet){
+    public static void EndGame(Packet _packet)
+    {
         bool _isRedTeamWin = _packet.ReadBool();
 
         ResultUIView.Instance.OpenResultPane(_isRedTeamWin);
     }
 
-    public static void RoomKingModelOnly(Packet _packet){
+    public static void RoomKingModelOnly(Packet _packet)
+    {
         int _id = _packet.ReadInt();
 
         MemberModel.Instance.SetRoomKingModelOnly(_id);
     }
 
+    public static void AddMemberModelOnly(Packet _packet)
+    {
+        int _id = _packet.ReadInt();
+        string _userName = _packet.ReadString();
+        bool _isRed = _packet.ReadBool();
+        bool _isRoomKing = _packet.ReadBool();
 
+        Debug.Log($"{_userName}: {_id} - {_isRed}");
 
+        MemberModel.Instance.AddMemberModelOnly(new GameUser(_id, _userName, _isRed, _isRoomKing));
+    }
+
+    public static void RemoveMemberModelOnly(Packet _packet)
+    {
+        int _userId = _packet.ReadInt();
+
+        Debug.Log("_userId 나갔음" + _userId);
+
+        MemberModel.Instance.RemoveMemberModelOnly(_userId);
+    }
 
 }

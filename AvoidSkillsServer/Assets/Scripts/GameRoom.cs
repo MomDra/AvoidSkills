@@ -57,7 +57,16 @@ public class GameRoom
         }
         allUsers.Remove(_userId);
 
-        ServerSend.RemoveMember(_userId);
+
+        if (inGameRoom.IsGameRunning)
+        {
+            ServerSend.RemoveMemberModelOnly(_userId);
+        }
+        else
+        {
+            ServerSend.RemoveMember(_userId);
+        }
+
     }
 
     public void AddUser(GameRoomUser _user)
@@ -80,11 +89,26 @@ public class GameRoom
 
         foreach (GameRoomUser _roomUser in allUsers.Values)
         {
-            ServerSend.AddMember(_roomUser.id, _user);
+            if (inGameRoom.IsGameRunning)
+            {
+                ServerSend.AddMemberModelOnly(_roomUser.id, _user);
+            }
+            else
+            {
+                ServerSend.AddMember(_roomUser.id, _user);
+            }
+
 
             if (_roomUser != _user)
             {
-                ServerSend.AddMember(_user.id, _roomUser);
+                if (inGameRoom.IsGameRunning)
+                {
+                    ServerSend.AddMemberModelOnly(_roomUser.id, _user);
+                }
+                else
+                {
+                    ServerSend.AddMember(_roomUser.id, _user);
+                }
             }
         }
 
