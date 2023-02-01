@@ -36,6 +36,9 @@ public class MemberUIView : MonoBehaviour
             paneUserId = new int[4] { -1, -1, -1, -1 };
 
             ClientSend.WaitingRoomSceneLoaded();
+
+
+            Debug.Log("Model에서 Load를 시작합니다");
             MemberModel.Instance.LoadMemberUI();
         }
         else if (instance != this)

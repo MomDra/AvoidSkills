@@ -39,19 +39,23 @@ public class OptionUIView : MonoBehaviour
         }
     }
 
-    private void Update() {
-        if(Input.GetKeyDown(KeyCode.Escape)){
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
             if (currentPane != null)
             {
                 currentPane.gameObject.SetActive(false);
-                if(currentPane == reallyExitPane){
+                if (currentPane == reallyExitPane)
+                {
                     CloseReallyExitPane();
                 }
             }
         }
     }
 
-    private void FindComponents(){
+    private void FindComponents()
+    {
         optionPane = transform.GetChild(0).gameObject;
         GameObject bottom_Bar = optionPane.transform.GetChild(3).gameObject;
         Button[] buttons = bottom_Bar.GetComponentsInChildren<Button>();
@@ -64,40 +68,47 @@ public class OptionUIView : MonoBehaviour
         applyButton = buttons[1];
     }
 
-    private void AddButtonListeners(){
+    private void AddButtonListeners()
+    {
         GetComponent<Button>().onClick.AddListener(OpenOptionPane);
         exitButton.onClick.AddListener(OpenReallyExitPane);
         reallyExitButton.onClick.AddListener(ExitGame);
         reallyExitCancelButton.onClick.AddListener(CloseReallyExitPane);
     }
 
-    private void OpenOptionPane(){
+    private void OpenOptionPane()
+    {
         optionPane.gameObject.SetActive(true);
         currentPane = optionPane;
     }
 
 
-    private void OpenReallyExitPane(){
+    private void OpenReallyExitPane()
+    {
         reallyExitPane.SetActive(true);
         currentPane = reallyExitPane;
         iEmumerator = WaitForEnableButtonCoroutine();
         StartCoroutine(iEmumerator);
     }
 
-    private void CloseReallyExitPane(){
+    private void CloseReallyExitPane()
+    {
         reallyExitPane.SetActive(false);
         currentPane = optionPane;
         StopCoroutine(iEmumerator);
     }
 
-    private void ApplyOption(){
+    private void ApplyOption()
+    {
         optionPane.gameObject.SetActive(false);
         currentPane = null;
     }
 
-    private IEnumerator WaitForEnableButtonCoroutine(){
+    private IEnumerator WaitForEnableButtonCoroutine()
+    {
         reallyExitButton.interactable = false;
-        for (int i = 5; i > 0;--i){
+        for (int i = 5; i > 0; --i)
+        {
             reallyExitButton.GetComponentInChildren<TextMeshProUGUI>().text = i.ToString();
             yield return new WaitForSeconds(1f);
         }
@@ -105,9 +116,11 @@ public class OptionUIView : MonoBehaviour
         reallyExitButton.interactable = true;
     }
 
-    private void ExitGame(){
+    private void ExitGame()
+    {
         SceneManager.LoadScene(0);
         MemberModel.Instance.Clear();
+        GameManager.ClearInGameData();
         Client.Instance.Disconnect();
     }
 }

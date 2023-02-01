@@ -38,24 +38,14 @@ public class GameRoom
     public void RemoveUser(int _userId)
     {
         if (numUser <= 0) throw new System.Exception("user의 인원이 0보다 작아지려 하고 있습니다.");
+        bool removeUserIsRed = allUsers[_userId].isRed;
+
+        allUsers.Remove(_userId);
 
         if (roomKing.id == _userId)
         {
             ResetRoomKing(inGameRoom.IsGameRunning);
         }
-
-        --numUser;
-        if (allUsers[_userId].isRed)
-        {
-            --numRedUser;
-            if (numRedUser == 0) inGameRoom.EndGame(false);
-        }
-        else
-        {
-            --numblueUser;
-            if (numblueUser == 0) inGameRoom.EndGame(true);
-        }
-        allUsers.Remove(_userId);
 
 
         if (inGameRoom.IsGameRunning)
@@ -66,6 +56,24 @@ public class GameRoom
         {
             ServerSend.RemoveMember(_userId);
         }
+
+        --numUser;
+
+        if (removeUserIsRed)
+        {
+            --numRedUser;
+            if (numRedUser == 0) inGameRoom.EndGame(false);
+        }
+        else
+        {
+            --numblueUser;
+            if (numblueUser == 0) inGameRoom.EndGame(true);
+        }
+
+
+
+
+
 
     }
 
@@ -103,11 +111,11 @@ public class GameRoom
             {
                 if (inGameRoom.IsGameRunning)
                 {
-                    ServerSend.AddMemberModelOnly(_roomUser.id, _user);
+                    ServerSend.AddMemberModelOnly(_user.id, _roomUser);
                 }
                 else
                 {
-                    ServerSend.AddMember(_roomUser.id, _user);
+                    ServerSend.AddMember(_user.id, _roomUser);
                 }
             }
         }
@@ -147,7 +155,7 @@ public class GameRoom
         }
         else
         {
-            Debug.Log("Every user doesn't ready");
+            Debug.Log("Every user doesn't ready or num of user is only one");
         }
     }
 

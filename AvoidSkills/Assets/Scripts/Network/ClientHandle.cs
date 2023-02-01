@@ -209,6 +209,8 @@ public class ClientHandle
     {
         int _id = _packet.ReadInt();
 
+        Debug.Log($"{_id} is roomking model only");
+
         MemberModel.Instance.SetRoomKingModelOnly(_id);
     }
 
