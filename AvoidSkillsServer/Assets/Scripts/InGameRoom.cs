@@ -33,6 +33,8 @@ public class InGameRoom
 
         Thread.Sleep(100);
         SpawnPlayer();
+
+        ItemBoxGenerator.Instance.Test();
     }
 
     private void SpawnPlayer()

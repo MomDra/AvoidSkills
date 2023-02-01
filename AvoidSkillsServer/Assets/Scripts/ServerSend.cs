@@ -326,5 +326,26 @@ public class ServerSend : MonoBehaviour
         }
     }
 
+    public static void InstantiateItemBox(ItemBox _itemBox)
+    {
+        using (Packet _packet = new Packet((int)ServerPackets.instantiateItemBox))
+        {
+            _packet.Write(_itemBox.id);
+            _packet.Write(_itemBox.transform.position);
+
+            SendTCPDataToAll(_packet);
+        }
+    }
+
+    public static void LevelUpItemBox(int _boxId)
+    {
+        using (Packet _packet = new Packet((int)ServerPackets.levelUpItemBox))
+        {
+            _packet.Write(_boxId);
+
+            SendTCPDataToAll(_packet);
+        }
+    }
+
     #endregion
 }

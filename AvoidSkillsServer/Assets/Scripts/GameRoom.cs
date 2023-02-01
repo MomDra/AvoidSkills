@@ -148,7 +148,7 @@ public class GameRoom
             }
         }
 
-        if (_isAllReady && numUser >= 2)
+        if (_isAllReady && numUser >= 1)
         {
             ServerSend.StartGame();
             inGameRoom.GameStart(allUsers);
