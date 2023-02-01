@@ -30,7 +30,10 @@ public enum ServerPackets
     endGame,
     roomKingModelOnly,
     addMemberModelOnly,
-    removeMemberModelOnly
+    removeMemberModelOnly,
+    instantiateItemBox,
+    levelUpItemBox,
+    destroyItemBox
 }
 
 /// <summary>Sent from client to server.</summary>

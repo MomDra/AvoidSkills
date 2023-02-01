@@ -100,7 +100,10 @@ public class Client : MonoBehaviour
             {(int)ServerPackets.endGame, ClientHandle.EndGame},
             {(int)ServerPackets.roomKingModelOnly, ClientHandle.RoomKingModelOnly},
             {(int)ServerPackets.addMemberModelOnly, ClientHandle.AddMemberModelOnly},
-            {(int)ServerPackets.removeMemberModelOnly, ClientHandle.RemoveMemberModelOnly}
+            {(int)ServerPackets.removeMemberModelOnly, ClientHandle.RemoveMemberModelOnly},
+            {(int)ServerPackets.instantiateItemBox, ClientHandle.InstantiateItemBox},
+            {(int)ServerPackets.levelUpItemBox, ClientHandle.LevelUpItemBox},
+            {(int)ServerPackets.destroyItemBox, ClientHandle.DestroyItemBox}
     };
 
         Debug.Log("Initialized packets.");
