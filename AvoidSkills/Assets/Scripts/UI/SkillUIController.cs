@@ -30,6 +30,10 @@ public class SkillUIController : MonoBehaviour
         skillUIView.SetSkillImage(_skillImg, _slotNum);
     }
 
+    public void RemoveSkillImage(int _slotNum){
+        skillUIView.RemoveSkillImage(_slotNum);
+    }
+
     public void SetCoolTimeGauge(float _currTime, float _maxTime, int _slotNum)
     {
         skillUIView.SetSkillFillAmount(_currTime / _maxTime, _slotNum);

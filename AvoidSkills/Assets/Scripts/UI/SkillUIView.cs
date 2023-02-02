@@ -31,6 +31,10 @@ public class SkillUIView : MonoBehaviour
         slots[_slotNum].skillGauge.fillAmount = 0f;
     }
 
+    public void RemoveSkillImage(int _slotNum){
+        slots[_slotNum].itemImage.sprite = null;
+    }
+
     public void SetSkillFillAmount(float _fillAmount, int _slotNum)
     {
         slots[_slotNum].skillGauge.fillAmount = _fillAmount;
