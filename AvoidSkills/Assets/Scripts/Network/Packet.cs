@@ -33,7 +33,11 @@ public enum ServerPackets
     removeMemberModelOnly,
     instantiateItemBox,
     levelUpItemBox,
-    destroyItemBox
+    destroyItemBox,
+    instantiateItemBall,
+    itemBallPositionUpdate,
+    destroyItemBall,
+    gainItemBall
 }
 
 /// <summary>Sent from client to server.</summary>

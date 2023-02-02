@@ -34,6 +34,10 @@ public enum ServerPackets
     instantiateItemBox,
     levelUpItemBox,
     destroyItemBox,
+    instantiateItemBall,
+    itemBallPositionUpdate,
+    destroyItemBall,
+    gainItemBall
 }
 
 /// <summary>Sent from client to server.</summary>

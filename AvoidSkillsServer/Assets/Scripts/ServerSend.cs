@@ -347,5 +347,50 @@ public class ServerSend : MonoBehaviour
         }
     }
 
+    public static void DestroyItemBox(int _boxId){
+        using(Packet _packet = new Packet((int)ServerPackets.destroyItemBox)){
+            _packet.Write(_boxId);
+
+            SendTCPDataToAll(_packet);
+        }
+    }
+
+    public static void InstantiateItemBall(ItemBall _itemBall){
+        using(Packet _packet = new Packet((int)ServerPackets.instantiateItemBall)){
+            Debug.Log($"itemBall id : {_itemBall.id}");
+            _packet.Write(_itemBall.id);
+            _packet.Write(_itemBall.transform.position);
+            _packet.Write((int)_itemBall.skillCode);
+            _packet.Write((int)_itemBall.skillLevel);
+
+            SendTCPDataToAll(_packet);
+        }
+    }
+
+    public static void ItemBallPositionUpdate(ItemBall _itemBall){
+        using(Packet _packet = new Packet((int)ServerPackets.itemBallPositionUpdate)){
+            _packet.Write(_itemBall.id);
+            _packet.Write(_itemBall.transform.position);
+
+            SendTCPDataToAll(_packet);
+        }
+    }
+
+    public static void DestroyItemBall(int _id){
+        using(Packet _packet = new Packet((int)ServerPackets.destroyItemBall)){
+            _packet.Write(_id);
+
+            SendTCPDataToAll(_packet);
+        }
+    }
+
+    public static void GainItemBall(int _userId, int _itemBallId){
+        using(Packet _packet = new Packet((int)ServerPackets.gainItemBall)){
+            _packet.Write(_itemBallId);
+
+            SendTCPData(_userId, _packet);
+        }
+    }
+
     #endregion
 }

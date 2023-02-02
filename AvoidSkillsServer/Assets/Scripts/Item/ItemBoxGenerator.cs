@@ -9,6 +9,8 @@ public class ItemBoxGenerator : MonoBehaviour
 
     [SerializeField]
     private GameObject itemBoxPrefab;
+    [SerializeField]
+    private float spawnItemBoxInterval;
 
     private float borderX = 19.5f;
     private float borderZ = 11.5f;
@@ -36,7 +38,7 @@ public class ItemBoxGenerator : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(spawnItemBoxInterval);
 
             SpawnItemBox();
         }

@@ -251,9 +251,12 @@ public class ClientHandle
 
     public static void InstantiateItemBall(Packet _packet){
         int _id = _packet.ReadInt();
+        Debug.Log($"itemBall id {_id}");
         Vector3 _position = _packet.ReadVector3();
+        SkillCode _skillCode = (SkillCode)_packet.ReadInt();
+        SkillLevel _skillLevel = (SkillLevel)_packet.ReadInt();
 
-        GameManager.Instance.InstantiateItemBall(_id, _position);
+        GameManager.Instance.InstantiateItemBall(_id, _position, _skillCode, _skillLevel);
     }
 
     public static void ItemBallPositionUpdate(Packet _packet)
@@ -273,9 +276,8 @@ public class ClientHandle
     }
 
     public static void GainItemBall(Packet _packet){
-        SkillCode _skillCode = (SkillCode)_packet.ReadInt();
-        SkillLevel _skillLevel = (SkillLevel)_packet.ReadInt();
+        int _id = _packet.ReadInt();
 
-        GameManager.Instance.GainItemBall(_skillCode, _skillLevel);
+        GameManager.Instance.GainItemBall(_id);
     }
 }

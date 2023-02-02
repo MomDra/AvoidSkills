@@ -21,7 +21,7 @@ public enum SkillCode
 
 public enum SkillLevel
 {
-    LEVEL1 = 0,
+    LEVEL1 = 1,
     LEVEL2,
     LEVEL3
 }
@@ -30,6 +30,9 @@ public class SkillDB : MonoBehaviour
 {
     private static SkillDB instance;
     public static SkillDB Instance { get => instance; }
+
+    public SkillCode skillCodeStartIndex;
+    public SkillCode skillCodeEndIndex;
 
     [SerializeField]
     Dictionary<SkillCode, SkillCommand[]> skillsDic;

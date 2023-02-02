@@ -51,8 +51,7 @@ MonoBehaviour:
   id: 0
   username: 
   controller: {fileID: -6512979262743658453}
-  health: 0
-  maxHealth: 100
+  status: {fileID: 0}
 --- !u!143 &-6512979262743658453
 CharacterController:
   m_ObjectHideFlags: 0

@@ -6,13 +6,25 @@ namespace Network
 {
     public class PlayerController : MonoBehaviour
     {
-        private SkillManager skillManager;
+        private static PlayerController instance;
+        public static PlayerController Instance{ get => instance; }
+        
+        public SkillManager skillManager;
         private PlayerStatus status;
 
         private void Awake()
         {
-            skillManager = GetComponent<SkillManager>();
-            status = GetComponent<PlayerStatus>();
+            if(instance == null )
+            {
+                instance = this;
+                skillManager = GetComponent<SkillManager>();
+                status = GetComponent<PlayerStatus>();
+            }
+            else if(instance != null)
+            {
+                Debug.Log("Instance already exists, destroying object");
+                Destroy(this);
+            }
         }
 
         private void Update()
@@ -32,6 +44,14 @@ namespace Network
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
                 skillManager.ItemSkill1();
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                skillManager.ItemSkill2();
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                skillManager.ItemSkill3();
             }
 
             // if (Input.GetKeyDown(KeyCode.Alpha2))

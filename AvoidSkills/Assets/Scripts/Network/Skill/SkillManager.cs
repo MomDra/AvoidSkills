@@ -30,7 +30,6 @@ namespace Network
 
             skillCommands[0] = SkillDB.Instance.GetSkill(SkillCode.NORMALARROW, SkillLevel.LEVEL1);
             skillCommands[1] = SkillDB.Instance.GetSkill(SkillCode.ARCANESHIFT, SkillLevel.LEVEL1);
-            skillCommands[2] = SkillDB.Instance.GetSkill(SkillCode.FALLBOOK, SkillLevel.LEVEL1);
 
             skillUIController.SetSkillImage(skillCommands[0].SkillInfo.skillImage, 0);
             skillUIController.SetSkillImage(skillCommands[1].SkillInfo.skillImage, 1);
@@ -73,11 +72,11 @@ namespace Network
             }
         }
 
-        public void addItem(SkillCode code, SkillLevel level)
+        public void addItem(SkillCode _skillCode, SkillLevel _skillLevel)
         {
             int index = slotList.add();
-            skillCommands[index] = SkillDB.Instance.GetSkill(code, level);
-            // skillUIManager.addSkillUI(skillComands[index], index);
+            skillCommands[index] = SkillDB.Instance.GetSkill(_skillCode, _skillLevel);
+            skillUIController.SetSkillImage(skillCommands[index].SkillInfo.skillImage, index);
         }
 
         private void deleteItem(int index)
@@ -110,26 +109,26 @@ namespace Network
             if (skillCommands[2] != null && CheckCoolTime(2))
             {
                 ClientSend.ShootSkill(skillCommands[2].SkillInfo.skillCode, skillCommands[2].SkillInfo.level, MousePointer.Instance.MousePositionInWorld);
-                SetCoolTime(5, 2);
+                SetCoolTime(skillCommands[2].SkillInfo.coolDownTime, 2);
                 // CountCheck(2);
             }
         }
 
         public void ItemSkill2()
         {
-            if (skillCommands[3] != null && CheckCoolTime(2))
+            if (skillCommands[3] != null && CheckCoolTime(3))
             {
-                skillCommands[3].cmd(playerTransform, playerStatus);
-                CountCheck(3);
+                ClientSend.ShootSkill(skillCommands[3].SkillInfo.skillCode, skillCommands[3].SkillInfo.level, MousePointer.Instance.MousePositionInWorld);
+                SetCoolTime(skillCommands[3].SkillInfo.coolDownTime, 3);
             }
         }
 
         public void ItemSkill3()
         {
-            if (skillCommands[4] != null && CheckCoolTime(2))
+            if (skillCommands[4] != null && CheckCoolTime(4))
             {
-                skillCommands[4].cmd(playerTransform, playerStatus);
-                CountCheck(4);
+                ClientSend.ShootSkill(skillCommands[4].SkillInfo.skillCode, skillCommands[4].SkillInfo.level, MousePointer.Instance.MousePositionInWorld);
+                SetCoolTime(skillCommands[4].SkillInfo.coolDownTime, 4);
             }
         }
     }

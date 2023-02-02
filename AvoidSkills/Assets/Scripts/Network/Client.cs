@@ -103,7 +103,11 @@ public class Client : MonoBehaviour
             {(int)ServerPackets.removeMemberModelOnly, ClientHandle.RemoveMemberModelOnly},
             {(int)ServerPackets.instantiateItemBox, ClientHandle.InstantiateItemBox},
             {(int)ServerPackets.levelUpItemBox, ClientHandle.LevelUpItemBox},
-            {(int)ServerPackets.destroyItemBox, ClientHandle.DestroyItemBox}
+            {(int)ServerPackets.destroyItemBox, ClientHandle.DestroyItemBox},
+            {(int)ServerPackets.instantiateItemBall,ClientHandle.InstantiateItemBall},
+            {(int)ServerPackets.itemBallPositionUpdate,ClientHandle.ItemBallPositionUpdate},
+            {(int)ServerPackets.destroyItemBall,ClientHandle.DestroyItemBall},
+            {(int)ServerPackets.gainItemBall,ClientHandle.GainItemBall}
     };
 
         Debug.Log("Initialized packets.");

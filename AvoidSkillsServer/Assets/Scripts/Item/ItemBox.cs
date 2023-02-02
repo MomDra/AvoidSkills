@@ -12,6 +12,11 @@ public class ItemBox : MonoBehaviour
 
     bool isRedBox;
 
+    [SerializeField]
+    private int destroyTime;
+    [SerializeField]
+    private GameObject itemBallPrefab;
+
     void Start()
     {
         level = 1;
@@ -39,6 +44,26 @@ public class ItemBox : MonoBehaviour
             ++level;
 
             ServerSend.LevelUpItemBox(id);
+        }
+    }
+
+    private void Destroy(){
+        itemBoxes.Remove(id);
+        GameObject _itemBall = Instantiate(itemBallPrefab, transform.position, Quaternion.identity);
+        _itemBall.GetComponent<ItemBall>().Initialize(level);
+
+        Destroy(gameObject);
+        ServerSend.DestroyItemBox(id);
+    }
+
+    private IEnumerator DestroySelf(){
+        yield return new WaitForSeconds(destroyTime);
+        Destroy();
+    }
+
+    private void OnCollisionEnter(Collision other) {
+        if(other.transform.tag == "NormalAttack"){
+            Destroy();
         }
     }
 }

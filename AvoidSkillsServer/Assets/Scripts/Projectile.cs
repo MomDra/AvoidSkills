@@ -45,9 +45,9 @@ public class Projectile : MonoBehaviour
             if (otherPlayer.id != thrownByPlayer)
             {
                 otherPlayer.TakeDamage(10);
-                if (destroyWhenCollision) Destory();
             }
         }
+        if (destroyWhenCollision) Destory();
     }
 
     public void Initialize(int _thrownByPlayer, float _destroyTime, SkillCode _skillCode, SkillLevel _skillLevel)
