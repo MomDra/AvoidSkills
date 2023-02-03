@@ -86,7 +86,7 @@ MonoBehaviour:
   hp: 100
   maxHp: 100
   armor: 0
-  moveSpeed: 5
+  moveSpeed: 7
 --- !u!1 &2981800231353101801
 GameObject:
   m_ObjectHideFlags: 0

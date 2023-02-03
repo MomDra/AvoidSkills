@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
-  thrownByPlayer: 0
+  ownPlayerID: 0
   skillCode: 0
   skillLevel: 0
   destroyWhenCollision: 0

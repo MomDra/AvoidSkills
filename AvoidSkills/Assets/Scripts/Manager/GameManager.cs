@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour
 
     public void InstantiateProjectile(int _id, Vector3 _position, SkillCode _skillCode, SkillLevel _skillLevel)
     {
+        Debug.Log("Projectile");
         GameObject _projectile = Instantiate(SkillDB.Instance.GetSkillPrefab(_skillCode, _skillLevel), _position, Quaternion.identity);
         _projectile.GetComponent<ProjectileManager>().Initialize(_id);
 
@@ -58,7 +59,6 @@ public class GameManager : MonoBehaviour
     }
 
     public void InstantiateItemBox(int _id, Vector3 _position){
-        Debug.Log($"Spawn ItemBox: {_id}");
         GameObject _itemBox = Instantiate(itemBoxPrefab, _position, Quaternion.identity);
         _itemBox.GetComponent<ItemBoxManager>().Initialize(_id);
 
@@ -83,13 +83,11 @@ public class GameManager : MonoBehaviour
     }
 
     public void DestroyItemBall(int _id){
-        Debug.Log($"Destroy ItemBall {_id}");
         itemBalls[_id].Destory();
         itemBalls.Remove(_id);
     }
 
     public void GainItemBall(int _id){
-        Debug.Log($"gain item Ball {itemBalls[_id].skillCode} , {itemBalls[_id].skillLevel}");
         Network.PlayerController.Instance.skillManager.addItem(itemBalls[_id].skillCode, itemBalls[_id].skillLevel);
     } 
 

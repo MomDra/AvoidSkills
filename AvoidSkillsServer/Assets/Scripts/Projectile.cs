@@ -7,29 +7,27 @@ public class Projectile : MonoBehaviour
     public static Dictionary<int, Projectile> projectiles = new Dictionary<int, Projectile>();
     private static int nextProjectileId = 1;
 
-    [HideInInspector]
     public int id;
     [HideInInspector]
-    public int thrownByPlayer;
+    public int ownPlayerID;
     private float destroyTime;
     [HideInInspector]
     public SkillCode skillCode;
     [HideInInspector]
     public SkillLevel skillLevel;
 
+    private SkillInfo skillInfo;
+
     [SerializeField]
     private bool destroyWhenCollision;
 
 
-    private void Start()
+    private void Awake()
     {
         id = nextProjectileId;
         ++nextProjectileId;
         projectiles.Add(id, this);
-
-        ServerSend.SpawnProjectile(this, thrownByPlayer);
-
-        StartCoroutine(DestroySelf());
+        
     }
 
     private void FixedUpdate()
@@ -42,26 +40,28 @@ public class Projectile : MonoBehaviour
         Player otherPlayer = other.gameObject.GetComponent<Player>();
         if (otherPlayer != null)
         {
-            if (otherPlayer.id != thrownByPlayer)
+            if (otherPlayer.id != ownPlayerID)
             {
-                otherPlayer.TakeDamage(10);
+                otherPlayer.TakeDamage(skillInfo.damage);
             }
         }
         if (destroyWhenCollision) Destory();
     }
 
-    public void Initialize(int _thrownByPlayer, float _destroyTime, SkillCode _skillCode, SkillLevel _skillLevel)
+    public void Initialize(int _ownPlayerID, float _destroyTime, SkillInfo _skillInfo)
     {
-        thrownByPlayer = _thrownByPlayer;
-        destroyTime = _destroyTime;
-        skillCode = _skillCode;
-        skillLevel = _skillLevel;
+        ownPlayerID = _ownPlayerID;
+        destroyTime = (_destroyTime != 0) ? _destroyTime : 5f;
+        skillInfo = _skillInfo;
+        skillCode = skillInfo.skillCode;
+        skillLevel = skillInfo.level;
+        ServerSend.SpawnProjectile(this, ownPlayerID);
+        StartCoroutine(DestroySelf());
     }
 
     private void Explode()
     {
         ServerSend.ProjectileExploded(this);
-
 
         projectiles.Remove(id);
         Destroy(gameObject);
@@ -77,12 +77,14 @@ public class Projectile : MonoBehaviour
     private IEnumerator DestroySelf()
     {
         yield return new WaitForSeconds(destroyTime);
-
         Destory();
     }
 
     public static void Clear()
     {
+        foreach(KeyValuePair<int,Projectile> item in projectiles){
+            Destroy(item.Value);
+        }
         projectiles.Clear();
         nextProjectileId = 1;
     }

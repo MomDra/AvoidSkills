@@ -32,6 +32,10 @@ public class NetworkManager : MonoBehaviour
         Server.Start(4, 26950);
     }
 
+    private void LateUpdate() {
+        
+    }
+
     private void OnApplicationQuit()
     {
         Server.Stop();

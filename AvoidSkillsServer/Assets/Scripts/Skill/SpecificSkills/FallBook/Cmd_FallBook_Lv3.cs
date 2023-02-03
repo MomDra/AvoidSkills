@@ -22,6 +22,6 @@ public class Cmd_FallBook_Lv3 : SkillCommand
     {
         GameObject ob = Instantiate(skillInfo.skillPrefab, _mousePos + Vector3.up * 7, Quaternion.identity);
         ob.GetComponent<Rigidbody>().velocity = Vector3.down * skillInfo.projectileSpeed;
-        ob.GetComponent<Projectile>().Initialize(_player.id, 1.5f, skillInfo.skillCode, skillInfo.level);
+        ob.GetComponent<Projectile>().Initialize(_player.id, 1.5f, skillInfo);
     }
 }

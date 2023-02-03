@@ -19,12 +19,10 @@ public class ItemBox : MonoBehaviour
 
     void Start()
     {
-        level = 1;
+        level = 0;
         id = nextItemBoxId;
         ++nextItemBoxId;
         itemBoxes.Add(id, this);
-
-        Debug.Log("key: " + id);
 
         ServerSend.InstantiateItemBox(this);
 
@@ -65,5 +63,13 @@ public class ItemBox : MonoBehaviour
         if(other.transform.tag == "NormalAttack"){
             Destroy();
         }
+    }
+
+    public static void Clear(){
+        foreach(KeyValuePair<int,ItemBox> item in itemBoxes){
+            Destroy(item.Value);
+        }
+        itemBoxes.Clear();
+        nextItemBoxId = 1;
     }
 }

@@ -106,5 +106,7 @@ public class InGameRoom
         ServerSend.EndGame(_isRedWin);
 
         Projectile.Clear();
+        ItemBox.Clear();
+        ItemBall.Clear();
     }
 }

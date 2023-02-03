@@ -11,7 +11,7 @@ public class ItemBoxManager : MonoBehaviour
     public void Initialize(int _id)
     {
         id = _id;
-        level = 1;
+        level = 0;
     }
 
     public void LevelUpdate(int amount = 1){
@@ -23,10 +23,10 @@ public class ItemBoxManager : MonoBehaviour
         MeshRenderer meshRenderer = GetComponent<MeshRenderer>();
         Color _color = Color.white;
         switch(level){
-            case 2:
+            case 1:
                 _color = Color.yellow;
                 break;
-            case 3:
+            case 2:
                 _color = Color.red;
                 break;
         }

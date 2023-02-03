@@ -26,13 +26,17 @@ public class SkillUIView : MonoBehaviour
     public void SetSkillImage(Sprite _skillImg, int _slotNum)
     {
         if (_skillImg == null) Debug.Log("hahahahaha");
-
+        
+        
         slots[_slotNum].itemImage.sprite = _skillImg;
+        slots[_slotNum].itemImage.color = Color.white;
+
         slots[_slotNum].skillGauge.fillAmount = 0f;
     }
 
     public void RemoveSkillImage(int _slotNum){
         slots[_slotNum].itemImage.sprite = null;
+        slots[_slotNum].itemImage.color = new Color(1, 1, 1, 0);
     }
 
     public void SetSkillFillAmount(float _fillAmount, int _slotNum)

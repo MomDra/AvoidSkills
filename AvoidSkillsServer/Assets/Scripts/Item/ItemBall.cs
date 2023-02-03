@@ -18,10 +18,7 @@ public class ItemBall : MonoBehaviour
 
     void Awake()
     {
-        Debug.Log($"before nextItemBallId : {nextItemBallId}");
         id = nextItemBallId;
-        Debug.Log($"set id : {id}");
-        Debug.Log($"after nextItemBallId : {nextItemBallId}");
         ++nextItemBallId;
         itemBalls.Add(id, this);
 
@@ -33,19 +30,16 @@ public class ItemBall : MonoBehaviour
     {
         skillLevel = (SkillLevel)_level;
         SetRandomSkillCode();
-        Debug.Log($"before id : {id}");
         ServerSend.InstantiateItemBall(this);  
     }
 
     private void SetRandomSkillCode(){
-        skillCode = (SkillCode)new System.Random().Next((int)SkillDB.Instance.skillCodeEndIndex, (int)SkillDB.Instance.skillCodeStartIndex + 1);
+        skillCode = (SkillCode)new System.Random().Next((int)SkillDB.Instance.skillCodeStartIndex, (int)SkillDB.Instance.skillCodeEndIndex + 1);
     }
 
     private void OnTriggerEnter(Collider other) {
-        Debug.Log("Trigger / itemBall Collision");
         Player otherPlayer = other.gameObject.GetComponent<Player>(); 
         if(otherPlayer!=null){
-            Debug.Log($"Trigger / player and itemBall collision : {otherPlayer.id}, {id}");
             ServerSend.GainItemBall(otherPlayer.id, id);
             Destroy();
         }
@@ -60,5 +54,13 @@ public class ItemBall : MonoBehaviour
     private IEnumerator DestroySelf(){
         yield return new WaitForSeconds(destroyTime);
         Destroy();
+    }
+
+    public static void Clear(){
+        foreach(KeyValuePair<int,ItemBall> item in itemBalls){
+            Destroy(item.Value);
+        }
+        itemBalls.Clear();
+        nextItemBallId = 1;
     }
 }

@@ -21,7 +21,7 @@ public enum SkillCode
 
 public enum SkillLevel
 {
-    LEVEL1 = 1,
+    LEVEL1 = 0,
     LEVEL2,
     LEVEL3
 }

@@ -251,7 +251,6 @@ public class ClientHandle
 
     public static void InstantiateItemBall(Packet _packet){
         int _id = _packet.ReadInt();
-        Debug.Log($"itemBall id {_id}");
         Vector3 _position = _packet.ReadVector3();
         SkillCode _skillCode = (SkillCode)_packet.ReadInt();
         SkillLevel _skillLevel = (SkillLevel)_packet.ReadInt();

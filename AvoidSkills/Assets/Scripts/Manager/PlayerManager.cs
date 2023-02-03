@@ -12,19 +12,20 @@ public class PlayerManager : MonoBehaviour
     public MeshRenderer model;
 
     private HpUIController hpUIController;
-    private MiniHpUIController miniHpUIController;
+    private OverHeadStatusUIController overHeadStatusUIController;
     private bool isLocalPlayer;
 
     private void Awake()
     {
         hpUIController = GetComponent<HpUIController>();
-        miniHpUIController = GetComponent<MiniHpUIController>();
+        overHeadStatusUIController = GetComponent<OverHeadStatusUIController>();
     }
 
     public void Initialize(int _id, string _username, bool _isLocalPlayer)
     {
         id = _id;
         username = _username;
+        overHeadStatusUIController.SetUsername(username);
         health = maxHealth;
         isLocalPlayer = _isLocalPlayer;
     }
@@ -36,7 +37,7 @@ public class PlayerManager : MonoBehaviour
         Debug.Log($"health: {_health}, max: {maxHealth}");
 
         if (isLocalPlayer) hpUIController.SetHpBarHealth(health, maxHealth);
-        miniHpUIController.SetHpBarHealth(health, maxHealth);
+        overHeadStatusUIController.SetHpBarHealth(health, maxHealth);
 
         if (health <= 0f)
         {
