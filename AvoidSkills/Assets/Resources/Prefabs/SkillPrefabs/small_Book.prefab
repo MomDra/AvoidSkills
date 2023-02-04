@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6406779244371275502}
   - component: {fileID: 2328876481881425897}
   - component: {fileID: -1579715504078289169}
+  - component: {fileID: 7022065829056193322}
   m_Layer: 0
   m_Name: small_Book
   m_TagString: Untagged
@@ -114,3 +115,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.79852176, y: 0.19736533, z: 0.972213}
   m_Center: {x: 0.010351017, y: 0.098682635, z: 0}
+--- !u!114 &7022065829056193322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4671822481953806898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c09890ef05c9d2c4f8a22cda53f8d35c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
+  explosionPrefab: {fileID: 0}

@@ -16,16 +16,17 @@ public enum ServerPackets
     playerRespawned,
     itemSpawned,
     itemPickedUp,
-    spawnProjectile,
-    projectilePosition,
-    projectileExploded,
-    destoryProjectile,
+    InstantiateSkillObject,
+    SkillObjectPositionUpdate,
+    SkillObjectExploded,
+    destorySkillObject,
     playerStatus,
     addMember,
     removeMember,
     roomKing,
     userReady,
     startGame,
+    startTestLab,
     scoreUpdate,
     endGame,
     roomKingModelOnly,
@@ -48,8 +49,9 @@ public enum ClientPackets
     shootSkill,
     readyButton,
     startButton,
+    testLabStartButton,
     inGameSceneLoaded,
-    waitingRoomSceneLoaded
+    waitingRoomSceneLoaded,
 }
 
 public class Packet : IDisposable

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectileManager : MonoBehaviour
+public class SkillObjectManager : MonoBehaviour
 {
     public int id;
     public GameObject explosionPrefab;
@@ -16,12 +16,12 @@ public class ProjectileManager : MonoBehaviour
     {
         transform.position = _position;
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-        GameManager.projectiles.Remove(id);
-        Destroy(gameObject);
+        Destroy();
     }
 
-    public void Destory()
+    public void Destroy()
     {
+        GameManager.skillObjects.Remove(id);
         Destroy(gameObject);
     }
 

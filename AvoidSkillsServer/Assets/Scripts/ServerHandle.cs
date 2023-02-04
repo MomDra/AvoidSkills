@@ -52,6 +52,12 @@ public class ServerHandle
         Server.gameRoom.StartGame(_start);
     }
 
+    public static void testLabStartButton(int _fromClient, Packet _packet){
+        bool _testLabStart = _packet.ReadBool();
+
+        Server.gameRoom.StartTestLab(_testLabStart);
+    }
+
     public static void InGameSceneLoaded(int _fromClient, Packet _packet)
     {
         bool _isLoaded = _packet.ReadBool();

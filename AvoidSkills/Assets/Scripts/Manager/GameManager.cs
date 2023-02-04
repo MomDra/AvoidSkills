@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get => instance; }
 
     public static Dictionary<int, PlayerManager> players = new Dictionary<int, PlayerManager>();
-    public static Dictionary<int, ProjectileManager> projectiles = new Dictionary<int, ProjectileManager>();
+    public static Dictionary<int, SkillObjectManager> skillObjects = new Dictionary<int, SkillObjectManager>();
     public static Dictionary<int, ItemBoxManager> itemBoxes = new Dictionary<int, ItemBoxManager>();
     public static Dictionary<int, ItemBallManager> itemBalls = new Dictionary<int, ItemBallManager>();
 
@@ -49,13 +49,13 @@ public class GameManager : MonoBehaviour
         players.Add(_id, _player.GetComponent<PlayerManager>());
     }
 
-    public void InstantiateProjectile(int _id, Vector3 _position, SkillCode _skillCode, SkillLevel _skillLevel)
+    public void InstantiateSkillObject(int _id, Vector3 _position, Vector3 _localScale, SkillCode _skillCode, SkillLevel _skillLevel)
     {
-        Debug.Log("Projectile");
-        GameObject _projectile = Instantiate(SkillDB.Instance.GetSkillPrefab(_skillCode, _skillLevel), _position, Quaternion.identity);
-        _projectile.GetComponent<ProjectileManager>().Initialize(_id);
-
-        projectiles.Add(_id, _projectile.GetComponent<ProjectileManager>());
+        GameObject _skillObject = Instantiate(SkillDB.Instance.GetSkillPrefab(_skillCode, _skillLevel), _position, Quaternion.identity);
+        _skillObject.transform.localScale = _localScale;
+        _skillObject.GetComponent<SkillObjectManager>().Initialize(_id);
+        
+        skillObjects.Add(_id, _skillObject.GetComponent<SkillObjectManager>());
     }
 
     public void InstantiateItemBox(int _id, Vector3 _position){
@@ -94,7 +94,7 @@ public class GameManager : MonoBehaviour
     public static void ClearInGameData()
     {
         players.Clear();
-        projectiles.Clear();
+        skillObjects.Clear();
     }
 
 }

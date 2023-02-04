@@ -10,6 +10,7 @@ public class ReadyStartUIView : MonoBehaviour
     public static ReadyStartUIView Instance { get => instance; }
 
     private Button readyStartButton;
+    private Button testLabStartButton;
 
     private bool isRoomKing;
     private bool isReady;
@@ -20,9 +21,12 @@ public class ReadyStartUIView : MonoBehaviour
         {
             instance = this;
 
-            readyStartButton = GetComponentInChildren<Button>();
+            Button[] buttons = GetComponentsInChildren<Button>();
+            readyStartButton = buttons[0];
+            testLabStartButton = buttons[1];
 
             readyStartButton.onClick.AddListener(PressedReadyStartButton);
+            testLabStartButton.onClick.AddListener(PressedStartTestLabButton);
         }
         else if (instance != this)
         {
@@ -54,6 +58,11 @@ public class ReadyStartUIView : MonoBehaviour
         }
     }
 
+    public void TestLabStartButtonInterableUpdate(bool _isRoomKing){
+        if(_isRoomKing) testLabStartButton.interactable = true;
+        else testLabStartButton.interactable = false;
+    }
+
 
     private void PressedReadyStartButton()
     {
@@ -69,7 +78,10 @@ public class ReadyStartUIView : MonoBehaviour
             StartCoroutine(InteractableFalse(0.1f));
             ClientSend.ReadyButton(isReady);
         }
+    }
 
+    private void PressedStartTestLabButton(){
+        ClientSend.TestLabStartButton();
     }
 
     private IEnumerator InteractableFalse(float time)

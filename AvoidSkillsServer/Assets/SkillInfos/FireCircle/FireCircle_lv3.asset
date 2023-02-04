@@ -15,9 +15,10 @@ MonoBehaviour:
   skillCode: 4
   skillName: Fire_Circle_lv3
   damage: 7
-  range: 3
-  projectileSpeed: 0
+  range: 5
+  speed: 0
   delay: 0
+  duration: 5
   level: 2
   coolDownTime: 0
   skillType: 0

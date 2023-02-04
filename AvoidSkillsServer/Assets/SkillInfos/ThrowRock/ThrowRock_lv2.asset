@@ -16,8 +16,9 @@ MonoBehaviour:
   skillName: Throw_Rock_lv2
   damage: 20
   range: 0
-  projectileSpeed: 25
+  speed: 42
   delay: 0
+  duration: 10
   level: 1
   coolDownTime: 0
   skillType: 0

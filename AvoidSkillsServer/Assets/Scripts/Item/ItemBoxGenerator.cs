@@ -29,7 +29,7 @@ public class ItemBoxGenerator : MonoBehaviour
         }
     }
 
-    public void Test()
+    public void GenerateStart()
     {
         StartCoroutine(SpawnItemBoxCoroutine());
     }

@@ -156,49 +156,51 @@ public class ServerSend : MonoBehaviour
         }
     }
 
-    public static void SpawnProjectile(Projectile _projectile, int _thrownByPlaeyr)
+    public static void InstantiateSkillObject(SkillObject _skillObject, int _ownPlayerId)
     {
-        using (Packet _packet = new Packet((int)ServerPackets.spawnProjectile))
+        using (Packet _packet = new Packet((int)ServerPackets.InstantiateSkillObject))
         {
-            _packet.Write(_projectile.id);
-            _packet.Write(_projectile.transform.position);
-            _packet.Write(_thrownByPlaeyr);
+            _packet.Write(_skillObject.id);
+            _packet.Write(_skillObject.transform.position);
+            _packet.Write(_skillObject.transform.localScale);
+            _packet.Write(_ownPlayerId);
 
-            _packet.Write((int)_projectile.skillCode);
-            _packet.Write((int)_projectile.skillLevel);
+            _packet.Write((int)_skillObject.skillInfo.skillCode);
+            _packet.Write((int)_skillObject.skillInfo.level);
 
             SendTCPDataToAll(_packet);
         }
     }
 
-    public static void ProjectilePosition(Projectile _projectile)
+    public static void SkillObjectPositionUpdate(SkillObject _skillObject)
     {
-        using (Packet _packet = new Packet((int)ServerPackets.projectilePosition))
+        using (Packet _packet = new Packet((int)ServerPackets.SkillObjectPositionUpdate))
         {
-            _packet.Write(_projectile.id);
-            _packet.Write(_projectile.transform.position);
-            _packet.Write(_projectile.transform.rotation);
+            _packet.Write(_skillObject.id);
+            _packet.Write(_skillObject.transform.position);
+            _packet.Write(_skillObject.transform.rotation);
+            _packet.Write(_skillObject.transform.localScale);
 
             SendTCPDataToAll(_packet);
         }
     }
 
-    public static void ProjectileExploded(Projectile _projectile)
+    public static void SkillObjectExploded(SkillObject _skillObject)
     {
-        using (Packet _packet = new Packet((int)ServerPackets.projectileExploded))
+        using (Packet _packet = new Packet((int)ServerPackets.SkillObjectExploded))
         {
-            _packet.Write(_projectile.id);
-            _packet.Write(_projectile.transform.position);
+            _packet.Write(_skillObject.id);
+            _packet.Write(_skillObject.transform.position);
 
             SendTCPDataToAll(_packet);
         }
     }
 
-    public static void DestoryProjectile(Projectile _projectile)
+    public static void DestorySkillObject(SkillObject _skillObject)
     {
-        using (Packet _packet = new Packet((int)ServerPackets.destoryProjectile))
+        using (Packet _packet = new Packet((int)ServerPackets.destorySkillObject))
         {
-            _packet.Write(_projectile.id);
+            _packet.Write(_skillObject.id);
 
             SendTCPDataToAll(_packet);
         }
@@ -265,6 +267,15 @@ public class ServerSend : MonoBehaviour
     public static void StartGame()
     {
         using (Packet _packet = new Packet((int)ServerPackets.startGame))
+        {
+            _packet.Write(true);
+
+            SendTCPDataToAll(_packet);
+        }
+    }
+
+    public static void StartTestLab(){
+        using (Packet _packet = new Packet((int)ServerPackets.startTestLab))
         {
             _packet.Write(true);
 

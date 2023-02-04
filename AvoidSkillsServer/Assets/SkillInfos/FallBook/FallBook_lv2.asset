@@ -16,8 +16,9 @@ MonoBehaviour:
   skillName: Fall_Book_lv2
   damage: 20
   range: 0
-  projectileSpeed: 10
+  speed: 7
   delay: 1
+  duration: 2
   level: 1
   coolDownTime: 0
   skillType: 0

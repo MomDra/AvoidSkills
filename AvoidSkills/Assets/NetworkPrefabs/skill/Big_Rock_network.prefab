@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6542790354722250418}
   - component: {fileID: 6542790354723544722}
   - component: {fileID: 6542790354724674642}
-  - component: {fileID: -906784533562285903}
+  - component: {fileID: 5511550205194577369}
   m_Layer: 0
   m_Name: Big_Rock_network
   m_TagString: Untagged
@@ -84,7 +84,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &-906784533562285903
+--- !u!114 &5511550205194577369
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -93,7 +93,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6542790354722472594}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb94e12b958331a4a99967f2beadd6c0, type: 3}
+  m_Script: {fileID: 11500000, guid: c09890ef05c9d2c4f8a22cda53f8d35c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0

@@ -202,6 +202,32 @@ public class GameRoom
         }
     }
 
+    public void StartTestLab(bool _start){
+        bool _isAllReady = true;
+
+        foreach (GameRoomUser _roomUser in allUsers.Values)
+        {
+            if (_roomUser.isReady == false)
+            {
+                if (_roomUser.isRoomKing) continue;
+                _isAllReady = false;
+                Debug.Log($"{_roomUser.id} doesn't ready, {_roomUser.isReady}");
+                break;
+            }
+        }
+
+        if (_isAllReady && numUser >= 1)
+        {
+            Debug.Log("Loading TestLab....");
+            ServerSend.StartTestLab();
+            inGameRoom.GameStart(allUsers);
+        }
+        else
+        {
+            Debug.Log("Every user doesn't ready or num of user is only one");
+        }
+    }
+
     public void SetInGameSceneLoaded(int _userId, bool _isLoaded)
     {
         allUsers[_userId].SetInGameSceneLoaded(_isLoaded);

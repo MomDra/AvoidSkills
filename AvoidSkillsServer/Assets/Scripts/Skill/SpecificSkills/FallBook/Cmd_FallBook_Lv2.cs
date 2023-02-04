@@ -21,7 +21,7 @@ public class Cmd_FallBook_Lv2 : SkillCommand
     public override void cmd(Player _player, PlayerStatus _status, Vector3 _mousePos)
     {
         GameObject ob = Instantiate(skillInfo.skillPrefab, _mousePos + Vector3.up * 7, Quaternion.identity);
-        ob.GetComponent<Rigidbody>().velocity = Vector3.down * skillInfo.projectileSpeed;
-        ob.GetComponent<Projectile>().Initialize(_player.id, 1.5f, skillInfo);
+        ob.GetComponent<Rigidbody>().velocity = Vector3.down * skillInfo.speed;
+        ob.GetComponent<SkillObject>().Initialize(_player.id, skillInfo);
     }
 }

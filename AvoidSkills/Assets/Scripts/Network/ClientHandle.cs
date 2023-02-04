@@ -6,7 +6,6 @@ using System.Net;
 
 public class ClientHandle
 {
-
     public static void Welcome(Packet _packet)
     {
         string _msg = _packet.ReadString();
@@ -93,42 +92,43 @@ public class ClientHandle
         GameManager.players[_byPlayer].itemCount++;
     }
 
-    public static void InstantiateProjectile(Packet _packet)
+    public static void InstantiateSkillObject(Packet _packet)
     {
-        int _projectileId = _packet.ReadInt();
+        int _skillObjectId = _packet.ReadInt();
         Vector3 _position = _packet.ReadVector3();
-        int _thrownByPlayer = _packet.ReadInt();
+        Vector3 _localScale = _packet.ReadVector3();
+        int _ownPlayerId = _packet.ReadInt();
 
         SkillCode _skillCode = (SkillCode)_packet.ReadInt();
         SkillLevel _skillLevel = (SkillLevel)_packet.ReadInt();
 
-        GameManager.Instance.InstantiateProjectile(_projectileId, _position, _skillCode, _skillLevel);
+        GameManager.Instance.InstantiateSkillObject(_skillObjectId, _position, _localScale, _skillCode, _skillLevel);
     }
 
-    public static void ProjectilePositionUpdate(Packet _packet)
+    public static void SkillObjectPositionUpdate(Packet _packet)
     {
-        int _projectileId = _packet.ReadInt();
+        int _skillObjectId = _packet.ReadInt();
         Vector3 _position = _packet.ReadVector3();
         Quaternion _rotation = _packet.ReadQuaternion();
+        Vector3 _localScale = _packet.ReadVector3();
 
-        GameManager.projectiles[_projectileId].transform.position = _position;
-        GameManager.projectiles[_projectileId].transform.rotation = _rotation;
+        GameManager.skillObjects[_skillObjectId].transform.position = _position;
+        GameManager.skillObjects[_skillObjectId].transform.rotation = _rotation;
     }
 
-    public static void ProjectileExploded(Packet _packet)
+    public static void SkillObjectExploded(Packet _packet)
     {
-        int _projectileId = _packet.ReadInt();
+        int _skillObjectId = _packet.ReadInt();
         Vector3 _position = _packet.ReadVector3();
 
-        GameManager.projectiles[_projectileId].Explode(_position);
+        GameManager.skillObjects[_skillObjectId].Explode(_position);
     }
 
-    public static void ProjectileDestroyed(Packet _packet)
+    public static void SkillObjectDestroyed(Packet _packet)
     {
-        int _projectileId = _packet.ReadInt();
+        int _skillObjectId = _packet.ReadInt();
 
-        GameManager.projectiles[_projectileId].Destory();
-        GameManager.projectiles.Remove(_projectileId);
+        GameManager.skillObjects[_skillObjectId].Destroy();
     }
 
     public static void PlayerStatus(Packet _packet)
@@ -183,6 +183,12 @@ public class ClientHandle
         bool _isStart = _packet.ReadBool();
 
         SceneManager.LoadScene(2);
+    }
+
+    public static void StartTestLab(Packet _packet){
+        bool _isTestLabStart = _packet.ReadBool();
+
+        SceneManager.LoadScene(3);
     }
 
     public static void ScoreUpdate(Packet _packet)

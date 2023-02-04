@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6406779244371275502}
   - component: {fileID: 2328876481881425897}
   - component: {fileID: -1579715504078289169}
-  - component: {fileID: -2864967722437962038}
+  - component: {fileID: 450355973290464830}
   m_Layer: 0
   m_Name: Big_Book
   m_TagString: Untagged
@@ -115,7 +115,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.79852176, y: 0.19736533, z: 0.972213}
   m_Center: {x: 0.010351017, y: 0.098682635, z: 0}
---- !u!114 &-2864967722437962038
+--- !u!114 &450355973290464830
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,11 +124,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4671822481953806898}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 307343d15907f3141a9eaf904143e2d4, type: 3}
+  m_Script: {fileID: 11500000, guid: 8b3719db6af31744a9d46b587a3ea223, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
   ownPlayerID: 0
-  skillCode: 0
-  skillLevel: 0
   destroyWhenCollision: 0

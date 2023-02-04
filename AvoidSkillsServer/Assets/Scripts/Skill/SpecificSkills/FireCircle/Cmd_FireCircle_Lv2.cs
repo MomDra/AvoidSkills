@@ -23,6 +23,6 @@ public class Cmd_FireCircle_Lv2 : SkillCommand
     {
         GameObject ob = Instantiate(skillInfo.skillPrefab, _mousePos + Vector3.down, Quaternion.identity);
         ob.transform.localScale = new Vector3(skillInfo.range, ob.transform.localScale.y , skillInfo.range);
-        ob.GetComponent<Projectile>().Initialize(_player.id, 5f, skillInfo);
+        ob.GetComponent<SkillObject>().Initialize(_player.id, skillInfo);
     }
 }

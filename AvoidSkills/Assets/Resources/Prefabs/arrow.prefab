@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1121911298008728901}
   - component: {fileID: 1121911298008728900}
   - component: {fileID: 7233494151324301832}
-  - component: {fileID: 4515467254503936947}
+  - component: {fileID: 2096262668782335393}
   m_Layer: 6
   m_Name: arrow
   m_TagString: Projectile
@@ -115,7 +115,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &4515467254503936947
+--- !u!114 &2096262668782335393
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,6 +124,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 1121911298008728907}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 070b2fb060ac209439c0527ce8f1a89e, type: 3}
+  m_Script: {fileID: 11500000, guid: c09890ef05c9d2c4f8a22cda53f8d35c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
+  explosionPrefab: {fileID: 0}

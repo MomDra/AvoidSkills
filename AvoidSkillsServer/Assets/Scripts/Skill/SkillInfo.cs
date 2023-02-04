@@ -16,8 +16,9 @@ public class SkillInfo : ScriptableObject
     public string skillName;
     public int damage;
     public int range;
-    public int projectileSpeed;
+    public int speed;
     public float delay;
+    public float duration;
     public SkillLevel level;
     public int coolDownTime;
     public SkillType skillType;

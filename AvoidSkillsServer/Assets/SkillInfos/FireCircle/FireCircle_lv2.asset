@@ -15,9 +15,10 @@ MonoBehaviour:
   skillCode: 4
   skillName: Fire_CIrcle_lv2
   damage: 5
-  range: 2
-  projectileSpeed: 0
+  range: 3
+  speed: 0
   delay: 0
+  duration: 5
   level: 1
   coolDownTime: 0
   skillType: 0

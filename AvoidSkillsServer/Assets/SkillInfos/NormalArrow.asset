@@ -16,8 +16,9 @@ MonoBehaviour:
   skillName: Normal_Arrow
   damage: 5
   range: 0
-  projectileSpeed: 40
+  speed: 50
   delay: 0
+  duration: 5
   level: 0
   coolDownTime: 0
   skillType: 0

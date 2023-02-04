@@ -72,6 +72,15 @@ public class ClientSend
         }
     }
 
+    public static void TestLabStartButton(){
+        using (Packet _packet = new Packet((int)ClientPackets.testLabStartButton))
+        {
+            _packet.Write(true);
+
+            SendTCPData(_packet);
+        }
+    }
+
     public static void InGameSceneLoaded()
     {
         using (Packet _packet = new Packet((int)ClientPackets.inGameSceneLoaded))

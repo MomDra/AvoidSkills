@@ -15,9 +15,10 @@ MonoBehaviour:
   skillCode: 3
   skillName: Fall_Book_lv2
   damage: 40
-  range: 0
-  projectileSpeed: 12
+  range: 10
+  speed: 10
   delay: 0.5
+  duration: 2
   level: 2
   coolDownTime: 0
   skillType: 0

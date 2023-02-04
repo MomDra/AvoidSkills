@@ -34,7 +34,7 @@ public class InGameRoom
         Thread.Sleep(100);
         SpawnPlayer();
 
-        ItemBoxGenerator.Instance.Test();
+        ItemBoxGenerator.Instance.GenerateStart();
     }
 
     private void SpawnPlayer()
@@ -105,7 +105,7 @@ public class InGameRoom
 
         ServerSend.EndGame(_isRedWin);
 
-        Projectile.Clear();
+        SkillObject.Clear();
         ItemBox.Clear();
         ItemBall.Clear();
     }

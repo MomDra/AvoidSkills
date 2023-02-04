@@ -120,6 +120,7 @@ public class Server
             {(int)ClientPackets.shootSkill, ServerHandle.ShootSkill},
             {(int)ClientPackets.readyButton, ServerHandle.ReadyButton},
             {(int)ClientPackets.startButton, ServerHandle.StartButton},
+            {(int)ClientPackets.testLabStartButton, ServerHandle.testLabStartButton},
             {(int)ClientPackets.inGameSceneLoaded, ServerHandle.InGameSceneLoaded},
             {(int)ClientPackets.waitingRoomSceneLoaded, ServerHandle.WaitingRoomSceneLoaded}
         };

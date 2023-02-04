@@ -24,11 +24,11 @@ public class Cmd_ThrowRock_Lv2 : SkillCommand
         Vector3 dir = (_mousePos - _player.transform.position).normalized;
         GameObject ob1 = Instantiate(skillInfo.skillPrefab, _player.transform.position + dir + new Vector3(0, 0.5f, 0), Quaternion.identity);
         GameObject ob2 = Instantiate(skillInfo.skillPrefab, _player.transform.position + dir + new Vector3(0, 0.5f, 0), Quaternion.identity);
-        Vector3 velocity = dir * skillInfo.projectileSpeed;
+        Vector3 velocity = dir * skillInfo.speed;
 
         ob1.GetComponent<Rigidbody>().velocity = velocity;
-        ob1.GetComponent<Projectile>().Initialize(_player.id, 2f, skillInfo);
+        ob1.GetComponent<SkillObject>().Initialize(_player.id, skillInfo);
         ob2.GetComponent<Rigidbody>().velocity = velocity;
-        ob2.GetComponent<Projectile>().Initialize(_player.id, 2f, skillInfo);
+        ob2.GetComponent<SkillObject>().Initialize(_player.id, skillInfo);
     }
 }

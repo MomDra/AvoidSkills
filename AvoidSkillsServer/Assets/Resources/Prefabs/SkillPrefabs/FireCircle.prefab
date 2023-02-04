@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 762267858924771618}
   - component: {fileID: 7399707054861561706}
   - component: {fileID: 4914408643860679858}
+  - component: {fileID: 4029976844975055311}
   m_Layer: 0
   m_Name: FireCircle
   m_TagString: Untagged
@@ -4830,3 +4831,18 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &4029976844975055311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4074773818593030553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b3719db6af31744a9d46b587a3ea223, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
+  ownPlayerID: 0
+  destroyWhenCollision: 0

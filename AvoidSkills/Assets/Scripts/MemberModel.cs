@@ -61,6 +61,7 @@ public class MemberModel : MonoBehaviour
         memberDic[_userId].isRoomKing = true;
         MemberUIView.Instance.CrownImageUpdate(_userId);
         ReadyStartUIView.Instance.ReadyStartTextUpdate(myUser.id == _userId);
+        ReadyStartUIView.Instance.TestLabStartButtonInterableUpdate(myUser.id == _userId);
     }
 
     public void SetRoomKingModelOnly(int _userId)

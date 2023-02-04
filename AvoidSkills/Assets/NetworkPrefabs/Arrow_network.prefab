@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8797772665520225937}
   - component: {fileID: 7198692950424134372}
   - component: {fileID: 6398766350552271977}
-  - component: {fileID: 3026120920365945768}
+  - component: {fileID: 5165972703486563350}
   m_Layer: 0
   m_Name: Arrow_network
   m_TagString: Untagged
@@ -98,7 +98,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3026120920365945768
+--- !u!114 &5165972703486563350
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -107,8 +107,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 3543981949475230879}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb94e12b958331a4a99967f2beadd6c0, type: 3}
+  m_Script: {fileID: 11500000, guid: c09890ef05c9d2c4f8a22cda53f8d35c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
-  explosionPrefab: {fileID: 7324672155287757342, guid: 515100b1876dadb469dee2fd55facabd, type: 3}
+  explosionPrefab: {fileID: 0}

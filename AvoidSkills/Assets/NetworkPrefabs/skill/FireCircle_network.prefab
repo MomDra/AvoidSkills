@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 762267858924771618}
   - component: {fileID: 7399707054861561706}
   - component: {fileID: 4914408643860679858}
-  - component: {fileID: 5471034264333559072}
+  - component: {fileID: 7352268286176740103}
   m_Layer: 0
   m_Name: FireCircle_network
   m_TagString: Untagged
@@ -4831,7 +4831,7 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &5471034264333559072
+--- !u!114 &7352268286176740103
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4840,7 +4840,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4074773818593030553}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb94e12b958331a4a99967f2beadd6c0, type: 3}
+  m_Script: {fileID: 11500000, guid: c09890ef05c9d2c4f8a22cda53f8d35c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0

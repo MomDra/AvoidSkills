@@ -21,10 +21,10 @@ public class Cmd_NormalArrow_NA : SkillCommand
     public override void cmd(Player _player, PlayerStatus _status, Vector3 _mousePos)
     {
         Vector3 arrowPos = _player.transform.position + (_mousePos - _player.transform.position).normalized;
-        Vector3 velocity = (_mousePos - arrowPos).normalized * skillInfo.projectileSpeed;
+        Vector3 velocity = (_mousePos - arrowPos).normalized * skillInfo.speed;
 
         GameObject clone = Instantiate(skillInfo.skillPrefab, arrowPos, Quaternion.identity);
         clone.GetComponent<Rigidbody>().velocity = velocity;
-        clone.GetComponent<Projectile>().Initialize(_player.id, 0f, skillInfo);
+        clone.GetComponent<SkillObject>().Initialize(_player.id, skillInfo);
     }
 }

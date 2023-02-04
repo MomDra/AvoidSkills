@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8336911800259214818}
   - component: {fileID: 8336911800259214819}
   - component: {fileID: 8336911800259214812}
-  - component: {fileID: 8336911800259214813}
+  - component: {fileID: 7249833968440386614}
   m_Layer: 0
   m_Name: Arrow
   m_TagString: NormalAttack
@@ -115,7 +115,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!114 &8336911800259214813
+--- !u!114 &7249833968440386614
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,11 +124,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8336911800259214814}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 307343d15907f3141a9eaf904143e2d4, type: 3}
+  m_Script: {fileID: 11500000, guid: 8b3719db6af31744a9d46b587a3ea223, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
-  thrownByPlayer: 0
-  skillCode: 0
-  skillLevel: 0
+  ownPlayerID: 0
   destroyWhenCollision: 1
