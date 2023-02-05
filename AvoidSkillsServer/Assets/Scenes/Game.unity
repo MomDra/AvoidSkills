@@ -758,7 +758,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemBoxPrefab: {fileID: 3165993496158346280, guid: 7f921cf4c662af5419e443dc390f31e9, type: 3}
-  spawnItemBoxInterval: 5
+  spawnItemBoxInterval: 10
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0

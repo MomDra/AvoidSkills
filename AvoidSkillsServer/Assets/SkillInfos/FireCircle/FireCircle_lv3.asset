@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillCode: 4
   skillName: Fire_Circle_lv3
-  damage: 7
-  range: 5
+  damage: 1
+  range: 3
   speed: 0
   delay: 0
   duration: 5

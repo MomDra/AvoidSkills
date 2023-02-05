@@ -78,6 +78,7 @@ public class ServerSend : MonoBehaviour
             _packet.Write(_player.username);
             _packet.Write(_player.transform.position);
             _packet.Write(_player.transform.rotation);
+            _packet.Write(_player.IsRed);
 
             SendTCPData(_toClient, _packet);
         }

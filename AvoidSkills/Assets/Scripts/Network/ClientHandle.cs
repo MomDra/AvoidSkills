@@ -28,10 +28,11 @@ public class ClientHandle
         string _username = _packet.ReadString();
         Vector3 _position = _packet.ReadVector3();
         Quaternion _rotation = _packet.ReadQuaternion();
+        bool _isRed = _packet.ReadBool();
 
         Debug.Log("Player Spawn: " + _id + " / " + _username + " / " + _position + " / " + _rotation);
 
-        GameManager.Instance.SpawnPlayer(_id, _username, _position, _rotation);
+        GameManager.Instance.SpawnPlayer(_id, _username, _position, _rotation, _isRed);
     }
 
     public static void PlayerPositionUpdate(Packet _packet)

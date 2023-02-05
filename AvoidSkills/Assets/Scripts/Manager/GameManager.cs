@@ -32,19 +32,19 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void SpawnPlayer(int _id, string _username, Vector3 _position, Quaternion _rotation)
+    public void SpawnPlayer(int _id, string _username, Vector3 _position, Quaternion _rotation, bool _isRed)
     {
         GameObject _player;
 
         if (_id == Client.Instance.MyId)
         {
             _player = Instantiate(localPlayerPrefab, _position, _rotation);
-            _player.GetComponent<PlayerManager>().Initialize(_id, _username, true);
+            _player.GetComponent<PlayerManager>().Initialize(_id, _username, true, _isRed);
         }
         else
         {
             _player = Instantiate(playerPrefab, _position, _rotation);
-            _player.GetComponent<PlayerManager>().Initialize(_id, _username, false);
+            _player.GetComponent<PlayerManager>().Initialize(_id, _username, false, _isRed);
         }
         players.Add(_id, _player.GetComponent<PlayerManager>());
     }

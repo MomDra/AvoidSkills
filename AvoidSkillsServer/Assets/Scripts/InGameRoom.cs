@@ -69,7 +69,7 @@ public class InGameRoom
         {
             ++blueTeamScore;
 
-            if (blueTeamScore >= 1)
+            if (blueTeamScore >= 2)
             {
                 EndGame(false);
             }
@@ -78,7 +78,7 @@ public class InGameRoom
         {
             ++redTeamScore;
 
-            if (redTeamScore >= 1)
+            if (redTeamScore >= 2)
             {
                 EndGame(true);
             }

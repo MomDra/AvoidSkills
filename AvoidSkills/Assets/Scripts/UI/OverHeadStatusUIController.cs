@@ -18,8 +18,9 @@ public class OverHeadStatusUIController : MonoBehaviour
         overHeadStatusUIView.transform.position = Camera.main.WorldToScreenPoint(transform.position + offset);
     }
 
-    public void SetUsername(string _username){
-        overHeadStatusUIView.SetUsername(_username);
+    public void SetUsername(string _username, bool _isRed)
+    {
+        overHeadStatusUIView.SetUsername(_username, _isRed);
     }
 
     public void SetHpBarHealth(float _currHp, float _maxHp)

@@ -21,11 +21,11 @@ public class PlayerManager : MonoBehaviour
         overHeadStatusUIController = GetComponent<OverHeadStatusUIController>();
     }
 
-    public void Initialize(int _id, string _username, bool _isLocalPlayer)
+    public void Initialize(int _id, string _username, bool _isLocalPlayer, bool _isRed)
     {
         id = _id;
         username = _username;
-        overHeadStatusUIController.SetUsername(username);
+        overHeadStatusUIController.SetUsername(username, _isRed);
         health = maxHealth;
         isLocalPlayer = _isLocalPlayer;
     }

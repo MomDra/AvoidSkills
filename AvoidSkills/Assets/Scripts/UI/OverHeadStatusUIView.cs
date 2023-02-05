@@ -15,8 +15,12 @@ public class OverHeadStatusUIView : MonoBehaviour
         usernameText = GetComponentInChildren<TextMeshProUGUI>();
     }
 
-    public void SetUsername(string _username){
+    public void SetUsername(string _username, bool _isRed)
+    {
         usernameText.SetText(_username);
+
+        if (_isRed) usernameText.color = Color.red;
+        else usernameText.color = Color.blue;
     }
 
     public void SetHpBarFillAmount(float _fillAmount)

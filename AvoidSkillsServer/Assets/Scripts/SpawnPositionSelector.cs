@@ -9,7 +9,7 @@ public class SpawnPositionSelector
 
     public Vector3 GetSpawnPos(bool _isRed)
     {
-        if (!_isRed)
+        if (_isRed)
         {
             if (!redSpawned)
             {
