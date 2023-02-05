@@ -185,7 +185,8 @@ public class ClientHandle
         SceneManager.LoadScene(2);
     }
 
-    public static void StartTestLab(Packet _packet){
+    public static void StartTestLab(Packet _packet)
+    {
         bool _isTestLabStart = _packet.ReadBool();
 
         SceneManager.LoadScene(3);
@@ -236,31 +237,37 @@ public class ClientHandle
         MemberModel.Instance.RemoveMemberModelOnly(_userId);
     }
 
-    public static void InstantiateItemBox(Packet _packet){
+    public static void InstantiateItemBox(Packet _packet)
+    {
         int _id = _packet.ReadInt();
         Vector3 _pos = _packet.ReadVector3();
 
         GameManager.Instance.InstantiateItemBox(_id, _pos);
     }
 
-    public static void LevelUpItemBox(Packet _packet){
+    public static void LevelUpItemBox(Packet _packet)
+    {
         int _id = _packet.ReadInt();
-        
+
         GameManager.Instance.LevelUpItemBox(_id);
     }
 
-    public static void DestroyItemBox(Packet _packet){
+    public static void DestroyItemBox(Packet _packet)
+    {
         int _id = _packet.ReadInt();
 
         GameManager.Instance.DestroyItemBox(_id);
     }
 
-    public static void InstantiateItemBall(Packet _packet){
+    public static void InstantiateItemBall(Packet _packet)
+    {
+
         int _id = _packet.ReadInt();
         Vector3 _position = _packet.ReadVector3();
         SkillCode _skillCode = (SkillCode)_packet.ReadInt();
         SkillLevel _skillLevel = (SkillLevel)_packet.ReadInt();
 
+        Debug.Log($"id: {_id} + ItemBall 생성");
         GameManager.Instance.InstantiateItemBall(_id, _position, _skillCode, _skillLevel);
     }
 
@@ -274,14 +281,18 @@ public class ClientHandle
         GameManager.itemBalls[_id].transform.rotation = _rotation;
     }
 
-    public static void DestroyItemBall(Packet _packet){
+    public static void DestroyItemBall(Packet _packet)
+    {
         int _id = _packet.ReadInt();
 
         GameManager.Instance.DestroyItemBall(_id);
     }
 
-    public static void GainItemBall(Packet _packet){
+    public static void GainItemBall(Packet _packet)
+    {
         int _id = _packet.ReadInt();
+
+        Debug.Log($"id: {_id} + GainItemBall 얻었음");
 
         GameManager.Instance.GainItemBall(_id);
     }

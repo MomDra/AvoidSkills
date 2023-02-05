@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 7399707054861561706}
   - component: {fileID: 4914408643860679858}
   - component: {fileID: 4029976844975055311}
-  m_Layer: 0
+  - component: {fileID: 4746517393242238857}
+  m_Layer: 6
   m_Name: FireCircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,7 +30,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -767,7 +768,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 2.5
+      value: 1
       mode: 0
       spread: 0
       speed:
@@ -886,7 +887,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1000
+      scalar: 300
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -4846,3 +4847,17 @@ MonoBehaviour:
   id: 0
   ownPlayerID: 0
   destroyWhenCollision: 0
+  isContinuous: 1
+--- !u!135 &4746517393242238857
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4074773818593030553}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0, y: 0, z: 0}

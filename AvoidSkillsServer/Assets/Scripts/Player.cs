@@ -13,6 +13,10 @@ public class Player : MonoBehaviour
 
     Vector3 targetPos;
 
+    private bool isSpanwd;
+    private bool isRed;
+    public bool IsRed { get => isRed; }
+
     private void Awake()
     {
         status = GetComponent<PlayerStatus>();
@@ -21,10 +25,15 @@ public class Player : MonoBehaviour
         targetPos = Vector3.zero;
     }
 
-    public void Initialize(int _id, string _username)
+    public void Initialize(int _id, string _username, Vector3 _pos, bool _isRed)
     {
         id = _id;
         username = _username;
+        isSpanwd = true;
+
+        transform.position = _pos;
+        targetPos = _pos;
+        isRed = _isRed;
     }
 
     public void FixedUpdate()
@@ -33,6 +42,8 @@ public class Player : MonoBehaviour
         {
             Move();
         }
+
+        CheckInMap();
     }
 
     private void Move()
@@ -52,7 +63,7 @@ public class Player : MonoBehaviour
 
     private bool IsDestination()
     {
-        return Vector3.Distance(transform.position, targetPos) < 0.1f;
+        return Vector3.Distance(transform.position, targetPos) < 0.15f;
     }
 
     public void ShootSkill(SkillCode _skillCode, SkillLevel _skillLevel, Vector3 _mousePos)
@@ -70,6 +81,7 @@ public class Player : MonoBehaviour
         status.hp -= _damage;
         if (status.hp <= 0)
         {
+            isSpanwd = false;
             status.hp = 0;
             controller.enabled = false;
             transform.position = new Vector3(0f, 25f, 0f);
@@ -83,12 +95,36 @@ public class Player : MonoBehaviour
         ServerSend.PlayerHealth(this);
     }
 
+    private void Dead()
+    {
+        isSpanwd = false;
+        status.hp = 0;
+        controller.enabled = false;
+        transform.position = new Vector3(0f, 25f, 0f);
+        ServerSend.PlayerPosition(this);
+
+        Server.gameRoom.inGameRoom.DeadPlayer(id);
+
+        StartCoroutine(Respawn());
+
+        ServerSend.PlayerHealth(this);
+    }
+
     private IEnumerator Respawn()
     {
         yield return new WaitForSeconds(5f);
 
+        isSpanwd = true;
         status.hp = status.maxHp;
         controller.enabled = true;
         ServerSend.PlayerRespawned(this);
+    }
+
+    private void CheckInMap()
+    {
+        if (Mathf.Abs(transform.position.x) > 21.5f || Mathf.Abs(transform.position.z) > 13.5f && isSpanwd == true)
+        {
+            Dead();
+        }
     }
 }

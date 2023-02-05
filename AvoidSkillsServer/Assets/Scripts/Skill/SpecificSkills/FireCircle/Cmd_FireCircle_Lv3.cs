@@ -21,7 +21,7 @@ public class Cmd_FireCircle_Lv3 : SkillCommand
     public override void cmd(Player _player, PlayerStatus _status, Vector3 _mousePos)
     {
         GameObject ob = Instantiate(skillInfo.skillPrefab, _mousePos + Vector3.down, Quaternion.identity);
-        ob.transform.localScale = new Vector3(skillInfo.range, ob.transform.localScale.y , skillInfo.range);
-        ob.GetComponent<SkillObject>().Initialize(_player.id, skillInfo);
+        ob.transform.localScale = new Vector3(skillInfo.range, ob.transform.localScale.y, skillInfo.range);
+        ob.GetComponent<SkillObject>().Initialize(_player.id, skillInfo, _player.IsRed);
     }
 }

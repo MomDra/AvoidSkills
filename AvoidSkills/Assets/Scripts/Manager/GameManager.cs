@@ -54,11 +54,12 @@ public class GameManager : MonoBehaviour
         GameObject _skillObject = Instantiate(SkillDB.Instance.GetSkillPrefab(_skillCode, _skillLevel), _position, Quaternion.identity);
         _skillObject.transform.localScale = _localScale;
         _skillObject.GetComponent<SkillObjectManager>().Initialize(_id);
-        
+
         skillObjects.Add(_id, _skillObject.GetComponent<SkillObjectManager>());
     }
 
-    public void InstantiateItemBox(int _id, Vector3 _position){
+    public void InstantiateItemBox(int _id, Vector3 _position)
+    {
         GameObject _itemBox = Instantiate(itemBoxPrefab, _position, Quaternion.identity);
         _itemBox.GetComponent<ItemBoxManager>().Initialize(_id);
 
@@ -70,31 +71,37 @@ public class GameManager : MonoBehaviour
         itemBoxes[_id].LevelUpdate();
     }
 
-    public void DestroyItemBox(int _id){
+    public void DestroyItemBox(int _id)
+    {
         itemBoxes[_id].Destory();
         itemBoxes.Remove(_id);
     }
 
-    public void InstantiateItemBall(int _id, Vector3 _position, SkillCode _skillCode, SkillLevel _skillLevel){
+    public void InstantiateItemBall(int _id, Vector3 _position, SkillCode _skillCode, SkillLevel _skillLevel)
+    {
         GameObject _itemBall = Instantiate(itemBallPrefab, _position, Quaternion.identity);
         _itemBall.GetComponent<ItemBallManager>().Initialize(_id, _skillCode, _skillLevel);
 
         itemBalls.Add(_id, _itemBall.GetComponent<ItemBallManager>());
     }
 
-    public void DestroyItemBall(int _id){
+    public void DestroyItemBall(int _id)
+    {
         itemBalls[_id].Destory();
         itemBalls.Remove(_id);
     }
 
-    public void GainItemBall(int _id){
+    public void GainItemBall(int _id)
+    {
         Network.PlayerController.Instance.skillManager.addItem(itemBalls[_id].skillCode, itemBalls[_id].skillLevel);
-    } 
+    }
 
     public static void ClearInGameData()
     {
         players.Clear();
         skillObjects.Clear();
+        itemBoxes.Clear();
+        itemBalls.Clear();
     }
 
 }

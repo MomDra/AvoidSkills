@@ -10,10 +10,15 @@ public class SkillObject : MonoBehaviour
     public int id;
     [HideInInspector]
     public int ownPlayerID;
-    public SkillInfo skillInfo{ get; private set; }
+    public SkillInfo skillInfo { get; private set; }
 
     [SerializeField]
     private bool destroyWhenCollision;
+    [SerializeField]
+    private bool isContinuous;
+
+
+    bool isSpawnedByRed;
 
 
     private void Awake()
@@ -30,21 +35,47 @@ public class SkillObject : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
+        if (isContinuous) return;
+
         Player otherPlayer = other.gameObject.GetComponent<Player>();
         if (otherPlayer != null)
         {
             if (otherPlayer.id != ownPlayerID)
             {
-                otherPlayer.TakeDamage(skillInfo.damage);
+                if (otherPlayer.IsRed != isSpawnedByRed)
+                    otherPlayer.TakeDamage(skillInfo.damage);
             }
         }
         if (destroyWhenCollision) Destory();
     }
 
-    public void Initialize(int _ownPlayerID, SkillInfo _skillInfo)
+    private void OnTriggerStay(Collider other)
     {
+        if (!isContinuous) return;
+
+        Player otherPlayer = other.gameObject.GetComponent<Player>();
+        if (otherPlayer != null)
+        {
+            if (otherPlayer.id != ownPlayerID)
+            {
+                if (otherPlayer.IsRed != isSpawnedByRed)
+                    otherPlayer.TakeDamage(skillInfo.damage);
+            }
+        }
+    }
+
+    public void Initialize(int _ownPlayerID, SkillInfo _skillInfo, bool _isSpawnedByRed)
+    {
+        SphereCollider sphereCollider = GetComponent<SphereCollider>();
+        if (sphereCollider != null)
+        {
+            sphereCollider.radius = _skillInfo.range;
+        }
+
+
         ownPlayerID = _ownPlayerID;
         skillInfo = _skillInfo;
+        isSpawnedByRed = _isSpawnedByRed;
         ServerSend.InstantiateSkillObject(this, ownPlayerID);
         StartCoroutine(DestroySelf());
     }
@@ -72,9 +103,11 @@ public class SkillObject : MonoBehaviour
 
     public static void Clear()
     {
-        foreach(KeyValuePair<int,SkillObject> item in skillObjects){
-            Destroy(item.Value);
+        foreach (SkillObject item in skillObjects.Values)
+        {
+            Destroy(item.gameObject);
         }
+
         skillObjects.Clear();
         nextSkillObjectId = 1;
     }

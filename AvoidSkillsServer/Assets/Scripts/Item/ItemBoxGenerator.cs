@@ -15,6 +15,8 @@ public class ItemBoxGenerator : MonoBehaviour
     private float borderX = 19.5f;
     private float borderZ = 11.5f;
 
+    private IEnumerator spawnItemBoxCoroutine;
+
     private void Awake()
     {
         if (instance == null)
@@ -31,7 +33,13 @@ public class ItemBoxGenerator : MonoBehaviour
 
     public void GenerateStart()
     {
-        StartCoroutine(SpawnItemBoxCoroutine());
+        spawnItemBoxCoroutine = SpawnItemBoxCoroutine();
+        StartCoroutine(spawnItemBoxCoroutine);
+    }
+
+    public void GenerateStop()
+    {
+        StopCoroutine(spawnItemBoxCoroutine);
     }
 
     private IEnumerator SpawnItemBoxCoroutine()

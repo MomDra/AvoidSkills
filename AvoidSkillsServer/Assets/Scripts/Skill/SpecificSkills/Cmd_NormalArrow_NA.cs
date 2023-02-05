@@ -25,6 +25,6 @@ public class Cmd_NormalArrow_NA : SkillCommand
 
         GameObject clone = Instantiate(skillInfo.skillPrefab, arrowPos, Quaternion.identity);
         clone.GetComponent<Rigidbody>().velocity = velocity;
-        clone.GetComponent<SkillObject>().Initialize(_player.id, skillInfo);
+        clone.GetComponent<SkillObject>().Initialize(_player.id, skillInfo, _player.IsRed);
     }
 }

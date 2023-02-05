@@ -16,11 +16,13 @@ public class ItemBall : MonoBehaviour
     [SerializeField]
     private int destroyTime;
 
-    void Awake()
+    private void Start()
     {
         id = nextItemBallId;
         ++nextItemBallId;
         itemBalls.Add(id, this);
+
+        ServerSend.InstantiateItemBall(this);
 
         Debug.Log("key: " + id);
         StartCoroutine(DestroySelf());
@@ -30,36 +32,43 @@ public class ItemBall : MonoBehaviour
     {
         skillLevel = (SkillLevel)_level;
         SetRandomSkillCode();
-        ServerSend.InstantiateItemBall(this);  
     }
 
-    private void SetRandomSkillCode(){
+    private void SetRandomSkillCode()
+    {
         skillCode = (SkillCode)new System.Random().Next((int)SkillDB.Instance.skillCodeStartIndex, (int)SkillDB.Instance.skillCodeEndIndex + 1);
     }
 
-    private void OnTriggerEnter(Collider other) {
-        Player otherPlayer = other.gameObject.GetComponent<Player>(); 
-        if(otherPlayer!=null){
+    private void OnTriggerEnter(Collider other)
+    {
+        Player otherPlayer = other.gameObject.GetComponent<Player>();
+        if (otherPlayer != null)
+        {
             ServerSend.GainItemBall(otherPlayer.id, id);
             Destroy();
         }
     }
 
-    private void Destroy(){
+    private void Destroy()
+    {
         itemBalls.Remove(id);
         ServerSend.DestroyItemBall(id);
         Destroy(gameObject);
     }
 
-    private IEnumerator DestroySelf(){
+    private IEnumerator DestroySelf()
+    {
         yield return new WaitForSeconds(destroyTime);
         Destroy();
     }
 
-    public static void Clear(){
-        foreach(KeyValuePair<int,ItemBall> item in itemBalls){
-            Destroy(item.Value);
+    public static void Clear()
+    {
+        foreach (ItemBall item in itemBalls.Values)
+        {
+            Destroy(item.gameObject);
         }
+
         itemBalls.Clear();
         nextItemBallId = 1;
     }

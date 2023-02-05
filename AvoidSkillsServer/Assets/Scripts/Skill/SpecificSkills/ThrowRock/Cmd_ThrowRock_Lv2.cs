@@ -27,8 +27,8 @@ public class Cmd_ThrowRock_Lv2 : SkillCommand
         Vector3 velocity = dir * skillInfo.speed;
 
         ob1.GetComponent<Rigidbody>().velocity = velocity;
-        ob1.GetComponent<SkillObject>().Initialize(_player.id, skillInfo);
+        ob1.GetComponent<SkillObject>().Initialize(_player.id, skillInfo, _player.IsRed);
         ob2.GetComponent<Rigidbody>().velocity = velocity;
-        ob2.GetComponent<SkillObject>().Initialize(_player.id, skillInfo);
+        ob2.GetComponent<SkillObject>().Initialize(_player.id, skillInfo, _player.IsRed);
     }
 }

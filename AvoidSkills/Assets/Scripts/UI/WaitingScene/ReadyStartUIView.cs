@@ -26,7 +26,7 @@ public class ReadyStartUIView : MonoBehaviour
             testLabStartButton = buttons[1];
 
             readyStartButton.onClick.AddListener(PressedReadyStartButton);
-            testLabStartButton.onClick.AddListener(PressedStartTestLabButton);
+            //testLabStartButton.onClick.AddListener(PressedStartTestLabButton);
         }
         else if (instance != this)
         {
@@ -58,8 +58,9 @@ public class ReadyStartUIView : MonoBehaviour
         }
     }
 
-    public void TestLabStartButtonInterableUpdate(bool _isRoomKing){
-        if(_isRoomKing) testLabStartButton.interactable = true;
+    public void TestLabStartButtonInterableUpdate(bool _isRoomKing)
+    {
+        if (_isRoomKing) testLabStartButton.interactable = true;
         else testLabStartButton.interactable = false;
     }
 
@@ -80,7 +81,8 @@ public class ReadyStartUIView : MonoBehaviour
         }
     }
 
-    private void PressedStartTestLabButton(){
+    private void PressedStartTestLabButton()
+    {
         ClientSend.TestLabStartButton();
     }
 

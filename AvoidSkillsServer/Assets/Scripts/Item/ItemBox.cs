@@ -45,7 +45,8 @@ public class ItemBox : MonoBehaviour
         }
     }
 
-    private void Destroy(){
+    private void Destroy()
+    {
         itemBoxes.Remove(id);
         GameObject _itemBall = Instantiate(itemBallPrefab, transform.position, Quaternion.identity);
         _itemBall.GetComponent<ItemBall>().Initialize(level);
@@ -54,21 +55,28 @@ public class ItemBox : MonoBehaviour
         ServerSend.DestroyItemBox(id);
     }
 
-    private IEnumerator DestroySelf(){
+    private IEnumerator DestroySelf()
+    {
         yield return new WaitForSeconds(destroyTime);
         Destroy();
     }
 
-    private void OnCollisionEnter(Collision other) {
-        if(other.transform.tag == "NormalAttack"){
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.transform.tag == "NormalAttack")
+        {
             Destroy();
         }
     }
 
-    public static void Clear(){
-        foreach(KeyValuePair<int,ItemBox> item in itemBoxes){
-            Destroy(item.Value);
+    public static void Clear()
+    {
+
+        foreach (ItemBox item in itemBoxes.Values)
+        {
+            Destroy(item.gameObject);
         }
+
         itemBoxes.Clear();
         nextItemBoxId = 1;
     }

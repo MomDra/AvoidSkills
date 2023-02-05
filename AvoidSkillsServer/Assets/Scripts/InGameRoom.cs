@@ -17,9 +17,12 @@ public class InGameRoom
     bool isGameRunning;
     public bool IsGameRunning { get => isGameRunning; }
 
+    SpawnPositionSelector spawnPositionSelector;
+
     public InGameRoom()
     {
         player = new Dictionary<int, Player>();
+        spawnPositionSelector = new SpawnPositionSelector();
     }
 
     public void GameStart(Dictionary<int, GameRoomUser> _allUsers)
@@ -30,6 +33,7 @@ public class InGameRoom
         isGameRunning = true;
 
         player.Clear();
+        spawnPositionSelector.Clear();
 
         Thread.Sleep(100);
         SpawnPlayer();
@@ -41,8 +45,9 @@ public class InGameRoom
     {
         foreach (GameRoomUser _roomUser in allUsers.Values)
         {
+            Vector3 spawnPos = spawnPositionSelector.GetSpawnPos(_roomUser.isRed);
             Player _player = NetworkManager.Instance.InstantiatePlayer();
-            _player.Initialize(_roomUser.id, _roomUser.userName);
+            _player.Initialize(_roomUser.id, _roomUser.userName, spawnPos, _roomUser.isRed);
 
             player.Add(_roomUser.id, _player);
 
@@ -87,6 +92,8 @@ public class InGameRoom
         if (!isGameRunning) return;
         isGameRunning = false;
 
+        ItemBoxGenerator.Instance.GenerateStop();
+
         Debug.Log("EndGame - " + (_isRedWin ? "Red Team" : "Blue Team") + "Win");
 
         // 모든 플레이어 삭제
@@ -108,5 +115,6 @@ public class InGameRoom
         SkillObject.Clear();
         ItemBox.Clear();
         ItemBall.Clear();
+
     }
 }
