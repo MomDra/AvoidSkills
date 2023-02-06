@@ -16,6 +16,19 @@ public class ItemBall : MonoBehaviour
     [SerializeField]
     private int destroyTime;
 
+    private bool isStop = true;
+
+    private static Vector3[] directions = new Vector3[8]{
+        new(0.05f, 0.1f, 0f),
+        new(-0.05f, 0.1f, 0f),
+        new(0f, 0.1f, 0.05f),
+        new(0f, 0.1f, -0.05f),
+        new(0.025f, 0.1f, 0.025f),
+        new(-0.025f, 0.1f, -0.025f),
+        new(-0.025f, 0.1f, 0.025f),
+        new(0.025f, 0.1f, -0.025f)
+    };
+
     private void Start()
     {
         id = nextItemBallId;
@@ -23,6 +36,7 @@ public class ItemBall : MonoBehaviour
         itemBalls.Add(id, this);
 
         ServerSend.InstantiateItemBall(this);
+        StartCoroutine(AddForceToRandomDirection());
 
         Debug.Log("key: " + id);
         StartCoroutine(DestroySelf());
@@ -34,9 +48,38 @@ public class ItemBall : MonoBehaviour
         SetRandomSkillCode();
     }
 
+    private IEnumerator AddForceToRandomDirection(){
+        isStop = false;
+        Vector3 lastPos = transform.position;
+
+        System.Random random = new();
+
+        Rigidbody rigidbody = GetComponent<Rigidbody>();
+
+        rigidbody.AddForce(directions[random.Next(0, 7)] * Time.deltaTime, ForceMode.Impulse);
+        while(!isStop){
+            if(lastPos == transform.position){
+                isStop = true;
+            }
+            lastPos = transform.position;
+            ServerSend.ItemBallPositionUpdate(this);
+            yield return null;
+        }
+        isStop = true;
+    }
+
     private void SetRandomSkillCode()
     {
         skillCode = (SkillCode)new System.Random().Next((int)SkillDB.Instance.skillCodeStartIndex, (int)SkillDB.Instance.skillCodeEndIndex + 1);
+    }
+
+    private void OnCollisionEnter(Collision other) {
+        Player otherPlayer = other.gameObject.GetComponent<Player>();
+        if (otherPlayer != null)
+        {
+            ServerSend.GainItemBall(otherPlayer.id, id);
+            Destroy();
+        }
     }
 
     private void OnTriggerEnter(Collider other)

@@ -47,6 +47,7 @@ public class ItemBox : MonoBehaviour
 
     private void Destroy()
     {
+        StopCoroutine(LevelUpCoroutine());
         itemBoxes.Remove(id);
         GameObject _itemBall = Instantiate(itemBallPrefab, transform.position, Quaternion.identity);
         _itemBall.GetComponent<ItemBall>().Initialize(level);

@@ -409,6 +409,7 @@ public class ServerSend : MonoBehaviour
         {
             _packet.Write(_itemBall.id);
             _packet.Write(_itemBall.transform.position);
+            _packet.Write(_itemBall.transform.rotation);
 
             SendTCPDataToAll(_packet);
         }

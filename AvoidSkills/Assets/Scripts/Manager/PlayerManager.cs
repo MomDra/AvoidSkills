@@ -10,6 +10,7 @@ public class PlayerManager : MonoBehaviour
     public float maxHealth;
     public int itemCount = 0;
     public MeshRenderer model;
+    private Material material;
 
     private HpUIController hpUIController;
     private OverHeadStatusUIController overHeadStatusUIController;
@@ -19,6 +20,7 @@ public class PlayerManager : MonoBehaviour
     {
         hpUIController = GetComponent<HpUIController>();
         overHeadStatusUIController = GetComponent<OverHeadStatusUIController>();
+        material = GetComponentInChildren<Renderer>().material;
     }
 
     public void Initialize(int _id, string _username, bool _isLocalPlayer, bool _isRed)
@@ -34,15 +36,22 @@ public class PlayerManager : MonoBehaviour
     {
         health = _health;
 
-        Debug.Log($"health: {_health}, max: {maxHealth}");
-
         if (isLocalPlayer) hpUIController.SetHpBarHealth(health, maxHealth);
         overHeadStatusUIController.SetHpBarHealth(health, maxHealth);
+
+        StartCoroutine(ChangePlayerColor(Color.red, 0.1f));
 
         if (health <= 0f)
         {
             Die();
         }
+    }
+
+    private IEnumerator ChangePlayerColor(Color _color, float _time){
+        Color currentColor = material.color;
+        material.color = _color;
+        yield return new WaitForSeconds(_time);
+        material.color = currentColor;
     }
 
     public void Die()

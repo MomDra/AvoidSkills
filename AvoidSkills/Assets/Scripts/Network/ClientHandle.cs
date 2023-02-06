@@ -70,6 +70,7 @@ public class ClientHandle
         int _id = _packet.ReadInt();
         int _health = _packet.ReadInt();
 
+        
         GameManager.players[_id].SetHealth(_health);
     }
 
@@ -290,6 +291,7 @@ public class ClientHandle
         int _id = _packet.ReadInt();
         Vector3 _position = _packet.ReadVector3();
         Quaternion _rotation = _packet.ReadQuaternion();
+        Debug.Log($"ItemBall Position Update: {_id}, {_position}");
 
         GameManager.itemBalls[_id].transform.position = _position;
         GameManager.itemBalls[_id].transform.rotation = _rotation;
