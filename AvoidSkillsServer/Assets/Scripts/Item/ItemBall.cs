@@ -36,9 +36,7 @@ public class ItemBall : MonoBehaviour
         itemBalls.Add(id, this);
 
         ServerSend.InstantiateItemBall(this);
-        StartCoroutine(AddForceToRandomDirection());
 
-        Debug.Log("key: " + id);
         StartCoroutine(DestroySelf());
     }
 
@@ -48,7 +46,8 @@ public class ItemBall : MonoBehaviour
         SetRandomSkillCode();
     }
 
-    private IEnumerator AddForceToRandomDirection(){
+    private IEnumerator AddForceToRandomDirection()
+    {
         isStop = false;
         Vector3 lastPos = transform.position;
 
@@ -57,8 +56,10 @@ public class ItemBall : MonoBehaviour
         Rigidbody rigidbody = GetComponent<Rigidbody>();
 
         rigidbody.AddForce(directions[random.Next(0, 7)] * Time.deltaTime, ForceMode.Impulse);
-        while(!isStop){
-            if(lastPos == transform.position){
+        while (!isStop)
+        {
+            if (lastPos == transform.position)
+            {
                 isStop = true;
             }
             lastPos = transform.position;
@@ -71,15 +72,6 @@ public class ItemBall : MonoBehaviour
     private void SetRandomSkillCode()
     {
         skillCode = (SkillCode)new System.Random().Next((int)SkillDB.Instance.skillCodeStartIndex, (int)SkillDB.Instance.skillCodeEndIndex + 1);
-    }
-
-    private void OnCollisionEnter(Collision other) {
-        Player otherPlayer = other.gameObject.GetComponent<Player>();
-        if (otherPlayer != null)
-        {
-            ServerSend.GainItemBall(otherPlayer.id, id);
-            Destroy();
-        }
     }
 
     private void OnTriggerEnter(Collider other)

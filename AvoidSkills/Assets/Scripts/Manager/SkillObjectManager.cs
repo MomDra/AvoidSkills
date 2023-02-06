@@ -16,16 +16,13 @@ public class SkillObjectManager : MonoBehaviour
     public void Explode(Vector3 _position)
     {
         transform.position = _position;
-        
-        if(hitEffectPrefab!=null) Destroy(Instantiate(hitEffectPrefab, transform.position, Quaternion.identity), 5f);
-        if(explosionPrefab!=null) Destroy(Instantiate(explosionPrefab, transform.position, Quaternion.identity), 5f);
-        Destroy();
+
+        if (hitEffectPrefab != null) Destroy(Instantiate(hitEffectPrefab, transform.position, Quaternion.identity), 5f);
+        if (explosionPrefab != null) Destroy(Instantiate(explosionPrefab, transform.position, Quaternion.identity), 5f);
     }
 
     public void Destroy()
     {
-        GameManager.skillObjects.Remove(id);
         Destroy(gameObject);
     }
-
 }
