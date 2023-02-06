@@ -86,6 +86,8 @@ namespace Network
             skillUIController.RemoveSkillImage(index);
         }
 
+        
+
         public void NormalAttack()
         {
             if (CheckCoolTime(0))
@@ -108,7 +110,7 @@ namespace Network
         {
             if (skillCommands[2] != null && CheckCoolTime(2))
             {
-                ClientSend.ShootSkill(skillCommands[2].SkillInfo.skillCode, skillCommands[2].SkillInfo.level, MousePointer.Instance.MousePositionInWorld);
+                ClientSend.ShootSkill(skillCommands[2].SkillInfo.skillCode, skillCommands[2].SkillInfo.level, MousePointer.Instance.MousePositionInWorld, true);
                 deleteItem(2);
             }
         }
@@ -117,7 +119,7 @@ namespace Network
         {
             if (skillCommands[3] != null && CheckCoolTime(3))
             {
-                ClientSend.ShootSkill(skillCommands[3].SkillInfo.skillCode, skillCommands[3].SkillInfo.level, MousePointer.Instance.MousePositionInWorld);
+                ClientSend.ShootSkill(skillCommands[3].SkillInfo.skillCode, skillCommands[3].SkillInfo.level, MousePointer.Instance.MousePositionInWorld, true);
                 deleteItem(3);
             }
         }
@@ -126,7 +128,7 @@ namespace Network
         {
             if (skillCommands[4] != null && CheckCoolTime(4))
             {
-                ClientSend.ShootSkill(skillCommands[4].SkillInfo.skillCode, skillCommands[4].SkillInfo.level, MousePointer.Instance.MousePositionInWorld);
+                ClientSend.ShootSkill(skillCommands[4].SkillInfo.skillCode, skillCommands[4].SkillInfo.level, MousePointer.Instance.MousePositionInWorld, true);
                 deleteItem(4);
             }
         }

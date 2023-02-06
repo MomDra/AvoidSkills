@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public static Dictionary<int, ItemBoxManager> itemBoxes = new Dictionary<int, ItemBoxManager>();
     public static Dictionary<int, ItemBallManager> itemBalls = new Dictionary<int, ItemBallManager>();
 
+    public GameObject skillCastEffectPrefab;
     public GameObject localPlayerPrefab;
     public GameObject playerPrefab;
     public GameObject itemBoxPrefab;
@@ -104,6 +105,10 @@ public class GameManager : MonoBehaviour
         itemBalls.Clear();
     }
 
+    public void InstantiateSkillCastEffect(Vector3 _position){
+        GameObject _effectObject = Instantiate(skillCastEffectPrefab, _position, Quaternion.identity);
+        Destroy(_effectObject, 2f);
+    }
 }
 
 // 서버 itemBox : id, level, team, position, itemBall, skill

@@ -6,21 +6,24 @@ using TMPro;
 
 public class OverHeadStatusUIView : MonoBehaviour
 {
-    private Image hpBar;
     private TextMeshProUGUI usernameText;
+    private Image teamBar;
+    private Image hpBar;
 
     private void Awake()
     {
-        hpBar = GetComponentInChildren<Image>();
         usernameText = GetComponentInChildren<TextMeshProUGUI>();
+        Image[] images = GetComponentsInChildren<Image>();
+        teamBar = images[0];
+        hpBar = images[1];
     }
 
     public void SetUsername(string _username, bool _isRed)
     {
         usernameText.SetText(_username);
 
-        if (_isRed) usernameText.color = Color.red;
-        else usernameText.color = Color.blue;
+        if (_isRed) teamBar.color = Color.red;
+        else teamBar.color = Color.blue;
     }
 
     public void SetHpBarFillAmount(float _fillAmount)

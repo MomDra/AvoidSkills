@@ -157,9 +157,18 @@ public class ServerSend : MonoBehaviour
         }
     }
 
+    public static void InstantiateSkillCastEffect(Vector3 _position){
+        using (Packet _packet = new Packet((int)ServerPackets.instantiateSkillCastEffect))
+        {
+            _packet.Write(_position);
+
+            SendTCPDataToAll(_packet);
+        }
+    }
+
     public static void InstantiateSkillObject(SkillObject _skillObject, int _ownPlayerId)
     {
-        using (Packet _packet = new Packet((int)ServerPackets.InstantiateSkillObject))
+        using (Packet _packet = new Packet((int)ServerPackets.instantiateSkillObject))
         {
             _packet.Write(_skillObject.id);
             _packet.Write(_skillObject.transform.position);
@@ -175,7 +184,7 @@ public class ServerSend : MonoBehaviour
 
     public static void SkillObjectPositionUpdate(SkillObject _skillObject)
     {
-        using (Packet _packet = new Packet((int)ServerPackets.SkillObjectPositionUpdate))
+        using (Packet _packet = new Packet((int)ServerPackets.skillObjectPositionUpdate))
         {
             _packet.Write(_skillObject.id);
             _packet.Write(_skillObject.transform.position);
@@ -186,9 +195,19 @@ public class ServerSend : MonoBehaviour
         }
     }
 
+    public static void SKillObjectHit(SkillObject _skillObject, Vector3 _pos){
+        using (Packet _packet = new Packet((int)ServerPackets.skillObjectHit))
+        {
+            _packet.Write(_skillObject.id);
+            _packet.Write(_pos);
+            
+            SendTCPDataToAll(_packet);
+        }
+    }
+
     public static void SkillObjectExploded(SkillObject _skillObject)
     {
-        using (Packet _packet = new Packet((int)ServerPackets.SkillObjectExploded))
+        using (Packet _packet = new Packet((int)ServerPackets.skillObjectExploded))
         {
             _packet.Write(_skillObject.id);
             _packet.Write(_skillObject.transform.position);

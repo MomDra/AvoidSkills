@@ -97,4 +97,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
+  hitEffectPrefab: {fileID: 4011378597852473781, guid: 8944d125e746eea4ea77e889750cd8cc, type: 3}
   explosionPrefab: {fileID: 0}

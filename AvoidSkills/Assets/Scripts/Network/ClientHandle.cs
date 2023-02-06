@@ -93,6 +93,12 @@ public class ClientHandle
         GameManager.players[_byPlayer].itemCount++;
     }
 
+    public static void InstantiateSkillCastEffect(Packet _packet){
+        Vector3 _position = _packet.ReadVector3();
+
+        GameManager.Instance.InstantiateSkillCastEffect(_position);
+    }
+
     public static void InstantiateSkillObject(Packet _packet)
     {
         int _skillObjectId = _packet.ReadInt();
@@ -115,6 +121,13 @@ public class ClientHandle
 
         GameManager.skillObjects[_skillObjectId].transform.position = _position;
         GameManager.skillObjects[_skillObjectId].transform.rotation = _rotation;
+    }
+
+    public static void SkillObjectHit(Packet _packet){
+        int _skillObjectId = _packet.ReadInt();
+        Vector3 _position = _packet.ReadVector3();
+
+        GameManager.skillObjects[_skillObjectId].Explode(_position);
     }
 
     public static void SkillObjectExploded(Packet _packet)

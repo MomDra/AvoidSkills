@@ -18239,6 +18239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22fea0f79d60bf842878956e84d47cf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skillCastEffectPrefab: {fileID: 7180652278998637931, guid: 6c2fd837d6281b645b261f5234756a30, type: 3}
   localPlayerPrefab: {fileID: 2254150103642978228, guid: a60ba4cd34392db459f5ce26d4eb1ca0, type: 3}
   playerPrefab: {fileID: 2254150103642978228, guid: b59799f91e23e10428e83a06005f7022, type: 3}
   itemBoxPrefab: {fileID: 7105969462260867821, guid: a47cd6b23160ae34393e13b365215fbd, type: 3}

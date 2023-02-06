@@ -66,8 +66,9 @@ public class Player : MonoBehaviour
         return Vector3.Distance(transform.position, targetPos) < 0.15f;
     }
 
-    public void ShootSkill(SkillCode _skillCode, SkillLevel _skillLevel, Vector3 _mousePos)
+    public void ShootSkill(SkillCode _skillCode, SkillLevel _skillLevel, Vector3 _mousePos, bool _isItemSkill)
     {
+        if(_isItemSkill) ServerSend.InstantiateSkillCastEffect(transform.position);
         SkillDB.Instance.GetSkill(_skillCode, _skillLevel).cmd(this, status, _mousePos);
     }
 
@@ -89,7 +90,7 @@ public class Player : MonoBehaviour
 
             Server.gameRoom.inGameRoom.DeadPlayer(id);
 
-            StartCoroutine(Respawn());
+            StartCoroutine(Respawn());  
         }
 
         ServerSend.PlayerHealth(this);

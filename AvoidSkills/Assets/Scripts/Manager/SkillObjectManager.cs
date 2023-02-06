@@ -5,6 +5,7 @@ using UnityEngine;
 public class SkillObjectManager : MonoBehaviour
 {
     public int id;
+    public GameObject hitEffectPrefab;
     public GameObject explosionPrefab;
 
     public void Initialize(int _id)
@@ -15,7 +16,9 @@ public class SkillObjectManager : MonoBehaviour
     public void Explode(Vector3 _position)
     {
         transform.position = _position;
-        Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+        
+        if(hitEffectPrefab!=null) Destroy(Instantiate(hitEffectPrefab, transform.position, Quaternion.identity), 5f);
+        if(explosionPrefab!=null) Destroy(Instantiate(explosionPrefab, transform.position, Quaternion.identity), 5f);
         Destroy();
     }
 

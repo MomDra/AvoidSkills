@@ -34,8 +34,9 @@ public class ServerHandle
         SkillCode _skillCode = (SkillCode)_packet.ReadInt();
         SkillLevel _skillLevel = (SkillLevel)_packet.ReadInt();
         Vector3 _mousePos = _packet.ReadVector3();
+        bool _isItemSkill = _packet.ReadBool();
 
-        Server.clients[_fromClient].player.ShootSkill(_skillCode, _skillLevel, _mousePos);
+        Server.clients[_fromClient].player.ShootSkill(_skillCode, _skillLevel, _mousePos, _isItemSkill);
     }
 
     public static void ReadyButton(int _fromClient, Packet _packet)

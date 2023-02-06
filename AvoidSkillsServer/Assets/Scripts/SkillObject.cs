@@ -43,11 +43,14 @@ public class SkillObject : MonoBehaviour
             if (otherPlayer.id != ownPlayerID)
             {
                 if (otherPlayer.IsRed != isSpawnedByRed)
+                {
                     otherPlayer.TakeDamage(skillInfo.damage);
+                    ServerSend.SKillObjectHit(this, transform.position);
+                }
             }
         }
         if (destroyWhenCollision) Destory();
-    }
+    }   
 
     private void OnTriggerStay(Collider other)
     {

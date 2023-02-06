@@ -40,13 +40,14 @@ public class ClientSend
         }
     }
 
-    public static void ShootSkill(SkillCode _skillCode, SkillLevel _skillLevel, Vector3 _mousePos)
+    public static void ShootSkill(SkillCode _skillCode, SkillLevel _skillLevel, Vector3 _mousePos, bool _isItemSkill = false)
     {
         using (Packet _packet = new Packet((int)ClientPackets.shootSkill))
         {
             _packet.Write((int)_skillCode);
             _packet.Write((int)_skillLevel);
             _packet.Write(_mousePos);
+            _packet.Write(_isItemSkill);
 
             SendTCPData(_packet);
         }
