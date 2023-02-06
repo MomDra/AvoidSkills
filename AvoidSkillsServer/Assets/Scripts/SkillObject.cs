@@ -50,7 +50,7 @@ public class SkillObject : MonoBehaviour
             }
         }
         if (destroyWhenCollision) Destory();
-    }   
+    }
 
     private void OnTriggerStay(Collider other)
     {
@@ -69,13 +69,6 @@ public class SkillObject : MonoBehaviour
 
     public void Initialize(int _ownPlayerID, SkillInfo _skillInfo, bool _isSpawnedByRed)
     {
-        SphereCollider sphereCollider = GetComponent<SphereCollider>();
-        if (sphereCollider != null)
-        {
-            sphereCollider.radius = _skillInfo.range;
-        }
-
-
         ownPlayerID = _ownPlayerID;
         skillInfo = _skillInfo;
         isSpawnedByRed = _isSpawnedByRed;

@@ -767,7 +767,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 2.5
+      value: 1
       mode: 0
       spread: 0
       speed:
@@ -4844,4 +4844,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
+  hitEffectPrefab: {fileID: 0}
   explosionPrefab: {fileID: 0}

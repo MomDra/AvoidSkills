@@ -63,7 +63,7 @@ public class ItemBoxGenerator : MonoBehaviour
         float randomX = Random.Range(1.5f, borderX);
         float randomZ = Random.Range(-borderZ, borderZ);
 
-        Vector3 spawnPos = new(randomX, 0.5f, randomZ);
+        Vector3 spawnPos = new(randomX, 0.6f, randomZ);
 
         Instantiate(itemBoxPrefab, spawnPos, Quaternion.identity).GetComponent<ItemBox>().Initialize(true);
     }
@@ -73,7 +73,7 @@ public class ItemBoxGenerator : MonoBehaviour
         float randomX = Random.Range(-borderX, -1.5f);
         float randomZ = Random.Range(-borderZ, borderZ);
 
-        Vector3 spawnPos = new(randomX, 0.5f, randomZ);
+        Vector3 spawnPos = new(randomX, 0.6f, randomZ);
 
         Instantiate(itemBoxPrefab, spawnPos, Quaternion.identity).GetComponent<ItemBox>().Initialize(false);
     }

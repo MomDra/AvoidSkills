@@ -105,7 +105,8 @@ public class GameManager : MonoBehaviour
         itemBalls.Clear();
     }
 
-    public void InstantiateSkillCastEffect(Vector3 _position){
+    public void InstantiateSkillCastEffect(Vector3 _position)
+    {
         GameObject _effectObject = Instantiate(skillCastEffectPrefab, _position, Quaternion.identity);
         Destroy(_effectObject, 2f);
     }
